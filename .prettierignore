@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+coverage/
+.git/
+.next/
+*.lock
+package-lock.json
+yarn.lock
+*.d.ts
