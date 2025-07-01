@@ -15,7 +15,7 @@ class UserRepository {
         email: data.email,
         password: data.password,
         name: data.name,
-        role: data.role || Role.MEMBER, // Default to USER if no role is provided
+        role: data.role || Role.MEMBER,
       },
     });
   }

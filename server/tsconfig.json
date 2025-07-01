@@ -23,6 +23,8 @@
       "@repository/*": ["repository/*"],
       "@utils/*": ["utils/*"],
       "@config/*": ["configuration/*"],
+      "@dto/*": ["dto/*"],
+      "@service/*": ["service/*"],
       "@prisma": ["generated/prisma"],
       "@prisma/*": ["generated/prisma/*"]
     }
@@ -33,7 +35,9 @@
     "utils/**/*",
     "configuration/**/*",
     "controller/**/*",
-    "repository/**/*"
+    "repository/**/*",
+    "dto/**/*",
+    "service/**/*"
   ],
   "exclude": ["node_modules", "dist"]
 }
