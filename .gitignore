@@ -11,3 +11,10 @@ yarn-error.log*
 .vscode/*
 
 .idea/
+# Node modules
+frontend/node_modules/
+backend/node_modules/
+
+# Environment files
+frontend/.env
+backend/.env
