@@ -1,6 +1,6 @@
 import { Role } from '@prisma';
 
-class UserCreationDto {
+export class UserCreationDTO {
   public username: string;
   public password: string;
   public email: string;
@@ -19,7 +19,7 @@ class UserCreationDto {
   }
 }
 
-class UserUpdateDto {
+export class UserUpdateDTO {
   public id: number;
   public username?: string;
   public email?: string;
@@ -33,7 +33,7 @@ class UserUpdateDto {
   }
 }
 
-class UserResponseDto {
+export class UserResponseDTO {
   public id: number;
   public username: string;
   public email: string;
@@ -54,9 +54,3 @@ class UserResponseDto {
     this.createdAt = createdAt;
   }
 }
-
-export const UserDto = {
-  UserCreationDto,
-  UserUpdateDto,
-  UserResponseDto,
-};
