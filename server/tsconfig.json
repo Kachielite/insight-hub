@@ -17,10 +17,23 @@
     "types": ["node", "reflect-metadata"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@app/*": ["app/*"]
+      "@/*": ["./*"],
+      "@app/*": ["app/*"],
+      "@controller/*": ["controller/*"],
+      "@repository/*": ["repository/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["configuration/*"],
+      "@prisma": ["generated/prisma"],
+      "@prisma/*": ["generated/prisma/*"]
     }
   },
-  "include": ["src/**/*", "app/**/*"],
+  "include": [
+    "src/**/*",
+    "app/**/*",
+    "utils/**/*",
+    "configuration/**/*",
+    "controller/**/*",
+    "repository/**/*"
+  ],
   "exclude": ["node_modules", "dist"]
 }

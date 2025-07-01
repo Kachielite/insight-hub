@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { injectable } from 'tsyringe';
-import logger from '../utils/logger';
+import logger from '@utils/logger';
 
 @injectable()
 class App {

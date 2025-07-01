@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
-import App from './app';
-import { Constants } from '../configuration/constants';
+import App from '@app/app';
+import { Constants } from '@config/constants';
 
 @injectable()
 class Server {

@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 import express from 'express';
-import App from './app';
-import Server from './server';
+import App from '@app/app';
+import Server from '@app/server';
 
 // Register a factory for App
 container.register<App>(App, {
