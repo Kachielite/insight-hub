@@ -32,6 +32,7 @@
   },
   "private": true,
   "dependencies": {
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2"
   }
 }

@@ -8,4 +8,11 @@ declare global {
     }
 }
 
+// Also declare it as a module augmentation
+declare module "express-serve-static-core" {
+    interface Request {
+        user?: string | JwtPayload;
+    }
+}
+
 export {};

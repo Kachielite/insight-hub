@@ -3,11 +3,11 @@ import { Constants } from '@configuration/constants';
 import logger from '@utils/logger';
 import { BadRequestException } from '@/exception';
 import { inject, injectable } from 'tsyringe';
-import UserRepository from '@repository/UserRepository';
-import { JwtService } from '@service/JwtService';
+import UserRepository from '@repository/implementation/UserRepository';
+import { IJwtService } from '@service/IJwtService';
 
 @injectable()
-class IJwtService implements JwtService {
+class JwtService implements IJwtService {
   private readonly SECRET_KEY = Constants.JWT_SECRET as string;
   private readonly ACCESS_TOKEN_EXPIRY =
     Constants.JWT_ACCESS_TOKEN_EXPIRY as unknown as number;
@@ -79,4 +79,4 @@ class IJwtService implements JwtService {
   }
 }
 
-export default IJwtService;
+export default JwtService;

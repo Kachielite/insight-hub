@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
-import { PasswordEncoderService } from '@service/PasswordEncoderService';
+import { IPasswordEncoderService } from '@service/IPasswordEncoderService';
 import { injectable } from 'tsyringe';
 
 @injectable()
-class IPasswordEncoderService implements PasswordEncoderService {
+class PasswordEncoderService implements IPasswordEncoderService {
   async hashPassword(password: string): Promise<string> {
     // Use a library like bcrypt to hash the password
     const saltRounds = 10;
@@ -19,4 +19,4 @@ class IPasswordEncoderService implements PasswordEncoderService {
   }
 }
 
-export default IPasswordEncoderService;
+export default PasswordEncoderService;

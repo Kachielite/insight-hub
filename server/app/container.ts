@@ -5,20 +5,15 @@ import express from 'express';
 // Import all your dependencies
 import App from '@app/app';
 import Server from '@app/server';
-import UserRepository from '@repository/UserRepository';
-import PasswordResetTokenRepository from '@repository/PasswordResetTokenRepository';
-import { JwtService } from '@service/JwtService';
-import IJwtService from '@service/implementation/IJwtService';
-import { AuthenticationService } from '@service/AuthenticationService';
-import IAuthenticationService from '@service/implementation/IAuthenticationService';
-import { UserService } from '@service/UserService';
-import IUserService from '@service/implementation/IUserService';
-import { EmailService } from '@service/EmailService';
-import IEmailService from '@service/implementation/IEmailService';
-import { PasswordEncoderService } from '@service/PasswordEncoderService';
-import IPasswordEncoderService from '@service/implementation/IPasswordEncoderService';
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import AuthenticationService from '@service/implementation/AuthenticationService';
+import UserService from '@service/implementation/UserService';
+import EmailService from '@service/implementation/EmailService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
+import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
 
 export function configureContainer() {
   // Register repositories
@@ -28,14 +23,14 @@ export function configureContainer() {
   );
 
   // Register services with their implementations
-  container.register<JwtService>('JwtService', { useClass: IJwtService });
+  container.register<JwtService>('JwtService', { useClass: JwtService });
   container.register<AuthenticationService>('AuthenticationService', {
-    useClass: IAuthenticationService,
+    useClass: AuthenticationService,
   });
-  container.register<UserService>('UserService', { useClass: IUserService });
-  container.register<EmailService>('EmailService', { useClass: IEmailService });
+  container.register<UserService>('UserService', { useClass: UserService });
+  container.register<EmailService>('EmailService', { useClass: EmailService });
   container.register<PasswordEncoderService>('PasswordEncoderService', {
-    useClass: IPasswordEncoderService,
+    useClass: PasswordEncoderService,
   });
 
   // Register middleware

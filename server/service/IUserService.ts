@@ -1,7 +1,7 @@
 import { UserResponseDTO, UserUpdateDTO } from '@dto/UserDTO';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 
-export interface UserService {
+export interface IUserService {
   findUserById(id: number): Promise<GeneralResponseDTO<UserResponseDTO>>;
   updateUser(
     userData: UserUpdateDTO

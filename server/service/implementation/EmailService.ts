@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
-import { EmailService } from '@service/EmailService';
+import { IEmailService } from '@service/IEmailService';
 import EmailConfig from '@config/email';
 import { Constants } from '@config/constants';
 import logger from '@utils/logger';
 
 @injectable()
-class IEmailService implements EmailService {
+class EmailService implements IEmailService {
   private readonly senderEmail = Constants.NODE_MAIL_USER as string;
   constructor(@inject(EmailConfig) private emailConfig: EmailConfig) {}
 
@@ -55,4 +55,4 @@ class IEmailService implements EmailService {
   }
 }
 
-export default IEmailService;
+export default EmailService;

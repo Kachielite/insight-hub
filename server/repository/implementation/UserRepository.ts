@@ -1,9 +1,10 @@
 import { Role } from '@prisma';
 import prisma from '@config/db';
 import { injectable } from 'tsyringe';
+import { IUserRepository } from '@repository/IUserRepositroy';
 
 @injectable()
-class UserRepository {
+class UserRepository implements IUserRepository {
   constructor() {}
 
   public async createUser(data: {

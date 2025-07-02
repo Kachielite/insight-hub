@@ -1,10 +1,13 @@
 import { Request } from 'express';
 import { inject } from 'tsyringe';
-import { AuthenticationService } from '@service/AuthenticationService';
-import UserRepository from '@repository/UserRepository';
-import IJwtService from '@service/implementation/IJwtService';
-import IPasswordEncoderService from '@service/implementation/IPasswordEncoderService';
-import { AuthTokenDTO } from '@/dto/AuthenticationDTO';
+import { IAuthenticationService } from '@service/IAuthenticationService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import {
+  AuthenticationDTO,
+  AuthTokenDTO,
+  PasswordResetDTO,
+  RegistrationDTO,
+} from '@/dto/AuthenticationDTO';
 import GeneralResponseDTO from '@/dto/GeneralResponseDTO';
 import logger from '@utils/logger';
 import {
@@ -12,25 +15,27 @@ import {
   NotAuthorizedException,
   ResourceNotFoundException,
 } from '@/exception';
-import IEmailService from '@service/implementation/IEmailService';
-import PasswordResetTokenRepository from '@repository/PasswordResetTokenRepository';
+import EmailService from '@service/implementation/EmailService';
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
 import TokenGenerator from '@utils/TokenGenerator';
+import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
 
-class IAuthenticationService implements AuthenticationService {
+class AuthenticationService implements IAuthenticationService {
   constructor(
     @inject(UserRepository) private userRepository: UserRepository,
-    @inject(IJwtService) private jwtService: IJwtService,
-    @inject(IPasswordEncoderService)
-    private passwordEncoderService: IPasswordEncoderService,
-    @inject(IEmailService) private emailService: IEmailService,
+    @inject(JwtService) private jwtService: JwtService,
+    @inject(PasswordEncoderService)
+    private passwordEncoderService: PasswordEncoderService,
+    @inject(EmailService) private emailService: EmailService,
     @inject(PasswordResetTokenRepository)
     private passwordResetTokenRepository: PasswordResetTokenRepository
   ) {}
 
-  async login(
-    email: string,
-    password: string
-  ): Promise<GeneralResponseDTO<AuthTokenDTO>> {
+  async login({
+    email,
+    password,
+  }: AuthenticationDTO): Promise<GeneralResponseDTO<AuthTokenDTO>> {
     try {
       logger.info(`Logging in user with email: ${email}`);
 
@@ -80,11 +85,11 @@ class IAuthenticationService implements AuthenticationService {
     }
   }
 
-  async register(
-    email: string,
-    password: string,
-    name: string
-  ): Promise<GeneralResponseDTO<AuthTokenDTO>> {
+  async register({
+    email,
+    password,
+    name,
+  }: RegistrationDTO): Promise<GeneralResponseDTO<AuthTokenDTO>> {
     try {
       logger.info(`Logging in user with email: ${email}`);
 
@@ -176,10 +181,10 @@ class IAuthenticationService implements AuthenticationService {
     }
   }
 
-  async resetPassword(
-    email: string,
-    newPassword: string
-  ): Promise<GeneralResponseDTO<string>> {
+  async resetPassword({
+    email,
+    newPassword,
+  }: PasswordResetDTO): Promise<GeneralResponseDTO<string>> {
     try {
       logger.info(`Resetting password for user with email: ${email}`);
 
@@ -264,4 +269,4 @@ class IAuthenticationService implements AuthenticationService {
   }
 }
 
-export default IAuthenticationService;
+export default AuthenticationService;

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { JwtService } from '@service/JwtService';
-import UserRepository from '../repository/UserRepository';
 import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
 import logger from '../utils/logger';
+import JwtService from '@service/implementation/JwtService';
+import UserRepository from '@repository/implementation/UserRepository';
 
 @injectable()
 class AuthenticationMiddleware {
@@ -16,7 +16,7 @@ class AuthenticationMiddleware {
   ];
 
   constructor(
-    @inject('JwtService') private jwtService: JwtService,
+    @inject(JwtService) private jwtService: JwtService,
     @inject(UserRepository) private userRepository: UserRepository
   ) {}
 

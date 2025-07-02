@@ -1,7 +1,7 @@
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import { UserResponseDTO, UserUpdateDTO } from '@/dto/UserDTO';
-import { UserService } from '@/service/UserService';
-import UserRepository from '@repository/UserRepository';
+import { IUserService } from '@service/IUserService';
+
 import {
   BadRequestException,
   ConflictException,
@@ -10,15 +10,16 @@ import {
 import { InternalServerError } from 'http-errors';
 import logger from '@utils/logger';
 import { inject, injectable } from 'tsyringe';
-import IPasswordEncoderService from '@service/implementation/IPasswordEncoderService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
 import { Role } from '@prisma';
+import UserRepository from '@repository/implementation/UserRepository';
 
 @injectable()
-class IUserService implements UserService {
+class UserService implements IUserService {
   constructor(
     @inject(UserRepository) private userRepository: UserRepository,
-    @inject(IPasswordEncoderService)
-    private passwordEncoderService: IPasswordEncoderService
+    @inject(PasswordEncoderService)
+    private passwordEncoderService: PasswordEncoderService
   ) {}
 
   async findUserById(id: number): Promise<GeneralResponseDTO<UserResponseDTO>> {
@@ -171,4 +172,4 @@ class IUserService implements UserService {
   }
 }
 
-export default IUserService;
+export default UserService;

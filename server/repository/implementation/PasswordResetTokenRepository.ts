@@ -1,6 +1,7 @@
 import prisma from '@config/db';
+import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRepository';
 
-class PasswordResetTokenRepository {
+class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
   async create(data: { userId: number; token: string; expiresAt: Date }) {
     return prisma.passwordResetToken.create({
       data: {
