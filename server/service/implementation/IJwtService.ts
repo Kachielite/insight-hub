@@ -1,22 +1,20 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { JwtService } from '@service/jwt-service';
 import { Constants } from '@configuration/constants';
-import UserRepository from '@repository/user-repository';
 import logger from '@utils/logger';
 import { BadRequestException } from '@/exception';
+import { inject, injectable } from 'tsyringe';
+import UserRepository from '@repository/UserRepository';
+import { JwtService } from '@service/JwtService';
 
-class JwtServiceImplementation implements JwtService {
+@injectable()
+class IJwtService implements JwtService {
   private readonly SECRET_KEY = Constants.JWT_SECRET as string;
   private readonly ACCESS_TOKEN_EXPIRY =
     Constants.JWT_ACCESS_TOKEN_EXPIRY as unknown as number;
   private readonly REFRESH_TOKEN_EXPIRY =
     Constants.JWT_REFRESH_TOKEN_EXPIRY as unknown as number;
 
-  private readonly userRepository: UserRepository;
-
-  constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository;
-  }
+  constructor(@inject(UserRepository) private userRepository: UserRepository) {}
 
   async generateToken(
     userId: number,
@@ -47,7 +45,7 @@ class JwtServiceImplementation implements JwtService {
     }
   }
 
-  async verifyAccessToken(token: string): Promise<JwtPayload> {
+  async verifyToken(token: string): Promise<JwtPayload> {
     try {
       return jwt.verify(token, this.SECRET_KEY) as JwtPayload;
     } catch (error) {
@@ -81,4 +79,4 @@ class JwtServiceImplementation implements JwtService {
   }
 }
 
-export default JwtServiceImplementation;
+export default IJwtService;

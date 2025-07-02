@@ -8,12 +8,12 @@ const NODE_ENV = process.env.NODE_ENV;
 
 // JWT
 const JWT_SECRET: string = process.env.JWT_SECRET!;
-if (!JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is required');
-}
-
 const JWT_ACCESS_TOKEN_EXPIRY = process.env.JWT_ACCESS_TOKEN_EXPIRY || '15m';
 const JWT_REFRESH_TOKEN_EXPIRY = process.env.JWT_REFRESH_TOKEN_EXPIRY || '7d';
+
+// Email
+const NODE_MAIL_USER = process.env.NODE_MAIL_USER;
+const NODE_MAIL_PASS = process.env.NODE_MAIL_PASS;
 
 export const Constants = {
   PORT,
@@ -21,4 +21,6 @@ export const Constants = {
   JWT_SECRET,
   JWT_ACCESS_TOKEN_EXPIRY,
   JWT_REFRESH_TOKEN_EXPIRY,
+  NODE_MAIL_USER,
+  NODE_MAIL_PASS,
 };

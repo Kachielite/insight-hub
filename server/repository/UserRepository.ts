@@ -1,0 +1,59 @@
+import { Role } from '@prisma';
+import prisma from '@config/db';
+import { injectable } from 'tsyringe';
+
+@injectable()
+class UserRepository {
+  constructor() {}
+
+  public async createUser(data: {
+    email: string;
+    password: string;
+    name: string;
+    role?: Role;
+  }) {
+    return prisma.user.create({
+      data: {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        role: data.role || Role.MEMBER,
+      },
+    });
+  }
+
+  public async findUserByEmail(email: string) {
+    return prisma.user.findUnique({
+      where: { email },
+    });
+  }
+
+  public async findUserById(id: number) {
+    return prisma.user.findUnique({
+      where: { id },
+    });
+  }
+
+  public async updateUser(
+    id: number,
+    data: { password?: string; name?: string; role?: Role; isActive?: boolean }
+  ) {
+    return prisma.user.update({
+      where: { id },
+      data: {
+        password: data.password,
+        name: data.name,
+        role: data.role,
+        isActive: data.isActive !== undefined ? data.isActive : true,
+      },
+    });
+  }
+
+  public async deleteUser(id: number) {
+    return prisma.user.delete({
+      where: { id },
+    });
+  }
+}
+
+export default UserRepository;
