@@ -13,7 +13,7 @@ export default [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.json', './server/tsconfig.json'],
       },
       globals: {
         console: 'readonly',
@@ -69,6 +69,8 @@ export default [
       'client/build/',
       'server/dist/',
       'server/build/',
+      'server/generated/',
+      '**/node_modules/',
     ],
   },
 ];

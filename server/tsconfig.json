@@ -19,6 +19,7 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["app/*"],
+      "@configuration/*": ["configuration/*"],
       "@controller/*": ["controller/*"],
       "@repository/*": ["repository/*"],
       "@utils/*": ["utils/*"],
@@ -33,6 +34,7 @@
   "include": [
     "src/**/*",
     "app/**/*",
+    "configuration/**/*",
     "utils/**/*",
     "configuration/**/*",
     "controller/**/*",

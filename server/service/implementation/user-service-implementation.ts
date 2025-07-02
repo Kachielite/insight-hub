@@ -6,7 +6,7 @@ import {
   UserResponseDTO,
   UserUpdateDTO,
 } from '@/dto/user-dto';
-import UserService from '@service/user-service';
+import { UserService } from '@/service/user-service';
 
 class UserServiceImplementation implements UserService {
   registerUser(

@@ -1,0 +1,84 @@
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { JwtService } from '@service/jwt-service';
+import { Constants } from '@configuration/constants';
+import UserRepository from '@repository/user-repository';
+import logger from '@utils/logger';
+import { BadRequestException } from '@/exception';
+
+class JwtServiceImplementation implements JwtService {
+  private readonly SECRET_KEY = Constants.JWT_SECRET as string;
+  private readonly ACCESS_TOKEN_EXPIRY =
+    Constants.JWT_ACCESS_TOKEN_EXPIRY as unknown as number;
+  private readonly REFRESH_TOKEN_EXPIRY =
+    Constants.JWT_REFRESH_TOKEN_EXPIRY as unknown as number;
+
+  private readonly userRepository: UserRepository;
+
+  constructor(userRepository: UserRepository) {
+    this.userRepository = userRepository;
+  }
+
+  async generateToken(
+    userId: number,
+    type: 'access' | 'refresh'
+  ): Promise<string> {
+    try {
+      const user = await this.userRepository.findUserById(userId);
+
+      if (!user) {
+        throw new BadRequestException('User does not exist');
+      }
+
+      const payload = {
+        userId: user.id,
+        role: user.role,
+      };
+
+      return jwt.sign(payload, this.SECRET_KEY, {
+        expiresIn:
+          type === 'access'
+            ? this.ACCESS_TOKEN_EXPIRY
+            : this.REFRESH_TOKEN_EXPIRY,
+        algorithm: 'HS256',
+      });
+    } catch (error) {
+      logger.error(`Error generating token for user ${userId}: ${error}`);
+      throw error;
+    }
+  }
+
+  async verifyAccessToken(token: string): Promise<JwtPayload> {
+    try {
+      return jwt.verify(token, this.SECRET_KEY) as JwtPayload;
+    } catch (error) {
+      logger.error(`Error verifying access token: ${error}`);
+      throw new BadRequestException('Invalid access token');
+    }
+  }
+
+  async refreshAccessToken(refreshToken: string): Promise<string> {
+    try {
+      // Verify the refresh token
+      const payload = jwt.verify(refreshToken, this.SECRET_KEY) as JwtPayload;
+
+      if (!payload || !payload.userId) {
+        throw new BadRequestException('Invalid refresh token');
+      }
+
+      // Check if the user exists
+      const user = await this.userRepository.findUserById(payload.userId);
+
+      if (!user) {
+        throw new BadRequestException('User does not exist');
+      }
+
+      // Generate a new access token
+      return this.generateToken(user.id, 'access');
+    } catch (error) {
+      logger.error(`Error refreshing access token: ${error}`);
+      throw new BadRequestException('Invalid refresh token');
+    }
+  }
+}
+
+export default JwtServiceImplementation;

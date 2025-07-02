@@ -23,5 +23,3 @@ export interface UserService {
   ): Promise<GeneralResponseDTO<UserResponseDTO>>;
   deleteUser(id: number): Promise<GeneralResponseDTO<string>>;
 }
-
-export default UserService;
