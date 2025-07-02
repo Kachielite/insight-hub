@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { inject } from 'tsyringe';
 import { AuthenticationService } from '@service/AuthenticationService';
 import UserRepository from '@repository/UserRepository';
@@ -216,7 +217,7 @@ class IAuthenticationService implements AuthenticationService {
   async refreshToken(req: Request): Promise<GeneralResponseDTO<AuthTokenDTO>> {
     try {
       logger.info(`Refreshing token for user`);
-      const bearerToken = req.headers.get('authorization');
+      const bearerToken = req.headers.authorization;
 
       // Extract refresh token from request
       const refreshToken = bearerToken?.split(' ')[1];

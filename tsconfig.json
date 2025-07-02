@@ -22,7 +22,8 @@
     "server/repository/**/*",
     "server/dto/**/*",
     "server/service/**/*",
-    "server/exception/**/*"
+    "server/exception/**/*",
+    "server/middleware/**/*"
   ],
   "exclude": ["node_modules", "dist", "client/dist", "server/dist"]
 }

@@ -27,6 +27,7 @@
       "@dto/*": ["dto/*"],
       "@service/*": ["service/*"],
       "@exception/*": ["exception/*"],
+      "@middleware/*": ["middleware/*"],
       "@prisma": ["generated/prisma"],
       "@prisma/*": ["generated/prisma/*"]
     }
@@ -41,7 +42,9 @@
     "repository/**/*",
     "dto/**/*",
     "service/**/*",
-    "exception/**/*"
+    "exception/**/*",
+    "middleware/**/*",
+    "types/**/*"
   ],
   "exclude": ["node_modules", "dist"]
 }

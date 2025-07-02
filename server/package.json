@@ -101,8 +101,8 @@
     "tsconfig-paths": "^4.2.0"
   },
   "scripts": {
-    "start": "nodemon -r tsconfig-paths/register ./app/main.ts",
-    "dev": "nodemon -r tsconfig-paths/register ./app/main.ts",
+    "start": "nodemon -r tsconfig-paths/register ./app/server.ts",
+    "dev": "nodemon -r tsconfig-paths/register ./app/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

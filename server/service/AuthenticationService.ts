@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import { AuthTokenDTO } from '@dto/AuthenticationDTO';
 
