@@ -122,3 +122,11 @@
 2025-07-03T04:00:00.409Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-03T04:00:42.831Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-03T04:00:49.843Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T05:20:46.186Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:20:46.279Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:21:35.176Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:21:35.180Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:23:42.226Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:23:42.354Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:27:39.822Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:27:39.875Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed

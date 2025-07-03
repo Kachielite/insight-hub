@@ -10,3 +10,11 @@
 2025-07-03T03:54:48.718Z [INSIGHT-HUB 🚥] [31merror[39m:: Resource Not Found - User with email john.doe@mail.com does not exist - /api/auth/login - POST - ::1 - 404
 2025-07-03T03:55:04.265Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
 2025-07-03T03:55:52.896Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T05:20:46.186Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:20:46.279Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:21:35.176Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:21:35.180Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:23:42.226Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:23:42.354Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-03T05:27:39.822Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-03T05:27:39.875Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
