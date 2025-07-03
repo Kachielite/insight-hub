@@ -1,6 +1,7 @@
 import { NextFunction, Response } from 'express';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 
+// Sample test
 describe('GlobalExceptionMiddleware', () => {
   it('should call res.status and res.json when an error occurs', () => {
     const err = new Error('Test error') as any;
