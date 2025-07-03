@@ -18,3 +18,11 @@ backend/node_modules/
 # Environment files
 frontend/.env
 backend/.env
+
+# Logs
+frontend/logs
+backend/logs
+
+# Test coverage
+frontend/coverage
+backend/coverage

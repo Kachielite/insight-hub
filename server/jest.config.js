@@ -33,14 +33,17 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
   collectCoverageFrom: [
     'app/**/*.ts',
     'controller/**/*.ts',
+    'middleware/**/*.ts',
     'service/**/*.ts',
     'repository/**/*.ts',
-    'middleware/**/*.ts',
     'utils/**/*.ts',
-    '!**/*.d.ts',
     '!**/node_modules/**',
+    '!**/generated/**',
   ],
 };
