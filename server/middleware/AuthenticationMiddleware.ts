@@ -4,7 +4,7 @@ import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
 import logger from '../utils/logger';
 import JwtService from '@service/implementation/JwtService';
 import UserRepository from '@repository/implementation/UserRepository';
-import { CustomJwtPayload } from '../common/types/express';
+import { CustomJwtPayload } from '@common/types/express';
 
 @injectable()
 class AuthenticationMiddleware {
