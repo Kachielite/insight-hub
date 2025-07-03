@@ -1,4 +1,4 @@
-class HttpError extends Error {
+export default class HttpError extends Error {
   public code: number;
   public name: string;
 
@@ -10,5 +10,3 @@ class HttpError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
-
-export default HttpError;

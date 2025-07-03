@@ -14,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["node", "reflect-metadata"],
+    "types": ["node", "reflect-metadata", "jest"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
@@ -29,6 +29,7 @@
       "@exception/*": ["exception/*"],
       "@middleware/*": ["middleware/*"],
       "@common/*": ["common/*"],
+      "@test/*": ["test/*"],
       "@prisma": ["generated/prisma"],
       "@prisma/*": ["generated/prisma/*"]
     }
@@ -46,7 +47,9 @@
     "exception/**/*",
     "middleware/**/*",
     "types/**/*",
-    "common/**/*"
+    "test/**/*",
+    "common/**/*",
+    "tests/**/*"
   ],
   "exclude": ["node_modules", "dist"],
   "files": ["./common/types/express.d.ts"]
