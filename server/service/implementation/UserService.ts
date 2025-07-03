@@ -17,9 +17,9 @@ import UserRepository from '@repository/implementation/UserRepository';
 @injectable()
 class UserService implements IUserService {
   constructor(
-    @inject(UserRepository) private userRepository: UserRepository,
+    @inject(UserRepository) private readonly userRepository: UserRepository,
     @inject(PasswordEncoderService)
-    private passwordEncoderService: PasswordEncoderService
+    private readonly passwordEncoderService: PasswordEncoderService
   ) {}
 
   async findUserById(id: number): Promise<GeneralResponseDTO<UserResponseDTO>> {

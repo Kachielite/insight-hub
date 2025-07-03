@@ -24,13 +24,13 @@ import JwtService from '@service/implementation/JwtService';
 @injectable()
 class AuthenticationService implements IAuthenticationService {
   constructor(
-    @inject(UserRepository) private userRepository: UserRepository,
-    @inject(JwtService) private jwtService: JwtService,
+    @inject(UserRepository) private readonly userRepository: UserRepository,
+    @inject(JwtService) private readonly jwtService: JwtService,
     @inject(PasswordEncoderService)
-    private passwordEncoderService: PasswordEncoderService,
-    @inject(EmailService) private emailService: EmailService,
+    private readonly passwordEncoderService: PasswordEncoderService,
+    @inject(EmailService) private readonly emailService: EmailService,
     @inject(PasswordResetTokenRepository)
-    private passwordResetTokenRepository: PasswordResetTokenRepository
+    private readonly passwordResetTokenRepository: PasswordResetTokenRepository
   ) {}
 
   async login({

@@ -7,7 +7,7 @@ import logger from '@utils/logger';
 @injectable()
 class EmailService implements IEmailService {
   private readonly senderEmail = Constants.NODE_MAIL_USER as string;
-  constructor(@inject(EmailConfig) private emailConfig: EmailConfig) {}
+  constructor(@inject(EmailConfig) private readonly emailConfig: EmailConfig) {}
 
   async sendPasswordResetEmail(
     email: string,
@@ -25,7 +25,8 @@ class EmailService implements IEmailService {
   }
 
   private async sendMail(to: string, subject: string, html: string) {
-    return await EmailConfig.getTransporter().sendMail({
+    const transporter = await this.emailConfig.getTransporter();
+    return await transporter.sendMail({
       from: this.senderEmail,
       to,
       subject,

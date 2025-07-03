@@ -4,10 +4,10 @@ import { Constants } from '@config/constants';
 
 @injectable()
 class EmailConfig {
-  private static readonly NODE_MAIL_USER = Constants.NODE_MAIL_USER as string;
-  private static readonly NODE_MAIL_PASS = Constants.NODE_MAIL_PASS as string;
+  private readonly NODE_MAIL_USER = Constants.NODE_MAIL_USER as string;
+  private readonly NODE_MAIL_PASS = Constants.NODE_MAIL_PASS as string;
 
-  static getTransporter() {
+  public async getTransporter() {
     return nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,

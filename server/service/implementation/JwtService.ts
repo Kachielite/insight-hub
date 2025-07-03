@@ -14,7 +14,9 @@ class JwtService implements IJwtService {
   private readonly REFRESH_TOKEN_EXPIRY =
     Constants.JWT_REFRESH_TOKEN_EXPIRY as unknown as number;
 
-  constructor(@inject(UserRepository) private userRepository: UserRepository) {}
+  constructor(
+    @inject(UserRepository) private readonly userRepository: UserRepository
+  ) {}
 
   async generateToken(
     userId: number,
