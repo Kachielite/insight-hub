@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import { injectable } from 'tsyringe';
 import logger from '@utils/logger';
 import { AppServices } from '@common/types/AppServices';
+import swaggerUi from 'swagger-ui-express';
+import SwaggerConfig from '@configuration/swagger';
 
 @injectable()
 class App {
@@ -28,6 +30,11 @@ class App {
 
   initRoutes() {
     this.app.use('/api/auth', this.services.authController.router);
+    this.app.use(
+      '/api-docs',
+      swaggerUi.serve,
+      swaggerUi.setup(SwaggerConfig.specs())
+    );
   }
 
   initiateErrorHandler() {

@@ -15,21 +15,25 @@ class AuthenticationMiddleware {
     '/api/auth/reset-password',
     '/api/auth/refresh-token',
   ];
+  private readonly excludedPrefixes = ['/api-docs'];
 
   constructor(
     @inject(JwtService) private jwtService: JwtService,
     @inject(UserRepository) private userRepository: UserRepository
   ) {}
 
-  public async authenticate(
+  public authenticate = async (
     req: Request,
     res: Response,
     next: NextFunction
-  ): Promise<void> {
+  ): Promise<void> => {
     const path = req.path;
 
     // Skip authentication for excluded routes
-    if (this.excludedRoutes.includes(path)) {
+    if (
+      this.excludedRoutes.includes(path) ||
+      this.excludedPrefixes.some((prefix) => path.startsWith(prefix))
+    ) {
       return next();
     }
 
@@ -64,7 +68,7 @@ class AuthenticationMiddleware {
       }
       next(error);
     }
-  }
+  };
 }
 
 export default AuthenticationMiddleware;
