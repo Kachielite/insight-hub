@@ -1,24 +1,20 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import { inject, injectable } from 'tsyringe';
-import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
+import { injectable } from 'tsyringe';
 import logger from '@utils/logger';
-import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
+import { AppServices } from '@common/types/AppServices';
 
 @injectable()
 class App {
   private readonly app: Application;
+  private readonly services: AppServices;
 
-  constructor(
-    app: Application,
-    @inject(AuthenticationMiddleware)
-    private authMiddleware: AuthenticationMiddleware,
-    @inject(GlobalExceptionMiddleware)
-    private globalExceptionMiddleware: GlobalExceptionMiddleware
-  ) {
+  constructor(app: Application, services: AppServices) {
     this.app = app;
+    this.services = services;
     this.initMiddleware();
+    this.initRoutes();
     this.initiateErrorHandler();
   }
 
@@ -27,12 +23,18 @@ class App {
     this.app.use(express.json());
     this.app.use(helmet());
     this.app.use(cors());
-    this.app.use(this.authMiddleware.authenticate);
+    this.app.use(this.services.authMiddleware.authenticate);
+  }
+
+  initRoutes() {
+    this.app.use('/api/auth', this.services.authController.router);
   }
 
   initiateErrorHandler() {
-    this.app.use(this.globalExceptionMiddleware.resourceNotFoundHandler);
-    this.app.use(this.globalExceptionMiddleware.allExceptionHandler);
+    this.app.use(
+      this.services.globalExceptionMiddleware.resourceNotFoundHandler
+    );
+    this.app.use(this.services.globalExceptionMiddleware.allExceptionHandler);
   }
 
   public start(port: number): void {

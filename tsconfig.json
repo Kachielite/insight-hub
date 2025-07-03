@@ -23,7 +23,8 @@
     "server/dto/**/*",
     "server/service/**/*",
     "server/exception/**/*",
-    "server/middleware/**/*"
+    "server/middleware/**/*",
+    "server/common/**/*"
   ],
   "exclude": ["node_modules", "dist", "client/dist", "server/dist"]
 }

@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { IAuthenticationService } from '@service/IAuthenticationService';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
 import {
@@ -21,6 +21,7 @@ import TokenGenerator from '@utils/TokenGenerator';
 import UserRepository from '@repository/implementation/UserRepository';
 import JwtService from '@service/implementation/JwtService';
 
+@injectable()
 class AuthenticationService implements IAuthenticationService {
   constructor(
     @inject(UserRepository) private userRepository: UserRepository,

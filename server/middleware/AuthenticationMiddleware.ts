@@ -4,6 +4,7 @@ import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
 import logger from '../utils/logger';
 import JwtService from '@service/implementation/JwtService';
 import UserRepository from '@repository/implementation/UserRepository';
+import { CustomJwtPayload } from '../common/types/express';
 
 @injectable()
 class AuthenticationMiddleware {
@@ -39,12 +40,14 @@ class AuthenticationMiddleware {
     }
 
     try {
-      const decoded = await this.jwtService.verifyToken(token);
-      if (!decoded || !decoded.id) {
+      const decoded = (await this.jwtService.verifyToken(
+        token
+      )) as CustomJwtPayload;
+      if (!decoded || !decoded.userId) {
         throw new NotAuthorizedException('Invalid or expired token');
       }
 
-      const user = await this.userRepository.findUserById(decoded.id);
+      const user = await this.userRepository.findUserById(decoded.userId);
       if (!user) {
         throw new NotAuthenticatedException('User not found');
       }

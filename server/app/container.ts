@@ -14,8 +14,15 @@ import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 import UserRepository from '@repository/implementation/UserRepository';
 import JwtService from '@service/implementation/JwtService';
+import AuthenticationController from '@controller/AuthenticationController';
+import { AppServices } from '@common/types/AppServices';
 
 export function configureContainer() {
+  // Register Express Router factory
+  container.register<express.Router>('Router', {
+    useFactory: () => express.Router(),
+  });
+
   // Register repositories
   container.registerSingleton<UserRepository>(UserRepository);
   container.registerSingleton<PasswordResetTokenRepository>(
@@ -41,14 +48,20 @@ export function configureContainer() {
     GlobalExceptionMiddleware
   );
 
+  // Register controllers
+  container.registerSingleton<AuthenticationController>(
+    AuthenticationController
+  );
+
   // Register Express app factory with proper dependency injection
   container.register<App>(App, {
     useFactory: (container) => {
-      const authMiddleware = container.resolve(AuthenticationMiddleware);
-      const globalExceptionMiddleware = container.resolve(
-        GlobalExceptionMiddleware
-      );
-      return new App(express(), authMiddleware, globalExceptionMiddleware);
+      const services: AppServices = {
+        authMiddleware: container.resolve(AuthenticationMiddleware),
+        globalExceptionMiddleware: container.resolve(GlobalExceptionMiddleware),
+        authController: container.resolve(AuthenticationController),
+      };
+      return new App(express(), services);
     },
   });
 

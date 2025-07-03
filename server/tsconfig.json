@@ -28,6 +28,7 @@
       "@service/*": ["service/*"],
       "@exception/*": ["exception/*"],
       "@middleware/*": ["middleware/*"],
+      "@common/*": ["common/*"],
       "@prisma": ["generated/prisma"],
       "@prisma/*": ["generated/prisma/*"]
     }
@@ -44,8 +45,9 @@
     "service/**/*",
     "exception/**/*",
     "middleware/**/*",
-    "types/**/*"
+    "types/**/*",
+    "common/**/*"
   ],
   "exclude": ["node_modules", "dist"],
-  "files": ["./types/express.d.ts"]
+  "files": ["./common/types/express.d.ts"]
 }

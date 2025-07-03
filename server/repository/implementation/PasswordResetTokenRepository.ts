@@ -1,6 +1,8 @@
 import prisma from '@config/db';
 import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRepository';
+import { injectable } from 'tsyringe';
 
+@injectable()
 class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
   async create(data: { userId: number; token: string; expiresAt: Date }) {
     return prisma.passwordResetToken.create({
