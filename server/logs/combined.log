@@ -70,3 +70,54 @@
 2025-07-03T03:23:02.424Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-03T03:25:01.218Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-03T03:25:08.847Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:26:22.314Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:27:02.462Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:29:35.439Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:33:35.544Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:34:29.357Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:34:58.136Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:35:08.534Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:37:43.068Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:38:53.470Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:38:57.358Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:39:23.838Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:40:29.930Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:40:48.145Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:40:50.401Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:41:14.134Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:41:55.362Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:42:25.837Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:42:40.187Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:43:43.969Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:45:18.597Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:47:47.019Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:48:36.425Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:48:43.520Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:49:53.989Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:50:01.828Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 500
+2025-07-03T03:51:00.750Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:51:07.947Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:51:11.766Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:51:42.088Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:51:45.666Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:51:51.356Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:52:19.154Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:52:24.427Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:52:55.377Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:52:59.602Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:53:10.306Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:53:13.976Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:53:39.357Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:53:45.431Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T03:54:48.605Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: john.doe@mail.com
+2025-07-03T03:54:48.716Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email john.doe@mail.com does not exist
+2025-07-03T03:54:48.718Z [INSIGHT-HUB 🚥] [31merror[39m:: Resource Not Found - User with email john.doe@mail.com does not exist - /api/auth/login - POST - ::1 - 404
+2025-07-03T03:55:04.265Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T03:55:40.823Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:55:44.597Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:55:52.896Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T03:57:58.293Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:58:46.167Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T03:59:54.393Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T04:00:00.409Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-03T04:00:42.831Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080

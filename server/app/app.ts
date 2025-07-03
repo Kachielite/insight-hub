@@ -15,21 +15,25 @@ class App {
   constructor(app: Application, services: AppServices) {
     this.app = app;
     this.services = services;
-    this.initMiddleware();
-    this.initRoutes();
+    this.initiateMiddleware();
+    this.initiateRoutes();
     this.initiateErrorHandler();
   }
 
-  initMiddleware() {
-    this.app.use(express.urlencoded({ extended: true }));
+  initiateMiddleware() {
     this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(helmet());
     this.app.use(cors());
     this.app.use(this.services.authMiddleware.authenticate);
   }
 
-  initRoutes() {
+  initiateRoutes() {
     this.app.use('/api/auth', this.services.authController.router);
+    this.app.use(
+      '/api/health-check',
+      this.services.healthCheckController.router
+    );
     this.app.use(
       '/api-docs',
       swaggerUi.serve,

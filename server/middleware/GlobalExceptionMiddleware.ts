@@ -6,10 +6,10 @@ import {
   Response,
 } from 'express';
 import { injectable } from 'tsyringe';
-import HttpError from '@exception/http-error';
 import { Constants } from '@config/constants';
-import ErrorResponse from '@dto/ErrorResponseDTO';
 import logger from '@utils/logger';
+import ErrorResponseDTO from '@dto/ErrorResponseDTO';
+import HttpError from '@exception/http-error';
 
 @injectable()
 class GlobalExceptionMiddleware {
@@ -18,11 +18,8 @@ class GlobalExceptionMiddleware {
     res: Response,
     next: NextFunction
   ) => {
-    const error = new HttpError(
-      404,
-      'Resource not found',
-      'Resource Not Found'
-    );
+    const error = new Error('Resource Not Found');
+    (error as any).code = 404;
     next(error);
   };
 
@@ -37,12 +34,24 @@ class GlobalExceptionMiddleware {
     const name = error.name;
     const stack = environment === 'development' ? error.stack : undefined;
 
+    // Log the error
     logger.error(
-      `${name} - ${message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+      `${name} - ${message} - ${req.originalUrl} - ${req.method} - ${req.ip} - ${statusCode}`
+    );
+    if (stack) {
+      logger.error(stack);
+    }
+
+    // Send JSON response
+    const errorResponse = new ErrorResponseDTO(
+      statusCode,
+      name,
+      message,
+      stack
     );
 
-    const errorResponse = new ErrorResponse(statusCode, name, message, stack);
-
+    // Ensure we're sending JSON
+    res.setHeader('Content-Type', 'application/json');
     res.status(statusCode).json(errorResponse);
   };
 }

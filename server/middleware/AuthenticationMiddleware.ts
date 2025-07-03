@@ -9,13 +9,14 @@ import { CustomJwtPayload } from '@common/types/express';
 @injectable()
 class AuthenticationMiddleware {
   private readonly excludedRoutes: string[] = [
+    '/api/health-check',
     '/api/auth/login',
     '/api/auth/register',
     '/api/auth/reset-password-link',
     '/api/auth/reset-password',
     '/api/auth/refresh-token',
   ];
-  private readonly excludedPrefixes = ['/api-docs'];
+  private readonly excludedPrefixes: string[] = ['/api-docs'];
 
   constructor(
     @inject(JwtService) private jwtService: JwtService,

@@ -1,4 +1,4 @@
-class ErrorResponse {
+class ErrorResponseDTO {
   public error: string;
   public message: string;
   public statusCode: number;
@@ -19,4 +19,4 @@ class ErrorResponse {
   }
 }
 
-export default ErrorResponse;
+export default ErrorResponseDTO;

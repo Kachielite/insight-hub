@@ -16,6 +16,7 @@ import UserRepository from '@repository/implementation/UserRepository';
 import JwtService from '@service/implementation/JwtService';
 import AuthenticationController from '@controller/AuthenticationController';
 import { AppServices } from '@common/types/AppServices';
+import HealthCheckController from '@controller/HealthCheckController';
 
 export function configureContainer() {
   // Register Express Router factory
@@ -49,6 +50,7 @@ export function configureContainer() {
   );
 
   // Register controllers
+  container.registerSingleton<HealthCheckController>(HealthCheckController);
   container.registerSingleton<AuthenticationController>(
     AuthenticationController
   );
@@ -59,6 +61,7 @@ export function configureContainer() {
       const services: AppServices = {
         authMiddleware: container.resolve(AuthenticationMiddleware),
         globalExceptionMiddleware: container.resolve(GlobalExceptionMiddleware),
+        healthCheckController: container.resolve(HealthCheckController),
         authController: container.resolve(AuthenticationController),
       };
       return new App(express(), services);

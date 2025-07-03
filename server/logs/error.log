@@ -1,0 +1,12 @@
+2025-07-03T03:48:43.520Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:50:01.828Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 500
+2025-07-03T03:51:11.766Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:51:51.356Z [INSIGHT-HUB 🚥] [31merror[39m:: Not Authorized - No token provided - /api/auth/health-check - GET - ::1 - 403
+2025-07-03T03:52:24.427Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:52:59.602Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:53:13.976Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 500
+2025-07-03T03:53:45.431Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T03:54:48.716Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email john.doe@mail.com does not exist
+2025-07-03T03:54:48.718Z [INSIGHT-HUB 🚥] [31merror[39m:: Resource Not Found - User with email john.doe@mail.com does not exist - /api/auth/login - POST - ::1 - 404
+2025-07-03T03:55:04.265Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
+2025-07-03T03:55:52.896Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Resource Not Found - /api/health-check - GET - ::1 - 404
