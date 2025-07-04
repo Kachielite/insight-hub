@@ -166,3 +166,12 @@
 2025-07-04T03:56:09.912Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-04T03:59:27.868Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-04T03:59:50.811Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:00:28.412Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-04T04:00:28.409Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-04T04:00:28.648Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:28:58.462Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:29:17.547Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:31:18.680Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:31:54.796Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:33:35.917Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-04T04:34:23.324Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
