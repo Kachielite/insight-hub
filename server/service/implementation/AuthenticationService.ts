@@ -12,6 +12,7 @@ import GeneralResponseDTO from '@/dto/GeneralResponseDTO';
 import logger from '@utils/logger';
 import {
   BadRequestException,
+  InternalServerException,
   NotAuthorizedException,
   ResourceNotFoundException,
 } from '@/exception';
@@ -82,7 +83,7 @@ class AuthenticationService implements IAuthenticationService {
       ) {
         throw error;
       }
-      throw new Error('Internal server error during login');
+      throw new InternalServerException('Internal server error during login');
     }
   }
 
@@ -134,7 +135,9 @@ class AuthenticationService implements IAuthenticationService {
       if (error instanceof BadRequestException) {
         throw error;
       }
-      throw new Error('Internal server error during registration');
+      throw new InternalServerException(
+        'Internal server error during registration'
+      );
     }
   }
 
@@ -176,7 +179,7 @@ class AuthenticationService implements IAuthenticationService {
       if (error instanceof ResourceNotFoundException) {
         throw error;
       }
-      throw new Error(
+      throw new InternalServerException(
         'Internal server error during reset password link request'
       );
     }
@@ -216,7 +219,9 @@ class AuthenticationService implements IAuthenticationService {
       if (error instanceof ResourceNotFoundException) {
         throw error;
       }
-      throw new Error('Internal server error during password reset');
+      throw new InternalServerException(
+        'Internal server error during password reset'
+      );
     }
   }
 
@@ -234,7 +239,7 @@ class AuthenticationService implements IAuthenticationService {
 
       // Verify and decode the refresh token
       const payload = await this.jwtService.verifyToken(refreshToken);
-      if (!payload || !payload.userId) {
+      if (!payload) {
         throw new NotAuthorizedException('Invalid or expired refresh token');
       }
 
@@ -265,7 +270,9 @@ class AuthenticationService implements IAuthenticationService {
       ) {
         throw error;
       }
-      throw new Error('Internal server error during token refresh');
+      throw new InternalServerException(
+        'Internal server error during token refresh'
+      );
     }
   }
 }

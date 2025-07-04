@@ -17,7 +17,7 @@ class AuthenticationController extends BaseController {
   constructor(
     @inject('Router') router: express.Router,
     @inject(AuthenticationService)
-    private authenticationService: AuthenticationService
+    private readonly authenticationService: AuthenticationService
   ) {
     super(router);
   }
@@ -125,7 +125,7 @@ class AuthenticationController extends BaseController {
   /**
    * @swagger
    * /auth/reset-password-link:
-   *   post:
+   *   get:
    *     summary: Request a password reset link
    *     tags:
    *       - Authentication
@@ -159,7 +159,7 @@ class AuthenticationController extends BaseController {
    */
   @Get('/reset-password-link')
   async resetPasswordLink(req: Request): Promise<GeneralResponseDTO<string>> {
-    const email = req.params.email;
+    const email = req.query.email as string;
     return await this.authenticationService.resetPasswordLink(email);
   }
 
@@ -201,6 +201,52 @@ class AuthenticationController extends BaseController {
   })
   async resetPassword(req: Request): Promise<GeneralResponseDTO<string>> {
     return await this.authenticationService.resetPassword(req.body);
+  }
+
+  /**
+   * @swagger
+   * /auth/refresh-token:
+   *   post:
+   *     summary: Refresh a user's access token
+   *     tags:
+   *       - Authentication
+   *     security:
+   *       - bearerAuth: []
+   *     responses:
+   *       200:
+   *         description: Access token refreshed successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/AuthenticationSuccessResponseDTO'
+   *       400:
+   *         description: Bad request
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   *       403:
+   *         description: Not authorized
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   *       404:
+   *         description: Not found
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   *       500:
+   *         description: Internal server error
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   */
+  @Post('/refresh-token')
+  async refreshToken(req: Request): Promise<GeneralResponseDTO<AuthTokenDTO>> {
+    return await this.authenticationService.refreshToken(req);
   }
 }
 

@@ -87,7 +87,7 @@ components:
           type: string
           format: email
           example: john.doe@mail.com
-        password:
+        newPassword:
           type: string
           format: password
           example: newpassword123

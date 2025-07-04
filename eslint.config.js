@@ -19,6 +19,12 @@ const jestGlobals = {
 export default [
   js.configs.recommended,
   {
+    ignores: [
+      '**/coverage/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+    ],
     files: ['**/*.{js,ts,tsx,jsx}'],
     languageOptions: {
       parser: tsParser,
