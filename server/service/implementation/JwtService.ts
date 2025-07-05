@@ -61,7 +61,7 @@ class JwtService implements IJwtService {
       // Verify the refresh token
       const payload = jwt.verify(refreshToken, this.SECRET_KEY) as JwtPayload;
 
-      if (!payload || !payload.userId) {
+      if (!payload) {
         throw new BadRequestException('Invalid refresh token');
       }
 

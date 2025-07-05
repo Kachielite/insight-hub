@@ -19,7 +19,25 @@ describe('JwtService', () => {
     expect(decoded.userId).toBe(1);
   });
 
+  it('should throw an error if the user does not exist', async () => {
+    userRepositoryMock.findUserById.mockResolvedValue(null);
+    await expect(jwtService.generateToken(1, 'access')).rejects.toThrow();
+  });
+
   it('should throw on invalid token', async () => {
     await expect(jwtService.verifyToken('invalid.token')).rejects.toThrow();
+  });
+
+  it('should refresh an access token', async () => {
+    const refreshToken = await jwtService.generateToken(1, 'refresh');
+    const accessToken = await jwtService.refreshAccessToken(refreshToken);
+    const decoded = await jwtService.verifyToken(accessToken);
+    expect(decoded.userId).toBe(1);
+  });
+
+  it('should throw on invalid refresh token', async () => {
+    await expect(
+      jwtService.refreshAccessToken('invalid.token')
+    ).rejects.toThrow();
   });
 });
