@@ -52,7 +52,10 @@ class UserService implements IUserService {
     } catch (e) {
       logger.error(`Error finding user by ID: ${e}`);
 
-      if (e instanceof ResourceNotFoundException) {
+      if (
+        e instanceof ResourceNotFoundException ||
+        e instanceof BadRequestException
+      ) {
         throw e;
       }
       throw new InternalServerError(`Error finding user by ID`);
@@ -135,7 +138,11 @@ class UserService implements IUserService {
     } catch (e) {
       logger.error(`Error updating user: ${e}`);
 
-      if (e instanceof ResourceNotFoundException) {
+      if (
+        e instanceof ResourceNotFoundException ||
+        e instanceof BadRequestException ||
+        e instanceof ConflictException
+      ) {
         throw e;
       }
       throw new InternalServerError(`Error updating user`);
