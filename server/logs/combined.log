@@ -196,3 +196,13 @@
 2025-07-05T17:48:27.400Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
 2025-07-05T17:48:29.953Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-05T17:49:04.154Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T17:49:38.122Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-05T17:49:38.527Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T17:49:38.598Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-05T17:49:38.604Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-05T17:49:38.608Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-05T17:51:05.540Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T17:51:21.357Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T17:58:13.215Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:00:47.650Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-05T18:00:51.294Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
