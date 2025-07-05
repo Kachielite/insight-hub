@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -130,36 +130,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,27 +189,27 @@ import logger from '@utils/logger';
 &nbsp;
 @injectable()
 class EmailService implements IEmailService {
-  private readonly senderEmail = Constants.NODE_MAIL_USER as string;
-  constructor(@inject(EmailConfig) private readonly emailConfig: EmailConfig) {}
+  private readonly <span class="cstat-no" title="statement not covered" >senderEmail = Constants.NODE_MAIL_USER as string;</span>
+<span class="fstat-no" title="function not covered" >  constructor(@i</span>nject(EmailConfig) private readonly <span class="cstat-no" title="statement not covered" >emailConfig: E</span>mailConfig) {}
 &nbsp;
-  async sendPasswordResetEmail(
+<span class="fstat-no" title="function not covered" >  async </span>sendPasswordResetEmail(
     email: string,
     resetLink: string
   ): Promise&lt;void&gt; {
-    const subject = 'Reset Your Password';
-    const html = this.resetPasswordLinkEmailBody(resetLink);
+    const subject = <span class="cstat-no" title="statement not covered" >'Reset Your Password';</span>
+    const html = <span class="cstat-no" title="statement not covered" >this.resetPasswordLinkEmailBody(resetLink);</span>
 &nbsp;
-    try {
-      await this.sendMail(email, subject, html);
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      await this.sendMail(email, subject, html);</span>
     } catch (error) {
-      logger.error('Error sending password reset email:', error);
-      throw new Error('Failed to send password reset email');
+<span class="cstat-no" title="statement not covered" >      logger.error('Error sending password reset email:', error);</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('Failed to send password reset email');</span>
     }
   }
 &nbsp;
-  private async sendMail(to: string, subject: string, html: string) {
-    const transporter = await this.emailConfig.getTransporter();
-    return await transporter.sendMail({
+  private <span class="fstat-no" title="function not covered" >async </span>sendMail(to: string, subject: string, html: string) {
+    const transporter = <span class="cstat-no" title="statement not covered" >await this.emailConfig.getTransporter();</span>
+<span class="cstat-no" title="statement not covered" >    return await transporter.sendMail({</span>
       from: this.senderEmail,
       to,
       subject,
@@ -217,8 +217,8 @@ class EmailService implements IEmailService {
     });
   }
 &nbsp;
-  private resetPasswordLinkEmailBody(link: string): string {
-    return `
+  private <span class="fstat-no" title="function not covered" >resetPasswordLinkEmailBody(</span>link: string): string {
+<span class="cstat-no" title="statement not covered" >    return `</span>
               &lt;div style="font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 32px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);"&gt;
                 &lt;h2 style="color: #333333;"&gt;Your One-Time Password (OTP)&lt;/h2&gt;
                 &lt;p style="font-size: 16px; color: #555555;"&gt;
@@ -247,7 +247,7 @@ export default EmailService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-05T18:00:51.377Z
+                at 2025-07-05T18:16:26.537Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

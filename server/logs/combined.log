@@ -206,3 +206,47 @@
 2025-07-05T17:58:13.215Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-05T18:00:47.650Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
 2025-07-05T18:00:51.294Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:05:23.938Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-05T18:05:24.138Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-05T18:05:24.254Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-05T18:05:24.260Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-05T18:05:24.263Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-05T18:05:24.339Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:06:51.730Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:06:58.569Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:07:07.587Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:07:20.094Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:10:18.723Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:13:11.946Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:16:21.859Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:16:21.862Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:16:21.862Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:16:21.871Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:16:21.871Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-05T18:16:21.872Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:16:21.872Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-05T18:16:21.873Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:16:21.873Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:16:21.874Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-05T18:16:21.874Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:16:21.874Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-05T18:16:21.875Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:16:21.876Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:16:21.876Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:16:21.876Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:16:21.876Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-05T18:16:21.877Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:16:21.877Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:16:21.877Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:16:21.878Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:16:21.878Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-05T18:16:21.878Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:16:21.879Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:16:21.879Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-05T18:16:21.879Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:16:21.880Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-05T18:16:21.882Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:16:21.882Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-05T18:16:21.883Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:16:21.883Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-05T18:16:24.621Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
