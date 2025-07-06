@@ -12,17 +12,17 @@ yarn-error.log*
 
 .idea/
 # Node modules
-frontend/node_modules/
-backend/node_modules/
+server/node_modules/
+client/node_modules/
 
 # Environment files
-frontend/.env
-backend/.env
+server/.env
+client/.env
 
 # Logs
-frontend/logs
-backend/logs
+server/logs
+client/logs
 
 # Test coverage
-frontend/coverage
-backend/coverage
+client/coverage
+server/coverage
