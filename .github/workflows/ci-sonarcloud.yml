@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: server/package-lock.json
 
       - name: Install server dependencies
-        run: npm ci --ignore-optional --no-audit --no-fund
+        run: npm install --omit=optional --no-audit
 
       - name: Run server tests with coverage
         run: npm run test -- --coverage
