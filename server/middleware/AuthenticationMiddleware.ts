@@ -19,8 +19,8 @@ class AuthenticationMiddleware {
   private readonly excludedPrefixes: string[] = ['/api-docs'];
 
   constructor(
-    @inject(JwtService) private jwtService: JwtService,
-    @inject(UserRepository) private userRepository: UserRepository
+    @inject(JwtService) private readonly jwtService: JwtService,
+    @inject(UserRepository) private readonly userRepository: UserRepository
   ) {}
 
   public authenticate = async (
