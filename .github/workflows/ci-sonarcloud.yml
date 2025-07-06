@@ -20,7 +20,9 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install --prefix server
+        run: |
+          cd server
+          npm ci --ignore-optional --no-audit --no-fund
 
       - name: Run tests and generate coverage
         run: npm run test --prefix server -- --coverage
