@@ -470,3 +470,161 @@
 2025-07-05T18:34:33.624Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-05T18:34:47.960Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
 2025-07-05T18:35:58.968Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:36:26.354Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-05T18:36:26.540Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-05T18:36:26.718Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-05T18:36:26.728Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-05T18:36:26.731Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-05T18:36:26.690Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:36:26.696Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:36:26.697Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:36:26.745Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:36:26.757Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-05T18:36:26.767Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-05T18:36:26.767Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-05T18:36:26.768Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:36:26.769Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:36:26.784Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-05T18:36:26.785Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-05T18:36:26.785Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-05T18:36:26.786Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:36:26.787Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:36:26.787Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:36:26.788Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-05T18:36:26.788Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-05T18:36:26.789Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:36:26.789Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:36:26.790Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-05T18:36:26.790Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-05T18:36:26.791Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-05T18:36:26.792Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:36:26.796Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:36:26.801Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-05T18:36:26.814Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:36:26.815Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-05T18:36:26.821Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:36:26.822Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-05T18:36:26.822Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-05T18:36:26.823Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-05T18:36:26.942Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-05T18:36:26.967Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-05T18:36:26.968Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-05T18:36:26.979Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-05T18:36:26.985Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-05T18:36:26.986Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-05T18:36:26.986Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-05T18:36:26.988Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.989Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.990Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-05T18:36:26.991Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-05T18:36:26.991Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.991Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-05T18:36:26.992Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.992Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-05T18:36:26.994Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.994Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-05T18:36:26.995Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.995Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-05T18:36:26.995Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-05T18:36:26.996Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-05T18:36:26.996Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-05T18:36:26.997Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-05T18:36:26.997Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-05T18:36:26.997Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-05T18:36:26.998Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-05T18:36:27.247Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:38:32.222Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:39:13.347Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:39:41.323Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:40:14.250Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:43:06.982Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:44:04.930Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:45:19.278Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-05T18:47:29.222Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T03:36:08.696Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T03:37:58.205Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T03:40:43.216Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T03:40:57.132Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:09:03.895Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:09:38.908Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:10:30.707Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:12:12.646Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:12:19.209Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:14:07.692Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:14:29.040Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:14:57.261Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:16:07.347Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:17:03.669Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T04:17:03.795Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T04:17:03.752Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T04:17:03.758Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T04:17:03.762Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T04:17:03.810Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T04:17:03.846Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T04:17:03.847Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T04:17:03.903Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T04:17:03.904Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T04:17:03.909Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T04:17:03.916Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T04:17:03.928Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T04:17:03.929Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T04:17:03.930Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T04:17:03.930Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T04:17:03.931Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T04:17:03.931Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T04:17:03.933Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T04:17:03.933Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T04:17:03.934Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T04:17:03.935Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T04:17:03.935Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T04:17:03.936Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T04:17:03.937Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T04:17:03.937Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T04:17:03.937Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T04:17:03.938Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T04:17:03.938Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T04:17:03.939Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T04:17:03.940Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T04:17:03.940Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T04:17:03.940Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T04:17:03.941Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T04:17:03.954Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T04:17:03.962Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T04:17:04.042Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:17:04.071Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T04:17:04.093Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T04:17:04.093Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T04:17:04.104Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T04:17:04.105Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T04:17:04.106Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T04:17:04.106Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T04:17:04.107Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.108Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.109Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T04:17:04.109Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T04:17:04.110Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.110Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T04:17:04.111Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.111Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T04:17:04.112Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.112Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T04:17:04.112Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.113Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T04:17:04.114Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T04:17:04.115Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T04:17:04.119Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T04:17:04.119Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T04:17:04.120Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T04:17:04.120Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T04:17:04.120Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T04:18:10.249Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:21:40.573Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:23:26.261Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:26:14.290Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:27:57.515Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:28:59.033Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:30:06.185Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:30:09.797Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:53:55.853Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:54:41.198Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
+2025-07-06T04:54:48.105Z [INSIGHT-HUB 🚥] [32minfo[39m:: Server is running on port 8080
