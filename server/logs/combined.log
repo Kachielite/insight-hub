@@ -953,3 +953,387 @@
 2025-07-06T05:06:17.149Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
 2025-07-06T05:06:17.149Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
 2025-07-06T05:06:17.150Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:12:33.615Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:12:33.671Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:12:33.823Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:12:33.847Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:12:33.852Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:12:33.975Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:33.986Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:33.987Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:12:34.006Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:34.007Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:12:34.007Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:34.008Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:12:34.008Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.009Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.010Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:12:34.013Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:12:34.015Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.015Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:12:34.016Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.016Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:12:34.017Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.017Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:12:34.018Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.018Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:34.019Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:12:34.019Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:34.020Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:34.020Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:12:34.021Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:34.021Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:12:34.022Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:34.052Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:12:34.061Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
+2025-07-06T05:12:34.101Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:34.105Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:34.107Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:34.119Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:34.121Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:12:34.122Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:34.122Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:12:34.123Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:34.124Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:34.126Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:12:34.126Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:34.127Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:12:34.128Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:34.129Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:34.129Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:34.130Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:34.130Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:12:34.131Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:34.132Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:34.132Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:34.137Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:34.137Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:12:34.138Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:34.139Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:34.139Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:12:34.140Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:34.140Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:12:34.140Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:34.141Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:12:34.141Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:34.141Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:12:47.481Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:12:47.483Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
+2025-07-06T05:12:47.621Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:12:47.651Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:12:47.718Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:12:47.724Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:12:47.728Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:12:47.783Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:47.797Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:47.797Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:12:47.806Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:47.807Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:12:47.807Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:12:47.808Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:12:47.808Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.809Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.810Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:12:47.810Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:12:47.812Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.813Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:12:47.814Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.814Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:12:47.814Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.815Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:12:47.815Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.816Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:12:47.816Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:12:47.816Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:47.817Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:47.817Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:12:47.818Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:47.818Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:12:47.819Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:12:47.801Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:47.805Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:47.805Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:47.816Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:47.816Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:12:47.817Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:12:47.817Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:12:47.818Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:47.819Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:47.820Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:12:47.820Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:12:47.820Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:12:47.821Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:47.822Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:47.822Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:47.823Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:12:47.823Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:12:47.823Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:47.825Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:47.828Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:12:47.829Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:12:47.829Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:12:47.829Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:47.830Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:47.830Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:12:47.832Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:47.832Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:12:47.832Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:47.833Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:12:47.833Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:12:47.833Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:16:24.595Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:16:24.627Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:16:24.882Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:16:24.889Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:16:24.893Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:16:24.935Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:16:24.945Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:16:24.946Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:16:24.958Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:16:24.958Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:16:24.959Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:16:24.960Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:16:24.960Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.961Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.962Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:16:24.963Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:16:24.963Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.978Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:16:24.978Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.979Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:16:24.979Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.980Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:16:24.980Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.981Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:16:24.981Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:16:24.981Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:16:24.982Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:16:24.982Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:16:24.983Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:16:24.983Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:16:24.983Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:16:24.940Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:16:24.944Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:16:24.945Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:16:24.970Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:16:24.970Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:16:24.971Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:16:24.971Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:16:24.972Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:16:24.973Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:16:24.974Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:16:24.974Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:16:24.975Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:16:24.975Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:16:24.976Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:16:24.977Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:16:24.977Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:16:24.978Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:16:24.978Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:16:24.984Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:16:24.985Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:16:24.985Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:16:24.986Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:16:24.986Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:16:24.987Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:16:24.987Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:16:24.988Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:16:24.988Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:16:24.989Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:16:24.989Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:16:24.989Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:16:24.989Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:16:25.149Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:16:25.152Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
+2025-07-06T05:17:09.782Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:17:09.925Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:17:10.096Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:17:10.109Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:17:10.113Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:17:10.197Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:17:10.201Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:17:10.202Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:17:10.216Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:17:10.216Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:17:10.217Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:17:10.223Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:17:10.229Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:17:10.231Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:17:10.232Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:17:10.232Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:17:10.233Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:17:10.234Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:17:10.236Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:17:10.236Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:17:10.240Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:17:10.241Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:17:10.241Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:17:10.242Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:17:10.242Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:17:10.243Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:17:10.243Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:17:10.243Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:17:10.244Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:17:10.244Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:17:10.245Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:17:10.245Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:17:10.246Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:17:10.246Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:17:10.246Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:17:10.246Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:17:10.235Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:17:10.243Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:17:10.246Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:17:10.274Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:17:10.274Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:17:10.275Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:17:10.275Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:17:10.284Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.293Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.299Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:17:10.300Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:17:10.300Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.301Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:17:10.301Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.302Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:17:10.302Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.303Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:17:10.303Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.304Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:17:10.304Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:17:10.304Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:17:10.305Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:17:10.305Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:17:10.306Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:17:10.313Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:17:10.314Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:17:10.368Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:17:10.371Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
+2025-07-06T05:18:03.319Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:18:03.651Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:18:03.659Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:18:03.664Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:18:03.684Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:18:03.837Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:18:03.841Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:18:03.841Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:18:03.868Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:18:03.868Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:18:03.869Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:18:03.869Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:18:03.870Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:18:03.871Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:18:03.872Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:18:03.872Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:18:03.873Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:18:03.873Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:18:03.874Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:18:03.874Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:18:03.875Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:18:03.875Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:18:03.893Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:18:03.894Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:18:03.895Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:18:03.895Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:18:03.895Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:18:03.896Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:18:03.904Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:18:03.904Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:18:03.912Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:18:03.913Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:18:03.913Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:18:03.913Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:18:03.914Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:18:03.914Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:18:03.952Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:18:03.953Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
+2025-07-06T05:18:03.915Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:18:03.936Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:18:03.936Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:18:03.957Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:18:03.958Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:18:03.959Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:18:03.959Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:18:03.960Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.961Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.962Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:18:03.964Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:18:03.964Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.965Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:18:03.967Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.967Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:18:03.968Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.968Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:18:03.969Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.969Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:18:03.969Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:18:03.970Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:18:03.971Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:18:03.971Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:18:03.971Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:18:03.972Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:18:03.972Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:20:00.927Z [INSIGHT-HUB 🚥] [31merror[39m:: Error - Test error - /test - GET - 127.0.0.1 - 500
+2025-07-06T05:20:00.964Z [INSIGHT-HUB 🚥] [31merror[39m:: Error generating token for user 1: Bad Request: User does not exist
+2025-07-06T05:20:00.976Z [INSIGHT-HUB 🚥] [31merror[39m:: Error verifying access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:20:00.980Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing access token: JsonWebTokenError: jwt malformed
+2025-07-06T05:20:01.053Z [INSIGHT-HUB 🚥] [31merror[39m:: Error sending password reset email: SMTP Error
+2025-07-06T05:20:01.137Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:20:01.142Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:20:01.144Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:20:01.169Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:20:01.170Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Not Authorized: Invalid email or password
+2025-07-06T05:20:01.174Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: test@example.com
+2025-07-06T05:20:01.176Z [INSIGHT-HUB 🚥] [31merror[39m:: Error logging in user: Error: Database error
+2025-07-06T05:20:01.182Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:20:01.183Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:20:01.184Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Bad Request: User with email newuser@example.com already exists
+2025-07-06T05:20:01.184Z [INSIGHT-HUB 🚥] [32minfo[39m:: Logging in user with email: newuser@example.com
+2025-07-06T05:20:01.184Z [INSIGHT-HUB 🚥] [31merror[39m:: Error registering user: Error: Database error
+2025-07-06T05:20:01.185Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:20:01.186Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:20:01.186Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:20:01.187Z [INSIGHT-HUB 🚥] [32minfo[39m:: Requesting reset password link for : test@example.com
+2025-07-06T05:20:01.187Z [INSIGHT-HUB 🚥] [31merror[39m:: Error requesting reset password link: Error: Database error
+2025-07-06T05:20:01.187Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:20:01.188Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:20:01.195Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Resource Not Found: User with email test@example.com does not exist
+2025-07-06T05:20:01.195Z [INSIGHT-HUB 🚥] [32minfo[39m:: Resetting password for user with email: test@example.com
+2025-07-06T05:20:01.196Z [INSIGHT-HUB 🚥] [31merror[39m:: Error resetting password: Error: Database error
+2025-07-06T05:20:01.196Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:20:01.197Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:20:01.197Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Bad Request: Refresh token is required
+2025-07-06T05:20:01.200Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:20:01.201Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Not Authorized: Invalid or expired refresh token
+2025-07-06T05:20:01.205Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:20:01.205Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Resource Not Found: User does not exist
+2025-07-06T05:20:01.206Z [INSIGHT-HUB 🚥] [32minfo[39m:: Refreshing token for user
+2025-07-06T05:20:01.206Z [INSIGHT-HUB 🚥] [31merror[39m:: Error refreshing token: Error: JWT error
+2025-07-06T05:20:01.242Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:20:01.258Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:20:01.258Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Resource Not Found: User with ID 1 not found
+2025-07-06T05:20:01.269Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:20:01.270Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Bad Request: User with ID 1 is not active
+2025-07-06T05:20:01.271Z [INSIGHT-HUB 🚥] [32minfo[39m:: Finding user with ID: 1
+2025-07-06T05:20:01.272Z [INSIGHT-HUB 🚥] [31merror[39m:: Error finding user by ID: Error: Database error
+2025-07-06T05:20:01.273Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.275Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.276Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 999
+2025-07-06T05:20:01.277Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Resource Not Found: User with ID 999 not found
+2025-07-06T05:20:01.277Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.277Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: User with ID 1 is not active
+2025-07-06T05:20:01.278Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.278Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Conflict: Current password is incorrect
+2025-07-06T05:20:01.279Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.279Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Bad Request: Invalid role: INVALID_ROLE
+2025-07-06T05:20:01.279Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.280Z [INSIGHT-HUB 🚥] [32minfo[39m:: Updating user with ID: 1
+2025-07-06T05:20:01.280Z [INSIGHT-HUB 🚥] [31merror[39m:: Error updating user: Error: Database error
+2025-07-06T05:20:01.281Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:20:01.281Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:20:01.282Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Resource Not Found: User with ID 1 not found
+2025-07-06T05:20:01.282Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:20:01.282Z [INSIGHT-HUB 🚥] [31merror[39m:: Error deleting user: Error: Database error
+2025-07-06T05:20:01.283Z [INSIGHT-HUB 🚥] [32minfo[39m:: Deleteing user with ID: 1
+2025-07-06T05:20:01.354Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authorized: Invalid or expired token
+2025-07-06T05:20:01.356Z [INSIGHT-HUB 🚥] [31merror[39m:: Error while verifying token: Not Authenticated: User not found
