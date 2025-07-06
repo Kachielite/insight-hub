@@ -1,0 +1,104 @@
+---
+openapi: 3.0.0
+info:
+  title: InsightHub API
+  version: 1.0.0
+  description: This is a simple CRUD API application made with Express and
+    documented with Swagger
+  license:
+    name: MIT
+    url: https://spdx.org/licenses/MIT.html
+  contact:
+    name: Derrick Madumere
+    url: https://derrick-madumere.com
+    email: derrick.madumere@gmail.com
+servers:
+  - url: http://localhost:8080/api
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    GenericResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Operation completed successfully
+        data:
+          type: object
+          additionalProperties: true
+          example: {}
+    ErrorResponseDTO:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          example: error
+        error:
+          type: string
+          example: An error occurred
+        message:
+          type: string
+          example: An error occurred
+    AuthTokenDTO:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: access-token-key
+        refreshToken:
+          type: string
+          example: refresh-token-key
+    AuthenticationDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@mail.com
+        password:
+          type: string
+          format: password
+          example: password123
+    RegistrationDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@mail.com
+        password:
+          type: string
+          format: password
+          example: password123
+        name:
+          type: string
+          example: John Doe
+    PasswordResetDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@mail.com
+        newPassword:
+          type: string
+          format: password
+          example: newpassword123
+    AuthenticationSuccessResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Authentication successful
+        data:
+          $ref: '#/components/schemas/AuthTokenDTO'

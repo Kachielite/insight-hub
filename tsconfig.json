@@ -9,8 +9,22 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "include": ["client/src/**/*", "server/src/**/*"],
+  "include": [
+    "client/src/**/*",
+    "server/app/**/*",
+    "server/utils/**/*",
+    "server/configuration/**/*",
+    "server/controller/**/*",
+    "server/repository/**/*",
+    "server/dto/**/*",
+    "server/service/**/*",
+    "server/exception/**/*",
+    "server/middleware/**/*",
+    "server/common/**/*"
+  ],
   "exclude": ["node_modules", "dist", "client/dist", "server/dist"]
 }

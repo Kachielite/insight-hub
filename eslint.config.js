@@ -4,16 +4,34 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 
+const jestGlobals = {
+  describe: 'readonly',
+  it: 'readonly',
+  expect: 'readonly',
+  jest: 'readonly',
+  beforeEach: 'readonly',
+  afterEach: 'readonly',
+  beforeAll: 'readonly',
+  afterAll: 'readonly',
+  test: 'readonly',
+};
+
 export default [
   js.configs.recommended,
   {
+    ignores: [
+      '**/coverage/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/build/**',
+    ],
     files: ['**/*.{js,ts,tsx,jsx}'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.json', './server/tsconfig.json'],
       },
       globals: {
         console: 'readonly',
@@ -54,6 +72,9 @@ export default [
   },
   {
     files: ['**/*.test.{js,ts,tsx}', '**/*.spec.{js,ts,tsx}'],
+    languageOptions: {
+      globals: jestGlobals,
+    },
     rules: {
       'no-console': 'off',
     },
@@ -69,6 +90,9 @@ export default [
       'client/build/',
       'server/dist/',
       'server/build/',
+      'server/generated/',
+      '**/node_modules/',
+      'server/jest.config.js',
     ],
   },
 ];
