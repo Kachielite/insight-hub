@@ -116,8 +116,8 @@ class UserService implements IUserService {
         existingUser.id,
         {
           password: existingUser.password,
-          name: userData.name || existingUser.name,
-          role: userData.role || existingUser.role,
+          name: userData.name ?? existingUser.name,
+          role: userData.role ?? existingUser.role,
           isActive: true,
         }
       );

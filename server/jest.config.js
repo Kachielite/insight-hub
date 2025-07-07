@@ -46,4 +46,12 @@ module.exports = {
     '!**/node_modules/**',
     '!**/generated/**',
   ],
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '/dto/',
+    '/common/',
+    '/configuration/',
+    '/generated/',
+    '/prisma/',
+  ],
 };

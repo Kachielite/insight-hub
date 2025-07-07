@@ -24,6 +24,7 @@
     "cookie": "^0.7.2",
     "cookie-signature": "^1.2.2",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "debug": "^4.4.1",
     "depd": "^2.0.0",
     "dotenv": "^17.0.1",
@@ -116,7 +117,8 @@
     "start": "nodemon -r tsconfig-paths/register ./app/server.ts",
     "dev": "nodemon -r tsconfig-paths/register ./app/server.ts",
     "build": "tsc",
-    "test": "jest --config jest.config.js"
+    "test": "jest --config jest.config.js",
+    "test:coverage": "jest --config jest.config.js --coverage"
   },
   "keywords": [],
   "author": "",
