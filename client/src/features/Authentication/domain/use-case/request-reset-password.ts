@@ -1,6 +1,6 @@
 import type { UseCase } from '@/core/use-case/use-case.ts';
 import type { AuthRepository } from '@/features/Authentication/domain/repositories/auth-repository.ts';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import type { Either } from 'fp-ts/Either';
 import type { Failure } from '@/core/error/failure.ts';
 
@@ -11,6 +11,7 @@ export class RequestResetPasswordUseCaseParams {
   }
 }
 
+@injectable()
 export class RequestResetPasswordUseCase
   implements UseCase<string, RequestResetPasswordUseCaseParams>
 {
