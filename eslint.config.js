@@ -31,7 +31,11 @@ export default [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        project: ['./tsconfig.json', './server/tsconfig.json'],
+        project: [
+          './tsconfig.json',
+          './server/tsconfig.json',
+          './client/tsconfig.app.json',
+        ],
       },
       globals: {
         console: 'readonly',
@@ -47,6 +51,15 @@ export default [
         clearTimeout: 'readonly',
         setInterval: 'readonly',
         clearInterval: 'readonly',
+        // Browser globals
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        history: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        fetch: 'readonly',
       },
     },
     plugins: {
@@ -86,6 +99,7 @@ export default [
       'build/',
       'coverage/',
       '*.config.js',
+      '*.config.ts',
       'client/dist/',
       'client/build/',
       'server/dist/',
@@ -93,6 +107,7 @@ export default [
       'server/generated/',
       '**/node_modules/',
       'server/jest.config.js',
+      'client/vite.config.ts',
     ],
   },
 ];
