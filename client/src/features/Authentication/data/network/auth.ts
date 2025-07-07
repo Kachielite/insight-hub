@@ -1,15 +1,17 @@
 import axios, { AxiosError } from 'axios';
+import { injectable } from 'tsyringe';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
-import type AuthEntity from '@/features/Authentication/data/model/auth-entity.ts';
+import type AuthModel from '@/features/Authentication/data/model/auth-model.ts';
 
-class Auth {
+@injectable()
+class AuthEndpoints {
   private readonly authPath = '/auth';
 
-  public async login(data: AuthLoginSchema): Promise<AuthEntity> {
+  public async login(data: AuthLoginSchema): Promise<AuthModel> {
     try {
       const response = await axios.post(`${this.authPath}/login`, {
         email: data.email,
@@ -18,15 +20,12 @@ class Auth {
       return response.data.data;
     } catch (error) {
       console.error('AuthEndpoints.login: ', error);
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.message
-          : 'An unknown error occurred';
+      const errorMessage = this.extractErrorMessage(error);
       throw new Error(errorMessage);
     }
   }
 
-  public async register(data: AuthRegisterSchema): Promise<AuthEntity> {
+  public async register(data: AuthRegisterSchema): Promise<AuthModel> {
     try {
       const response = await axios.post(`${this.authPath}/register`, {
         email: data.email,
@@ -36,10 +35,7 @@ class Auth {
       return response.data.data;
     } catch (error) {
       console.error('AuthEndpoints.register: ', error);
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.message
-          : 'An unknown error occurred';
+      const errorMessage = this.extractErrorMessage(error as AxiosError);
       throw new Error(errorMessage);
     }
   }
@@ -52,29 +48,30 @@ class Auth {
       return response.data.message;
     } catch (error) {
       console.error('AuthEndpoints.requestResetPassword: ', error);
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.message
-          : 'An unknown error occurred';
+      const errorMessage = this.extractErrorMessage(error as AxiosError);
       throw new Error(errorMessage);
     }
   }
 
   public async resetPassword(data: AuthResetSchema): Promise<string> {
     try {
-      const response = await this.axios
-        .getInstance()
-        .post(`${this.authPath}/reset-password`, data);
+      const response = await axios.post(
+        `${this.authPath}/reset-password`,
+        data
+      );
       return response.data.message;
     } catch (error) {
       console.error('AuthEndpoints.resetPassword: ', error);
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.message
-          : 'An unknown error occurred';
+      const errorMessage = this.extractErrorMessage(error as AxiosError);
       throw new Error(errorMessage);
     }
   }
+
+  private extractErrorMessage(error: unknown): string {
+    return error instanceof AxiosError
+      ? error.response?.data?.message
+      : 'An unknown error occurred';
+  }
 }
 
-export default Auth;
+export default AuthEndpoints;
