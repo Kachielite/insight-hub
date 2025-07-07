@@ -1,5 +1,4 @@
 import axios, { AxiosError } from 'axios';
-import AxiosClient from '../../../../core/network/axios-client.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
@@ -8,12 +7,7 @@ import type {
 import type AuthEntity from '@/features/Authentication/data/model/auth-entity.ts';
 
 class Auth {
-  private readonly axios: AxiosClient;
   private readonly authPath = '/auth';
-
-  constructor(axios: AxiosClient) {
-    this.axios = axios;
-  }
 
   public async login(data: AuthLoginSchema): Promise<AuthEntity> {
     try {
