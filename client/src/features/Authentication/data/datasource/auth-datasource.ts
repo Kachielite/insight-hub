@@ -5,7 +5,7 @@ import type {
 } from '@/core/validation/auth.ts';
 import AuthModel from '@/features/Authentication/data/model/auth-model.ts';
 import { inject, injectable } from 'tsyringe';
-import AuthEndpoints from '@/features/Authentication/data/network/auth.ts';
+import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
 import { ServerException } from '@/core/error/server.ts';
 
 export interface AuthDataSource {
