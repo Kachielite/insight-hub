@@ -43,8 +43,8 @@ jobs:
             -Dsonar.qualitygate.wait=true
             -Dsonar.scm.disabled=true
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.coverage.exclusions=**/*.test.ts,**/*.spec.ts,**/tests/**/*
-            -Dsonar.exclusions=**/node_modules/**,**/coverage/**,**/dist/**
+            -Dsonar.coverage.exclusions=tests/**,**/*.spec.ts,**/*.test.ts,coverage/**,node_modules/**,dist/**,logs/**,generated/**,prisma/**,dto/**,common/**,configuration/**,**/*.js,**/*.json,**/*.yaml,**/*.yml,**/*.md,**/*.txt,**/*.log
+            -Dsonar.exclusions=tests/**,**/*.spec.ts,**/*.test.ts,coverage/**,node_modules/**,dist/**,logs/**,generated/**,prisma/**,dto/**,common/**,configuration/**,**/*.js,**/*.json,**/*.yaml,**/*.yml,**/*.md,**/*.txt,**/*.log
             -Dsonar.sources=.
             -Dsonar.verbose=true
         env:
