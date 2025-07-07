@@ -18,7 +18,7 @@ class UserRepository implements IUserRepository {
         email: data.email,
         password: data.password,
         name: data.name,
-        role: data.role || Role.MEMBER,
+        role: data.role ?? Role.MEMBER,
       },
     });
   }
@@ -45,7 +45,7 @@ class UserRepository implements IUserRepository {
         password: data.password,
         name: data.name,
         role: data.role,
-        isActive: data.isActive !== undefined ? data.isActive : true,
+        isActive: data.isActive ?? true,
       },
     });
   }

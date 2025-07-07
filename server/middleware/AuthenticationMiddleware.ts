@@ -48,7 +48,7 @@ class AuthenticationMiddleware {
       const decoded = (await this.jwtService.verifyToken(
         token
       )) as CustomJwtPayload;
-      if (!decoded || !decoded.userId) {
+      if (!decoded?.userId) {
         throw new NotAuthorizedException('Invalid or expired token');
       }
 
