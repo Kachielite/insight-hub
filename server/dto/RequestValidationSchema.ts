@@ -15,5 +15,6 @@ export class AuthenticationValidationSchema {
   public static passwordResetSchema = Joi.object({
     email: Joi.string().email().required(),
     newPassword: Joi.string().min(6).required(),
+    resetToken: Joi.string().required(),
   });
 }

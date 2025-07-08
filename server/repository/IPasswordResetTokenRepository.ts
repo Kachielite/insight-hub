@@ -7,12 +7,22 @@ export interface IPasswordResetTokenRepository {
     used: boolean;
     createdAt: Date;
   }>;
+  findByUserId(userId: number): Promise<{
+    id: string;
+    token: string;
+    userId: number;
+    expiresAt: Date;
+    used: boolean;
+    createdAt: Date;
+  }>;
   findByToken(token: string): Promise<{
     id: string;
-    userId: number;
     token: string;
+    userId: number;
     expiresAt: Date;
-  } | null>;
+    used: boolean;
+    createdAt: Date;
+  }>;
   deleteByTokenID(id: string): Promise<{
     id: string;
     token: string;

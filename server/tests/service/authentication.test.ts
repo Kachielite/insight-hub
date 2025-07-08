@@ -56,6 +56,7 @@ const mockPasswordResetTokenRepository = {
   create: jest.fn(),
   findByToken: jest.fn(), // Added missing method
   deleteByTokenID: jest.fn(), // Added missing method
+  findByUserId: jest.fn(), // Added new method for checking existing tokens
 };
 
 // Mock TokenGenerator
@@ -233,8 +234,9 @@ describe('AuthenticationService', () => {
       expiresAt: new Date(),
     };
 
-    it('should send reset password link successfully', async () => {
+    it('should send reset password link successfully when no existing token', async () => {
       mockUserRepository.findUserByEmail.mockResolvedValue(mockUser);
+      mockPasswordResetTokenRepository.findByUserId.mockResolvedValue(null);
       mockPasswordResetTokenRepository.create.mockResolvedValue(mockResetToken);
       mockEmailService.sendPasswordResetEmail.mockResolvedValue(undefined);
 
@@ -245,6 +247,54 @@ describe('AuthenticationService', () => {
       expect(result.data).toBe(
         `http://localhost:3000/reset-password?token=${mockResetToken.token}`
       );
+      expect(
+        mockPasswordResetTokenRepository.findByUserId
+      ).toHaveBeenCalledWith(mockUser.id);
+      expect(
+        mockPasswordResetTokenRepository.deleteByTokenID
+      ).not.toHaveBeenCalled();
+      expect(mockPasswordResetTokenRepository.create).toHaveBeenCalledWith({
+        userId: mockUser.id,
+        token: 'mock-reset-token',
+        expiresAt: expect.any(Date),
+      });
+      expect(mockEmailService.sendPasswordResetEmail).toHaveBeenCalledWith(
+        email,
+        `http://localhost:3000/reset-password?token=${mockResetToken.token}`
+      );
+    });
+
+    it('should delete existing token and send new reset password link', async () => {
+      const existingToken = {
+        id: 'existing-token-id',
+        token: 'existing-token',
+        userId: 'user-123',
+        expiresAt: new Date(),
+      };
+
+      mockUserRepository.findUserByEmail.mockResolvedValue(mockUser);
+      mockPasswordResetTokenRepository.findByUserId.mockResolvedValue(
+        existingToken
+      );
+      mockPasswordResetTokenRepository.deleteByTokenID.mockResolvedValue(
+        undefined
+      );
+      mockPasswordResetTokenRepository.create.mockResolvedValue(mockResetToken);
+      mockEmailService.sendPasswordResetEmail.mockResolvedValue(undefined);
+
+      const result = await authenticationService.resetPasswordLink(email);
+
+      expect(result.code).toBe(200);
+      expect(result.message).toBe('Reset password link sent successfully');
+      expect(result.data).toBe(
+        `http://localhost:3000/reset-password?token=${mockResetToken.token}`
+      );
+      expect(
+        mockPasswordResetTokenRepository.findByUserId
+      ).toHaveBeenCalledWith(mockUser.id);
+      expect(
+        mockPasswordResetTokenRepository.deleteByTokenID
+      ).toHaveBeenCalledWith(existingToken.id);
       expect(mockPasswordResetTokenRepository.create).toHaveBeenCalledWith({
         userId: mockUser.id,
         token: 'mock-reset-token',
@@ -285,6 +335,7 @@ describe('AuthenticationService', () => {
     const resetData: PasswordResetDTO = {
       email: 'test@example.com',
       newPassword: 'newpassword123',
+      resetToken: 'valid-reset-token',
     };
 
     const mockUser = {
@@ -292,7 +343,17 @@ describe('AuthenticationService', () => {
       email: 'test@example.com',
     };
 
-    it('should reset password successfully', async () => {
+    const mockResetTokenRecord = {
+      id: 'token-id-123',
+      token: 'valid-reset-token',
+      userId: 'user-123',
+      expiresAt: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes from now
+    };
+
+    it('should reset password successfully with valid token', async () => {
+      mockPasswordResetTokenRepository.findByToken.mockResolvedValue(
+        mockResetTokenRecord
+      );
       mockUserRepository.findUserByEmail.mockResolvedValue(mockUser);
       mockPasswordEncoderService.hashPassword.mockResolvedValue(
         'new-hashed-password'
@@ -304,6 +365,9 @@ describe('AuthenticationService', () => {
       expect(result.code).toBe(200);
       expect(result.message).toBe('Password reset successfully');
       expect(result.data).toBe('Password has been reset successfully');
+      expect(mockPasswordResetTokenRepository.findByToken).toHaveBeenCalledWith(
+        resetData.resetToken
+      );
       expect(mockPasswordEncoderService.hashPassword).toHaveBeenCalledWith(
         resetData.newPassword
       );
@@ -312,7 +376,47 @@ describe('AuthenticationService', () => {
       });
     });
 
+    it('should throw BadRequestException when reset token is invalid', async () => {
+      mockPasswordResetTokenRepository.findByToken.mockResolvedValue(null);
+
+      await expect(
+        authenticationService.resetPassword(resetData)
+      ).rejects.toThrow(new BadRequestException('Invalid reset token'));
+
+      expect(mockPasswordResetTokenRepository.findByToken).toHaveBeenCalledWith(
+        resetData.resetToken
+      );
+    });
+
+    it('should throw BadRequestException when reset token has expired', async () => {
+      const expiredTokenRecord = {
+        ...mockResetTokenRecord,
+        expiresAt: new Date(Date.now() - 60 * 1000), // 1 minute ago
+      };
+
+      mockPasswordResetTokenRepository.findByToken.mockResolvedValue(
+        expiredTokenRecord
+      );
+      mockPasswordResetTokenRepository.deleteByTokenID.mockResolvedValue(
+        undefined
+      );
+
+      await expect(
+        authenticationService.resetPassword(resetData)
+      ).rejects.toThrow(new BadRequestException('Reset token has expired'));
+
+      expect(mockPasswordResetTokenRepository.findByToken).toHaveBeenCalledWith(
+        resetData.resetToken
+      );
+      expect(
+        mockPasswordResetTokenRepository.deleteByTokenID
+      ).toHaveBeenCalledWith(expiredTokenRecord.id);
+    });
+
     it('should throw ResourceNotFoundException when user does not exist', async () => {
+      mockPasswordResetTokenRepository.findByToken.mockResolvedValue(
+        mockResetTokenRecord
+      );
       mockUserRepository.findUserByEmail.mockResolvedValue(null);
 
       await expect(
@@ -322,10 +426,17 @@ describe('AuthenticationService', () => {
           `User with email ${resetData.email} does not exist`
         )
       );
+
+      expect(mockPasswordResetTokenRepository.findByToken).toHaveBeenCalledWith(
+        resetData.resetToken
+      );
+      expect(mockUserRepository.findUserByEmail).toHaveBeenCalledWith(
+        resetData.email
+      );
     });
 
     it('should throw InternalServerException for unexpected errors', async () => {
-      mockUserRepository.findUserByEmail.mockRejectedValue(
+      mockPasswordResetTokenRepository.findByToken.mockRejectedValue(
         new Error('Database error')
       );
 

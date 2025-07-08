@@ -293,6 +293,7 @@ describe('AuthenticationController', () => {
     const requestBody: PasswordResetDTO = {
       email: 'john.doe@mail.com',
       newPassword: 'newpassword123',
+      resetToken: 'valid-reset-token',
     };
 
     const resetPasswordPath = '/auth/reset-password';

@@ -32,7 +32,7 @@ const useRegister = () => {
           navigate('/');
         },
         onError: (error) => {
-          console.error('useLogin error:', error);
+          console.error('useRegister error:', error);
           const errorMessage =
             error instanceof Error
               ? error.message

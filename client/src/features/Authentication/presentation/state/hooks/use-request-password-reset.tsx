@@ -32,7 +32,7 @@ const useRequestPasswordReset = () => {
         navigate('/login');
       },
       onError: (error) => {
-        console.error('useLogin error:', error);
+        console.error('useRequestPasswordReset error:', error);
         const errorMessage =
           error instanceof Error ? error.message : 'An unknown error occurred';
         toast.error(errorMessage);

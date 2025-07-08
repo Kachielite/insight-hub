@@ -154,6 +154,15 @@ class AuthenticationService implements IAuthenticationService {
         );
       }
 
+      // Check if token already exists
+      const existingToken =
+        await this.passwordResetTokenRepository.findByUserId(user.id);
+      if (existingToken) {
+        await this.passwordResetTokenRepository.deleteByTokenID(
+          existingToken.id
+        );
+      }
+
       // Generate reset password token
       const token = TokenGenerator.generateToken();
       const userId = user.id;
@@ -189,9 +198,23 @@ class AuthenticationService implements IAuthenticationService {
   async resetPassword({
     email,
     newPassword,
+    resetToken,
   }: PasswordResetDTO): Promise<GeneralResponseDTO<string>> {
     try {
       logger.info(`Resetting password for user with email: ${email}`);
+
+      // Check if reset token is valid
+      const resetPasswordToken =
+        await this.passwordResetTokenRepository.findByToken(resetToken);
+      if (!resetPasswordToken) {
+        throw new BadRequestException('Invalid reset token');
+      }
+      if (resetPasswordToken.expiresAt < new Date()) {
+        await this.passwordResetTokenRepository.deleteByTokenID(
+          resetPasswordToken.id
+        );
+        throw new BadRequestException('Reset token has expired');
+      }
 
       // Check if user exists
       const user = await this.userRepository.findUserByEmail(email);
@@ -217,7 +240,10 @@ class AuthenticationService implements IAuthenticationService {
       );
     } catch (error) {
       logger.error(`Error resetting password: ${error}`);
-      if (error instanceof ResourceNotFoundException) {
+      if (
+        error instanceof ResourceNotFoundException ||
+        error instanceof BadRequestException
+      ) {
         throw error;
       }
       throw new InternalServerException(
