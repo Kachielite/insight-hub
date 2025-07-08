@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import { configureAuthContainer } from '@/auth-container.ts';
+import { configureAuthContainer } from './init-dependencies/auth-di.ts';
 
 // Configure dependency injection containers
 configureAuthContainer();

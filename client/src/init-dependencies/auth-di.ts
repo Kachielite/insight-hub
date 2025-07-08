@@ -38,3 +38,11 @@ export function configureAuthContainer() {
   );
   container.registerSingleton<ResetPasswordUseCase>(ResetPasswordUseCase);
 }
+
+// Export use cases
+export const loginUseCase = container.resolve(LoginUseCase);
+export const registerUseCase = container.resolve(RegisterUseCase);
+export const requestResetPasswordUseCase = container.resolve(
+  RequestResetPasswordUseCase
+);
+export const resetPasswordUseCase = container.resolve(ResetPasswordUseCase);
