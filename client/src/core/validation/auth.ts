@@ -33,6 +33,7 @@ export const authResetSchema = z.object({
   newPassword: z
     .string()
     .min(8, { message: 'Password must be at least 8 characters' }),
+  resetToken: z.string().min(1, { message: 'Reset token is required' }),
 });
 
 export type AuthResetSchema = z.infer<typeof authResetSchema>;
