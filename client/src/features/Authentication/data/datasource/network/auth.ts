@@ -4,6 +4,7 @@ import { injectable } from 'tsyringe';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
+  AuthRequestResetPasswordSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
 import type AuthModel from '@/features/Authentication/data/model/auth-model.ts';
@@ -41,10 +42,12 @@ class AuthEndpoints {
     }
   }
 
-  public async requestResetPassword(email: string): Promise<string> {
+  public async requestResetPassword(
+    data: AuthRequestResetPasswordSchema
+  ): Promise<string> {
     try {
       const response = await axios.get(
-        `${this.authPath}/reset-password-link?email=${email}`
+        `${this.authPath}/reset-password-link?email=${data.email}`
       );
       return response.data.message;
     } catch (error) {

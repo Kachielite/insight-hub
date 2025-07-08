@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -21,11 +21,10 @@ const useLogin = () => {
     },
   });
 
-  const { isLoading: isLoggingIn } = useQuery(
+  const { isLoading: isLoggingIn } = useMutation(
     ['login'],
     () => loginEffect(loginForm.getValues()),
     {
-      enabled: false,
       onSuccess: () => {
         toast.success('Login successful');
         navigate('/');

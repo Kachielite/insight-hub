@@ -5,6 +5,7 @@ import Encrypter from '@/core/utils/encrypter.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
+  AuthRequestResetPasswordSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
 import type Auth from '@/features/Authentication/domain/entity/auth.ts';
@@ -45,8 +46,10 @@ export const registerEffect = async (data: AuthRegisterSchema) => {
   )(response);
 };
 
-export const requestResetPasswordEffect = async (email: string) => {
-  const response = await requestResetPasswordUseCase.execute({ email });
+export const requestResetPasswordEffect = async (
+  data: AuthRequestResetPasswordSchema
+) => {
+  const response = await requestResetPasswordUseCase.execute({ data });
 
   return fold<Failure, string, string>(
     (failure) => {

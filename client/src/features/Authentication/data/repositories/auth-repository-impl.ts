@@ -6,6 +6,7 @@ import { ServerException } from '@/core/error/server.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
+  AuthRequestResetPasswordSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
 import AuthDataSource from '@/features/Authentication/data/datasource/auth-datasource.ts';
@@ -47,9 +48,11 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  async requestResetPassword(email: string): Promise<Either<Failure, string>> {
+  async requestResetPassword(
+    data: AuthRequestResetPasswordSchema
+  ): Promise<Either<Failure, string>> {
     try {
-      const response = await this.authDataSource.requestResetPassword(email);
+      const response = await this.authDataSource.requestResetPassword(data);
       return right(response);
     } catch (error) {
       console.error('AuthRepositoryImpl requestResetPassword:', error);

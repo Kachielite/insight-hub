@@ -4,6 +4,7 @@ import { ServerException } from '@/core/error/server.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
+  AuthRequestResetPasswordSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
 import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
@@ -12,7 +13,7 @@ import AuthModel from '@/features/Authentication/data/model/auth-model.ts';
 export interface AuthDataSource {
   login(data: AuthLoginSchema): Promise<AuthModel>;
   register(data: AuthRegisterSchema): Promise<AuthModel>;
-  requestResetPassword(email: string): Promise<string>;
+  requestResetPassword(data: AuthRequestResetPasswordSchema): Promise<string>;
   resetPassword(data: AuthResetSchema): Promise<string>;
 }
 
@@ -48,9 +49,9 @@ class AuthDataSourceImpl implements AuthDataSource {
     }
   }
 
-  requestResetPassword(email: string): Promise<string> {
+  requestResetPassword(data: AuthRequestResetPasswordSchema): Promise<string> {
     try {
-      return this.authEndpoints.requestResetPassword(email);
+      return this.authEndpoints.requestResetPassword(data);
     } catch (error) {
       console.error('AuthDatasourceImpl requestResetPassword:', error);
       throw new ServerException(
