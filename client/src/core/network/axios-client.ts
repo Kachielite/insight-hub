@@ -1,6 +1,8 @@
-import type { AxiosInstance } from 'axios';
 import axios from 'axios';
+
 import Encrypter from '../utils/encrypter.ts';
+
+import type { AxiosInstance } from 'axios';
 
 class AxiosClient {
   //TODO: add refresh token logic

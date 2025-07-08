@@ -1,22 +1,22 @@
 import 'reflect-metadata';
-import { container } from 'tsyringe';
-import express from 'express';
 
 // Import all your dependencies
 import App from '@app/app';
 import Server from '@app/server';
-import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
-import AuthenticationService from '@service/implementation/AuthenticationService';
-import UserService from '@service/implementation/UserService';
-import EmailService from '@service/implementation/EmailService';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import { AppServices } from '@common/types/AppServices';
+import AuthenticationController from '@controller/AuthenticationController';
+import HealthCheckController from '@controller/HealthCheckController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
 import UserRepository from '@repository/implementation/UserRepository';
+import AuthenticationService from '@service/implementation/AuthenticationService';
+import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
-import AuthenticationController from '@controller/AuthenticationController';
-import { AppServices } from '@common/types/AppServices';
-import HealthCheckController from '@controller/HealthCheckController';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import UserService from '@service/implementation/UserService';
+import express from 'express';
+import { container } from 'tsyringe';
 
 export function configureContainer() {
   // Register Express Router factory

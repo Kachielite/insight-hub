@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { injectable } from 'tsyringe';
+
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,

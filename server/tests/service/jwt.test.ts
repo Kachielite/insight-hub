@@ -1,5 +1,5 @@
-import JwtService from '@service/implementation/JwtService';
 import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
 
 describe('JwtService', () => {
   let jwtService: JwtService;

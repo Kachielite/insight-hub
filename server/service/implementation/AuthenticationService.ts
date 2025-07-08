@@ -1,7 +1,14 @@
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import UserRepository from '@repository/implementation/UserRepository';
+import { IAuthenticationService } from '@service/IAuthenticationService';
+import EmailService from '@service/implementation/EmailService';
+import JwtService from '@service/implementation/JwtService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import logger from '@utils/logger';
+import TokenGenerator from '@utils/TokenGenerator';
 import { Request } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { IAuthenticationService } from '@service/IAuthenticationService';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+
 import {
   AuthenticationDTO,
   AuthTokenDTO,
@@ -9,18 +16,12 @@ import {
   RegistrationDTO,
 } from '@/dto/AuthenticationDTO';
 import GeneralResponseDTO from '@/dto/GeneralResponseDTO';
-import logger from '@utils/logger';
 import {
   BadRequestException,
   InternalServerException,
   NotAuthorizedException,
   ResourceNotFoundException,
 } from '@/exception';
-import EmailService from '@service/implementation/EmailService';
-import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
-import TokenGenerator from '@utils/TokenGenerator';
-import UserRepository from '@repository/implementation/UserRepository';
-import JwtService from '@service/implementation/JwtService';
 
 @injectable()
 class AuthenticationService implements IAuthenticationService {

@@ -1,3 +1,7 @@
+import { Constants } from '@config/constants';
+import ErrorResponseDTO from '@dto/ErrorResponseDTO';
+import HttpError from '@exception/http-error';
+import logger from '@utils/logger';
 import {
   ErrorRequestHandler,
   NextFunction,
@@ -6,10 +10,6 @@ import {
   Response,
 } from 'express';
 import { injectable } from 'tsyringe';
-import { Constants } from '@config/constants';
-import logger from '@utils/logger';
-import ErrorResponseDTO from '@dto/ErrorResponseDTO';
-import HttpError from '@exception/http-error';
 
 @injectable()
 class GlobalExceptionMiddleware {
@@ -29,7 +29,7 @@ class GlobalExceptionMiddleware {
     res: Response
   ) => {
     const environment = Constants.NODE_ENV;
-    const statusCode = error.code || 500;
+    const statusCode = error.code ?? 500;
     const message = error.message;
     const name = error.name;
     const stack = environment === 'development' ? error.stack : undefined;

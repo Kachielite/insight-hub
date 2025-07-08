@@ -1,17 +1,19 @@
+import { fold } from 'fp-ts/Either';
+
+import type { Failure } from '@/core/error/failure.ts';
+import Encrypter from '@/core/utils/encrypter.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
+import type Auth from '@/features/Authentication/domain/entity/auth.ts';
 import {
   loginUseCase,
   registerUseCase,
   requestResetPasswordUseCase,
   resetPasswordUseCase,
 } from '@/init-dependencies/auth-di.ts';
-import { fold } from 'fp-ts/Either';
-import type { Failure } from '@/core/error/failure.ts';
-import type Auth from '@/features/Authentication/domain/entity/auth.ts';
 
 export const loginEffect = async (data: AuthLoginSchema) => {
   const response = await loginUseCase.execute({ data });
@@ -21,7 +23,10 @@ export const loginEffect = async (data: AuthLoginSchema) => {
       console.error('loginEffect:', failure);
       throw new Error(failure.message);
     },
-    (auth) => auth
+    (auth) => {
+      Encrypter.setUserToken(auth.accessToken);
+      return auth;
+    }
   )(response);
 };
 
@@ -33,7 +38,10 @@ export const registerEffect = async (data: AuthRegisterSchema) => {
       console.error('loginEffect:', failure);
       throw new Error(failure.message);
     },
-    (auth) => auth
+    (auth) => {
+      Encrypter.setUserToken(auth.accessToken);
+      return auth;
+    }
   )(response);
 };
 

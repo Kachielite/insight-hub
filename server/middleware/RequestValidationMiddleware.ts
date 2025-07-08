@@ -1,5 +1,6 @@
-import { BadRequestException } from '@/exception';
 import { NextFunction, Request, Response } from 'express';
+
+import { BadRequestException } from '@/exception';
 
 class RequestValidationMiddleware {
   public static validate(schema: any) {

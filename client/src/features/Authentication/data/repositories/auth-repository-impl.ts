@@ -1,15 +1,16 @@
-import type { AuthRepository } from '@/features/Authentication/domain/repositories/auth-repository.ts';
+import { type Either, left, right } from 'fp-ts/Either';
+import { inject, injectable } from 'tsyringe';
+
+import { Failure } from '@/core/error/failure.ts';
+import { ServerException } from '@/core/error/server.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
-import { Failure } from '@/core/error/failure.ts';
-import { type Either, left, right } from 'fp-ts/Either';
-import type Auth from '@/features/Authentication/domain/entity/auth.ts';
-import { inject, injectable } from 'tsyringe';
 import AuthDataSource from '@/features/Authentication/data/datasource/auth-datasource.ts';
-import { ServerException } from '@/core/error/server.ts';
+import type Auth from '@/features/Authentication/domain/entity/auth.ts';
+import type { AuthRepository } from '@/features/Authentication/domain/repositories/auth-repository.ts';
 
 @injectable()
 class AuthRepositoryImpl implements AuthRepository {

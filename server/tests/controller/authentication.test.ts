@@ -1,4 +1,9 @@
-import request from 'supertest';
+import AuthenticationController from '@controller/AuthenticationController';
+import { AuthTokenDTO, PasswordResetDTO } from '@dto/AuthenticationDTO';
+import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import HttpError from '@exception/http-error';
+import { IAuthenticationService } from '@service/IAuthenticationService';
+import AuthenticationService from '@service/implementation/AuthenticationService';
 import express, {
   Application,
   NextFunction,
@@ -6,13 +11,8 @@ import express, {
   Response,
   Router,
 } from 'express';
-import AuthenticationController from '@controller/AuthenticationController';
+import request from 'supertest';
 import { container } from 'tsyringe';
-import GeneralResponseDTO from '@dto/GeneralResponseDTO';
-import { AuthTokenDTO, PasswordResetDTO } from '@dto/AuthenticationDTO';
-import { IAuthenticationService } from '@service/IAuthenticationService';
-import AuthenticationService from '@service/implementation/AuthenticationService';
-import HttpError from '@exception/http-error';
 
 // Create a proper mock class that satisfies the AuthenticationService interface
 class MockAuthenticationService implements IAuthenticationService {

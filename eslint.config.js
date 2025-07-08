@@ -3,6 +3,7 @@ import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 const jestGlobals = {
   describe: 'readonly',
@@ -65,6 +66,7 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       prettier: prettierPlugin,
+      import: importPlugin,
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
@@ -81,6 +83,37 @@ export default [
       'no-console': 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
+      // Import sorting rules
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', // Node.js built-in modules
+            'external', // npm packages
+            'internal', // Internal modules (configured with paths)
+            'parent', // Parent directories (../)
+            'sibling', // Sibling files (./)
+            'index', // Index files
+            'type', // Type imports
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'],
+        },
+      ],
+      'import/first': 'error',
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
     },
   },
   {

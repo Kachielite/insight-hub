@@ -1,12 +1,13 @@
+import { inject, injectable } from 'tsyringe';
+
+import { ServerException } from '@/core/error/server.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
-import AuthModel from '@/features/Authentication/data/model/auth-model.ts';
-import { inject, injectable } from 'tsyringe';
 import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
-import { ServerException } from '@/core/error/server.ts';
+import AuthModel from '@/features/Authentication/data/model/auth-model.ts';
 
 export interface AuthDataSource {
   login(data: AuthLoginSchema): Promise<AuthModel>;

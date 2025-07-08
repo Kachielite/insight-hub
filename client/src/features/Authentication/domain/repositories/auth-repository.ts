@@ -1,10 +1,11 @@
-import type Auth from '@/features/Authentication/domain/entity/auth.ts';
+import type { Failure } from '@/core/error/failure.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
-import type { Failure } from '@/core/error/failure.ts';
+import type Auth from '@/features/Authentication/domain/entity/auth.ts';
+
 import type { Either } from 'fp-ts/Either';
 
 export interface AuthRepository {

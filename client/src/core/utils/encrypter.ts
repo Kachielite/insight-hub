@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js';
+
 import { TOKEN_SECRET } from '../constants/env';
 
 class Encrypter {

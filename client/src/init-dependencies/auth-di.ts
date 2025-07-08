@@ -2,14 +2,11 @@ import 'reflect-metadata';
 import { container } from 'tsyringe';
 
 // Import datasource classes
-import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
 import type { AuthDataSource } from '@/features/Authentication/data/datasource/auth-datasource.ts';
 import AuthDataSourceImpl from '@/features/Authentication/data/datasource/auth-datasource.ts';
-
-// Import repository classes
-import type { AuthRepository } from '@/features/Authentication/domain/repositories/auth-repository.ts';
+import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
 import AuthRepositoryImpl from '@/features/Authentication/data/repositories/auth-repository-impl.ts';
-
+import type { AuthRepository } from '@/features/Authentication/domain/repositories/auth-repository.ts';
 // Import use cases
 import { LoginUseCase } from '@/features/Authentication/domain/use-case/login.ts';
 import { RegisterUseCase } from '@/features/Authentication/domain/use-case/register.ts';

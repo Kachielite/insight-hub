@@ -1,17 +1,18 @@
-import { container } from 'tsyringe';
-import { Request } from 'express';
-import AuthenticationService from '@service/implementation/AuthenticationService';
-import UserRepository from '@repository/implementation/UserRepository';
-import JwtService from '@service/implementation/JwtService';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
-import EmailService from '@service/implementation/EmailService';
-import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
 import {
   AuthenticationDTO,
   AuthTokenDTO,
   PasswordResetDTO,
   RegistrationDTO,
 } from '@dto/AuthenticationDTO';
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import UserRepository from '@repository/implementation/UserRepository';
+import AuthenticationService from '@service/implementation/AuthenticationService';
+import EmailService from '@service/implementation/EmailService';
+import JwtService from '@service/implementation/JwtService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import { Request } from 'express';
+import { container } from 'tsyringe';
+
 import {
   BadRequestException,
   InternalServerException,

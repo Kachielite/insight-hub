@@ -1,6 +1,7 @@
-import type { StateCreator } from 'zustand';
-import type { AuthSlice } from './types.ts';
 import type Auth from '@/features/Authentication/domain/entity/auth.ts';
+
+import type { AuthSlice } from './types.ts';
+import type { StateCreator } from 'zustand';
 
 export const createAuthActions: StateCreator<
   AuthSlice,

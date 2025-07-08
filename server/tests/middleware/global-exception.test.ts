@@ -1,5 +1,5 @@
-import { NextFunction, Response } from 'express';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
+import { NextFunction, Response } from 'express';
 
 describe('GlobalExceptionMiddleware', () => {
   it('should call res.status and res.json when an error occurs', () => {

@@ -1,4 +1,5 @@
-import request from 'supertest';
+import HealthCheckController from '@controller/HealthCheckController';
+import HttpError from '@exception/http-error';
 import express, {
   Application,
   NextFunction,
@@ -6,9 +7,8 @@ import express, {
   Response,
   Router,
 } from 'express';
+import request from 'supertest';
 import { container } from 'tsyringe';
-import HttpError from '@exception/http-error';
-import HealthCheckController from '@controller/HealthCheckController';
 
 describe('HealthCheckController', () => {
   let app: Application;
