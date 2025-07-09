@@ -9,12 +9,14 @@ import type {
   AuthResetSchema,
 } from '@/core/validation/auth.ts';
 import type Auth from '@/features/Authentication/domain/entity/auth.ts';
-import {
+import { getAuthUseCases } from '@/init-dependencies/auth-di.ts';
+
+const {
   loginUseCase,
   registerUseCase,
   requestResetPasswordUseCase,
   resetPasswordUseCase,
-} from '@/init-dependencies/auth-di.ts';
+} = getAuthUseCases();
 
 export const loginEffect = async (data: AuthLoginSchema) => {
   const response = await loginUseCase.execute({ data });
