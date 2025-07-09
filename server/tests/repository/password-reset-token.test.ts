@@ -1,7 +1,8 @@
+import { container } from 'tsyringe';
+
 import mockPrisma from '@config/db';
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
 import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRepository';
-import { container } from 'tsyringe';
 
 // Mock the Prisma client with properly typed Jest mocks
 jest.mock('@config/db', () => ({

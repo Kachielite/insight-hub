@@ -1,6 +1,7 @@
-import { IPasswordEncoderService } from '@service/IPasswordEncoderService';
 import bcrypt from 'bcrypt';
 import { injectable } from 'tsyringe';
+
+import { IPasswordEncoderService } from '@service/IPasswordEncoderService';
 
 @injectable()
 class PasswordEncoderService implements IPasswordEncoderService {

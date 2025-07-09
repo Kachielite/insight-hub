@@ -1,9 +1,10 @@
 // Import modules AFTER setting up mocks
+import { container } from 'tsyringe';
+
 import App from '@app/app';
 import { configureContainer } from '@app/container';
 import Server from '@app/server';
 import { Constants } from '@config/constants';
-import { container } from 'tsyringe';
 
 // Mock dependencies BEFORE importing any modules that use them
 jest.mock('@app/app');

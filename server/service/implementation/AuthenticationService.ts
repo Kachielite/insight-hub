@@ -1,11 +1,3 @@
-import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
-import UserRepository from '@repository/implementation/UserRepository';
-import { IAuthenticationService } from '@service/IAuthenticationService';
-import EmailService from '@service/implementation/EmailService';
-import JwtService from '@service/implementation/JwtService';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
-import logger from '@utils/logger';
-import TokenGenerator from '@utils/TokenGenerator';
 import { Request } from 'express';
 import { inject, injectable } from 'tsyringe';
 
@@ -22,6 +14,15 @@ import {
   NotAuthorizedException,
   ResourceNotFoundException,
 } from '@/exception';
+
+import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import UserRepository from '@repository/implementation/UserRepository';
+import { IAuthenticationService } from '@service/IAuthenticationService';
+import EmailService from '@service/implementation/EmailService';
+import JwtService from '@service/implementation/JwtService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import logger from '@utils/logger';
+import TokenGenerator from '@utils/TokenGenerator';
 
 @injectable()
 class AuthenticationService implements IAuthenticationService {

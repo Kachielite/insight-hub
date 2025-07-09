@@ -36,6 +36,7 @@ export default [
           './tsconfig.json',
           './server/tsconfig.json',
           './client/tsconfig.app.json',
+          './client/tsconfig.test.json',
         ],
       },
       globals: {
@@ -67,6 +68,20 @@ export default [
       '@typescript-eslint': tsPlugin,
       prettier: prettierPlugin,
       import: importPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: [
+            './tsconfig.json',
+            './server/tsconfig.json',
+            './client/tsconfig.app.json',
+            './client/tsconfig.test.json',
+            './client/tsconfig.json',
+          ],
+        },
+      },
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
@@ -117,12 +132,29 @@ export default [
     },
   },
   {
-    files: ['**/*.test.{js,ts,tsx}', '**/*.spec.{js,ts,tsx}'],
+    files: [
+      '**/*.test.{js,ts,tsx}',
+      '**/*.spec.{js,ts,tsx}',
+      '**/tests/**/*',
+      '**/setupTests.ts',
+    ],
     languageOptions: {
-      globals: jestGlobals,
+      globals: {
+        ...jestGlobals,
+        // Browser globals for test environment
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        history: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        fetch: 'readonly',
+      },
     },
     rules: {
       'no-console': 'off',
+      '@typescript-eslint/no-explicit-any': 'off', // Allow any in tests
     },
   },
   {
@@ -141,6 +173,8 @@ export default [
       '**/node_modules/',
       'server/jest.config.js',
       'client/vite.config.ts',
+      'client/jest.config.js',
+      '**/jest.config.js',
     ],
   },
 ];

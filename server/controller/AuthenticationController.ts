@@ -1,3 +1,6 @@
+import express, { Request } from 'express';
+import { inject, injectable } from 'tsyringe';
+
 import {
   BaseController,
   Controller,
@@ -8,8 +11,6 @@ import { AuthTokenDTO } from '@dto/AuthenticationDTO';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import { AuthenticationValidationSchema } from '@dto/RequestValidationSchema';
 import AuthenticationService from '@service/implementation/AuthenticationService';
-import express, { Request } from 'express';
-import { inject, injectable } from 'tsyringe';
 
 @injectable()
 @Controller()

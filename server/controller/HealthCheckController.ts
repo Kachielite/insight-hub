@@ -1,10 +1,11 @@
+import express from 'express';
+import { inject, injectable } from 'tsyringe';
+
 import {
   BaseController,
   Controller,
   Get,
 } from '@common/decorators/ControllerDecorators';
-import express from 'express';
-import { inject, injectable } from 'tsyringe';
 
 @injectable()
 @Controller()

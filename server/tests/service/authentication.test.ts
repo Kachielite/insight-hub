@@ -1,3 +1,13 @@
+import { Request } from 'express';
+import { container } from 'tsyringe';
+
+import {
+  BadRequestException,
+  InternalServerException,
+  NotAuthorizedException,
+  ResourceNotFoundException,
+} from '@/exception';
+
 import {
   AuthenticationDTO,
   AuthTokenDTO,
@@ -10,15 +20,6 @@ import AuthenticationService from '@service/implementation/AuthenticationService
 import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
-import { Request } from 'express';
-import { container } from 'tsyringe';
-
-import {
-  BadRequestException,
-  InternalServerException,
-  NotAuthorizedException,
-  ResourceNotFoundException,
-} from '@/exception';
 
 // Mock dependencies with complete interfaces
 const mockUserRepository = {

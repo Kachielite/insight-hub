@@ -1,11 +1,12 @@
-import { Constants } from '@configuration/constants';
-import UserRepository from '@repository/implementation/UserRepository';
-import { IJwtService } from '@service/IJwtService';
-import logger from '@utils/logger';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
 import { BadRequestException } from '@/exception';
+
+import { Constants } from '@configuration/constants';
+import UserRepository from '@repository/implementation/UserRepository';
+import { IJwtService } from '@service/IJwtService';
+import logger from '@utils/logger';
 
 @injectable()
 class JwtService implements IJwtService {

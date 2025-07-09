@@ -1,10 +1,11 @@
-import { CustomJwtPayload } from '@common/types/express';
-import UserRepository from '@repository/implementation/UserRepository';
-import JwtService from '@service/implementation/JwtService';
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
 
 import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
+
+import { CustomJwtPayload } from '@common/types/express';
+import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
 
 import logger from '../utils/logger';
 

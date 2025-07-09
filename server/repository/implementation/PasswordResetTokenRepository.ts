@@ -1,6 +1,7 @@
+import { injectable } from 'tsyringe';
+
 import prisma from '@config/db';
 import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRepository';
-import { injectable } from 'tsyringe';
 
 @injectable()
 class PasswordResetTokenRepository implements IPasswordResetTokenRepository {

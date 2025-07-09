@@ -1,9 +1,10 @@
+import { container } from 'tsyringe';
+
 import { UserResponseDTO, UserUpdateDTO } from '@dto/UserDTO';
 import { Role } from '@prisma';
 import UserRepository from '@repository/implementation/UserRepository';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
 import UserService from '@service/implementation/UserService';
-import { container } from 'tsyringe';
 
 // Mock dependencies
 const mockUserRepository = {

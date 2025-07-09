@@ -1,6 +1,7 @@
+import { container } from 'tsyringe';
+
 import EmailConfig from '@config/email';
 import EmailService from '@service/implementation/EmailService';
-import { container } from 'tsyringe';
 
 // Mock the Constants to control the sender email
 jest.mock('@config/constants', () => ({

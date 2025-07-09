@@ -1,8 +1,9 @@
+import { inject, injectable } from 'tsyringe';
+
 import { Constants } from '@config/constants';
 import EmailConfig from '@config/email';
 import { IEmailService } from '@service/IEmailService';
 import logger from '@utils/logger';
-import { inject, injectable } from 'tsyringe';
 
 @injectable()
 class EmailService implements IEmailService {

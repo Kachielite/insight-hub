@@ -1,7 +1,3 @@
-import { Constants } from '@config/constants';
-import ErrorResponseDTO from '@dto/ErrorResponseDTO';
-import HttpError from '@exception/http-error';
-import logger from '@utils/logger';
 import {
   ErrorRequestHandler,
   NextFunction,
@@ -10,6 +6,11 @@ import {
   Response,
 } from 'express';
 import { injectable } from 'tsyringe';
+
+import { Constants } from '@config/constants';
+import ErrorResponseDTO from '@dto/ErrorResponseDTO';
+import HttpError from '@exception/http-error';
+import logger from '@utils/logger';
 
 @injectable()
 class GlobalExceptionMiddleware {

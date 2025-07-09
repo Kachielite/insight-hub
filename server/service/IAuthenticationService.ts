@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 import {
   AuthenticationDTO,
   AuthTokenDTO,
@@ -5,7 +7,6 @@ import {
   RegistrationDTO,
 } from '@dto/AuthenticationDTO';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
-import { Request } from 'express';
 
 export interface IAuthenticationService {
   login(request: AuthenticationDTO): Promise<GeneralResponseDTO<AuthTokenDTO>>;

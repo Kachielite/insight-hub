@@ -1,3 +1,6 @@
+import express from 'express';
+import { container } from 'tsyringe';
+
 import App from '@app/app';
 import { configureContainer } from '@app/container';
 import Server from '@app/server';
@@ -12,8 +15,6 @@ import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
 import UserService from '@service/implementation/UserService';
-import express from 'express';
-import { container } from 'tsyringe';
 
 // Mock all dependencies
 jest.mock('express');

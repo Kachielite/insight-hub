@@ -36,10 +36,20 @@ export function configureAuthContainer() {
   container.registerSingleton<ResetPasswordUseCase>(ResetPasswordUseCase);
 }
 
-// Export use cases
-export const loginUseCase = container.resolve(LoginUseCase);
-export const registerUseCase = container.resolve(RegisterUseCase);
-export const requestResetPasswordUseCase = container.resolve(
-  RequestResetPasswordUseCase
-);
-export const resetPasswordUseCase = container.resolve(ResetPasswordUseCase);
+// Export use case classes for manual resolution
+export {
+  LoginUseCase,
+  RegisterUseCase,
+  RequestResetPasswordUseCase,
+  ResetPasswordUseCase,
+};
+
+// Helper function to get configured use cases
+export function getAuthUseCases() {
+  return {
+    loginUseCase: container.resolve(LoginUseCase),
+    registerUseCase: container.resolve(RegisterUseCase),
+    requestResetPasswordUseCase: container.resolve(RequestResetPasswordUseCase),
+    resetPasswordUseCase: container.resolve(ResetPasswordUseCase),
+  };
+}
