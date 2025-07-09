@@ -1,12 +1,9 @@
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
-import { router } from '@/core/routes';
-
+import App from './App';
 import './index.css';
-
 import { configureAuthContainer } from './init-dependencies/auth-di.ts';
 
 // Configure dependency injection containers
@@ -26,7 +23,7 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
+    <App />
     <Toaster />
   </QueryClientProvider>
 );
