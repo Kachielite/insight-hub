@@ -18,8 +18,14 @@ export default {
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.(ts|tsx|js)',
     '<rootDir>/src/**/?(*.)(spec|test).(ts|tsx|js)',
-    '<rootDir>/tests/**/*.(ts|tsx|js)',
     '<rootDir>/tests/**/?(*.)(spec|test).(ts|tsx|js)',
+  ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/dist/',
+    '/coverage/',
+    '<rootDir>/tests/fixtures/',
+    '<rootDir>/tests/utils/',
   ],
   collectCoverageFrom: [
     'src/**/*.(ts|tsx)',
@@ -29,6 +35,5 @@ export default {
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
 };
