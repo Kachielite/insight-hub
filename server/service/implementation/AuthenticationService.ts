@@ -197,12 +197,11 @@ class AuthenticationService implements IAuthenticationService {
   }
 
   async resetPassword({
-    email,
     newPassword,
     resetToken,
   }: PasswordResetDTO): Promise<GeneralResponseDTO<string>> {
     try {
-      logger.info(`Resetting password for user with email: ${email}`);
+      logger.info(`Resetting password request received`);
 
       // Check if reset token is valid
       const resetPasswordToken =
@@ -218,10 +217,12 @@ class AuthenticationService implements IAuthenticationService {
       }
 
       // Check if user exists
-      const user = await this.userRepository.findUserByEmail(email);
+      const user = await this.userRepository.findUserById(
+        resetPasswordToken.userId
+      );
       if (!user) {
         throw new ResourceNotFoundException(
-          `User with email ${email} does not exist`
+          `User with id ${resetPasswordToken.userId} does not exist`
         );
       }
 

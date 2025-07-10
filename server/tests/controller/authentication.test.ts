@@ -292,7 +292,6 @@ describe('AuthenticationController', () => {
 
   describe('POST /auth/reset-password', () => {
     const requestBody: PasswordResetDTO = {
-      email: 'john.doe@mail.com',
       newPassword: 'newpassword123',
       resetToken: 'valid-reset-token',
     };
@@ -340,10 +339,10 @@ describe('AuthenticationController', () => {
       );
     });
 
-    it('should return 404 when email does not exist', async () => {
+    it('should return 404 when user not found', async () => {
       const error = {
         code: 404,
-        message: `User with email ${requestBody.email} does not exist`,
+        message: 'User does not exist',
         name: 'Resource Not Found',
       };
       mockAuthenticationService.resetPassword.mockRejectedValueOnce(error);

@@ -334,7 +334,6 @@ describe('AuthenticationService', () => {
 
   describe('resetPassword', () => {
     const resetData: PasswordResetDTO = {
-      email: 'test@example.com',
       newPassword: 'newpassword123',
       resetToken: 'valid-reset-token',
     };
@@ -355,7 +354,7 @@ describe('AuthenticationService', () => {
       mockPasswordResetTokenRepository.findByToken.mockResolvedValue(
         mockResetTokenRecord
       );
-      mockUserRepository.findUserByEmail.mockResolvedValue(mockUser);
+      mockUserRepository.findUserById.mockResolvedValue(mockUser);
       mockPasswordEncoderService.hashPassword.mockResolvedValue(
         'new-hashed-password'
       );
@@ -418,22 +417,20 @@ describe('AuthenticationService', () => {
       mockPasswordResetTokenRepository.findByToken.mockResolvedValue(
         mockResetTokenRecord
       );
-      mockUserRepository.findUserByEmail.mockResolvedValue(null);
+      mockUserRepository.findUserById.mockResolvedValue(null);
 
       await expect(
         authenticationService.resetPassword(resetData)
       ).rejects.toThrow(
         new ResourceNotFoundException(
-          `User with email ${resetData.email} does not exist`
+          `User with id ${mockResetTokenRecord.userId} does not exist`
         )
       );
 
       expect(mockPasswordResetTokenRepository.findByToken).toHaveBeenCalledWith(
         resetData.resetToken
       );
-      expect(mockUserRepository.findUserByEmail).toHaveBeenCalledWith(
-        resetData.email
-      );
+      expect(mockUserRepository.findUserById).toHaveBeenCalledWith(mockUser.id);
     });
 
     it('should throw InternalServerException for unexpected errors', async () => {
