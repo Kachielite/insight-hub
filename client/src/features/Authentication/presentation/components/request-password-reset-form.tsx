@@ -1,16 +1,21 @@
 import { useTheme } from 'next-themes';
 
+import CustomInput from '@/core/common/presentation/components/custom-input.tsx';
 import { Button } from '@/core/common/presentation/components/ui/button';
 import {
   Card,
   CardContent,
 } from '@/core/common/presentation/components/ui/card';
-import { Input } from '@/core/common/presentation/components/ui/input';
-import { Label } from '@/core/common/presentation/components/ui/label';
 import { AuthImageDark, AuthImageLight } from '@/core/constants/images';
+import useRequestPasswordReset from '@/features/Authentication/presentation/state/hooks/use-request-password-reset.tsx';
 
 export function RequestPasswordResetForm() {
   const { theme } = useTheme();
+  const {
+    requestResetPasswordForm,
+    isRequestingPasswordReset,
+    requestResetPasswordHandler,
+  } = useRequestPasswordReset();
   return (
     <Card className="overflow-hidden p-0 w-[90vw] md:w-[80vw] lg:w-[50rem]">
       <CardContent className="grid p-0 md:grid-cols-2">
@@ -22,17 +27,28 @@ export function RequestPasswordResetForm() {
                 A password reset link will be sent to your email
               </p>
             </div>
-            <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <Button type="submit" className="w-full">
-              Send reset link
+            <CustomInput
+              id="email"
+              type="email"
+              label="Email"
+              placeholder="Enter your email"
+              formController={requestResetPasswordForm}
+            />
+            <Button
+              disabled={isRequestingPasswordReset}
+              onClick={requestResetPasswordForm.handleSubmit((data) =>
+                requestResetPasswordHandler(data)
+              )}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  requestResetPasswordForm.handleSubmit((data) =>
+                    requestResetPasswordHandler(data)
+                  )();
+                }
+              }}
+              className="w-full"
+            >
+              {isRequestingPasswordReset ? 'Sending...' : 'Send reset link'}
             </Button>
           </div>
         </form>

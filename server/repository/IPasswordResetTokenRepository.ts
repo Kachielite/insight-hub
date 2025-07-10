@@ -14,7 +14,7 @@ export interface IPasswordResetTokenRepository {
     expiresAt: Date;
     used: boolean;
     createdAt: Date;
-  }>;
+  } | null>;
   findByToken(token: string): Promise<{
     id: string;
     token: string;
@@ -22,7 +22,7 @@ export interface IPasswordResetTokenRepository {
     expiresAt: Date;
     used: boolean;
     createdAt: Date;
-  }>;
+  } | null>;
   deleteByTokenID(id: string): Promise<{
     id: string;
     token: string;

@@ -8,8 +8,8 @@ import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRe
 jest.mock('@config/db', () => ({
   passwordResetToken: {
     create: jest.fn(),
-    findFirstOrThrow: jest.fn(),
-    findUniqueOrThrow: jest.fn(),
+    findFirst: jest.fn(),
+    findUnique: jest.fn(),
     delete: jest.fn(),
   },
 }));
@@ -18,8 +18,8 @@ jest.mock('@config/db', () => ({
 const mockPrismaClient = mockPrisma as {
   passwordResetToken: {
     create: jest.MockedFunction<any>;
-    findFirstOrThrow: jest.MockedFunction<any>;
-    findUniqueOrThrow: jest.MockedFunction<any>;
+    findFirst: jest.MockedFunction<any>;
+    findUnique: jest.MockedFunction<any>;
     delete: jest.MockedFunction<any>;
   };
 };
@@ -91,29 +91,26 @@ describe('PasswordResetTokenRepository', () => {
     };
 
     it('should find a password reset token by token successfully', async () => {
-      mockPrismaClient.passwordResetToken.findFirstOrThrow.mockResolvedValue(
+      mockPrismaClient.passwordResetToken.findFirst.mockResolvedValue(
         mockFoundToken
       );
 
       const result = await passwordResetTokenRepository.findByToken(token);
 
       expect(
-        mockPrismaClient.passwordResetToken.findFirstOrThrow
+        mockPrismaClient.passwordResetToken.findFirst
       ).toHaveBeenCalledWith({
         where: { token },
       });
       expect(result).toEqual(mockFoundToken);
     });
 
-    it('should handle token not found error', async () => {
-      const mockError = new Error('Token not found');
-      mockPrismaClient.passwordResetToken.findFirstOrThrow.mockRejectedValue(
-        mockError
-      );
+    it('should return null when token is not found', async () => {
+      mockPrismaClient.passwordResetToken.findFirst.mockResolvedValue(null);
 
-      await expect(
-        passwordResetTokenRepository.findByToken(token)
-      ).rejects.toThrow('Token not found');
+      const result =
+        await passwordResetTokenRepository.findByToken('non-existent-token');
+      expect(result).toBeNull();
     });
   });
 
@@ -128,29 +125,25 @@ describe('PasswordResetTokenRepository', () => {
     };
 
     it('should find a password reset token by userId successfully', async () => {
-      mockPrismaClient.passwordResetToken.findUniqueOrThrow.mockResolvedValue(
+      mockPrismaClient.passwordResetToken.findUnique.mockResolvedValue(
         mockFoundToken
       );
 
       const result = await passwordResetTokenRepository.findByUserId(userId);
 
       expect(
-        mockPrismaClient.passwordResetToken.findUniqueOrThrow
+        mockPrismaClient.passwordResetToken.findUnique
       ).toHaveBeenCalledWith({
         where: { userId },
       });
       expect(result).toEqual(mockFoundToken);
     });
 
-    it('should handle user token not found error', async () => {
-      const mockError = new Error('User token not found');
-      mockPrismaClient.passwordResetToken.findUniqueOrThrow.mockRejectedValue(
-        mockError
-      );
+    it('should return null when user token is not found', async () => {
+      mockPrismaClient.passwordResetToken.findUnique.mockResolvedValue(null);
 
-      await expect(
-        passwordResetTokenRepository.findByUserId(userId)
-      ).rejects.toThrow('User token not found');
+      const result = await passwordResetTokenRepository.findByUserId(userId);
+      expect(result).toBeNull();
     });
   });
 

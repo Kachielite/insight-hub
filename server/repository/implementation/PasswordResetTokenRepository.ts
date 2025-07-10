@@ -16,7 +16,7 @@ class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
   }
 
   async findByToken(token: string) {
-    return prisma.passwordResetToken.findFirstOrThrow({
+    return prisma.passwordResetToken.findFirst({
       where: { token },
     });
   }
@@ -28,7 +28,7 @@ class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
   }
 
   async findByUserId(userId: number) {
-    return prisma.passwordResetToken.findUniqueOrThrow({
+    return prisma.passwordResetToken.findUnique({
       where: { userId },
     });
   }

@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import {
@@ -11,7 +10,6 @@ import {
 import { requestResetPasswordEffect } from '@/features/Authentication/presentation/state/store/effects.ts';
 
 const useRequestPasswordReset = () => {
-  const navigate = useNavigate();
   const requestResetPasswordForm = useForm<AuthRequestResetPasswordSchema>({
     resolver: zodResolver(authRequestResetPasswordSchema),
     defaultValues: {
@@ -24,12 +22,14 @@ const useRequestPasswordReset = () => {
     mutateAsync: requestResetPasswordHandler,
   } = useMutation(
     ['request-reset-password'],
-    async () =>
-      requestResetPasswordEffect(requestResetPasswordForm.getValues()),
+    async (data: AuthRequestResetPasswordSchema) =>
+      requestResetPasswordEffect(data),
     {
       onSuccess: () => {
-        toast.success('Registration successful');
-        navigate('/login');
+        toast.success('A reset password link has been sent to your email.', {
+          duration: 8000,
+        });
+        requestResetPasswordForm.reset();
       },
       onError: (error) => {
         console.error('useRequestPasswordReset error:', error);
