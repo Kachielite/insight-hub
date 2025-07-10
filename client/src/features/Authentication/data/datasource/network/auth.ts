@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { injectable } from 'tsyringe';
 
+import { BACKEND_URL } from '@/core/constants/env.ts';
 import type {
   AuthLoginSchema,
   AuthRegisterSchema,
@@ -11,7 +12,7 @@ import type AuthModel from '@/features/Authentication/data/model/auth-model.ts';
 
 @injectable()
 class AuthEndpoints {
-  private readonly authPath = '/auth';
+  private readonly authPath = `${BACKEND_URL}/auth`;
 
   public async login(data: AuthLoginSchema): Promise<AuthModel> {
     try {
@@ -59,10 +60,10 @@ class AuthEndpoints {
 
   public async resetPassword(data: AuthResetSchema): Promise<string> {
     try {
-      const response = await axios.post(
-        `${this.authPath}/reset-password`,
-        data
-      );
+      const response = await axios.post(`${this.authPath}/reset-password`, {
+        newPassword: data.newPassword,
+        resetToken: data.resetToken,
+      });
       return response.data.message;
     } catch (error) {
       console.error('AuthEndpoints.resetPassword: ', error);

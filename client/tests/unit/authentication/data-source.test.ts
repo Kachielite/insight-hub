@@ -123,16 +123,16 @@ describe('AuthDataSource', () => {
       mockAuthEndpoints.resetPassword.mockResolvedValue(mockResponse);
 
       const result = await authDataSource.resetPassword({
-        email: testUsers.validUser.email,
         resetToken: 'valid-reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
 
       expect(result).toBe(mockResponse);
       expect(mockAuthEndpoints.resetPassword).toHaveBeenCalledWith({
-        email: testUsers.validUser.email,
         resetToken: 'valid-reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
     });
 
@@ -142,9 +142,9 @@ describe('AuthDataSource', () => {
 
       await expect(
         authDataSource.resetPassword({
-          email: testUsers.validUser.email,
-          resetToken: 'invalid-token',
+          resetToken: 'valid-reset-token',
           newPassword: 'newpassword123',
+          confirmPassword: 'newpassword123',
         })
       ).rejects.toThrow();
     });

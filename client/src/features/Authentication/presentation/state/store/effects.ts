@@ -11,15 +11,14 @@ import type {
 import type Auth from '@/features/Authentication/domain/entity/auth.ts';
 import { getAuthUseCases } from '@/init-dependencies/auth-di.ts';
 
-const {
-  loginUseCase,
-  registerUseCase,
-  requestResetPasswordUseCase,
-  resetPasswordUseCase,
-} = getAuthUseCases();
+const getLoginUseCase = () => getAuthUseCases().loginUseCase;
+const getRegisterUseCase = () => getAuthUseCases().registerUseCase;
+const getRequestResetPasswordUseCase = () =>
+  getAuthUseCases().requestResetPasswordUseCase;
+const getResetPasswordUseCase = () => getAuthUseCases().resetPasswordUseCase;
 
 export const loginEffect = async (data: AuthLoginSchema) => {
-  const response = await loginUseCase.execute({ data });
+  const response = await getLoginUseCase().execute({ data });
 
   return fold<Failure, Auth, Auth>(
     (failure) => {
@@ -34,7 +33,7 @@ export const loginEffect = async (data: AuthLoginSchema) => {
 };
 
 export const registerEffect = async (data: AuthRegisterSchema) => {
-  const response = await registerUseCase.execute({ data });
+  const response = await getRegisterUseCase().execute({ data });
 
   return fold<Failure, Auth, Auth>(
     (failure) => {
@@ -51,7 +50,7 @@ export const registerEffect = async (data: AuthRegisterSchema) => {
 export const requestResetPasswordEffect = async (
   data: AuthRequestResetPasswordSchema
 ) => {
-  const response = await requestResetPasswordUseCase.execute({ data });
+  const response = await getRequestResetPasswordUseCase().execute({ data });
 
   return fold<Failure, string, string>(
     (failure) => {
@@ -63,7 +62,7 @@ export const requestResetPasswordEffect = async (
 };
 
 export const resetPasswordEffect = async (data: AuthResetSchema) => {
-  const response = await resetPasswordUseCase.execute({ data });
+  const response = await getResetPasswordUseCase().execute({ data });
 
   return fold<Failure, string, string>(
     (failure) => {

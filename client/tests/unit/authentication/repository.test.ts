@@ -158,9 +158,9 @@ describe('AuthRepository', () => {
       mockAuthDataSource.resetPassword.mockResolvedValue(mockResponse);
 
       const result = await authRepository.resetPassword({
-        email: testUsers.validUser.email,
         resetToken: 'valid-reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
 
       expect(E.isRight(result)).toBe(true);
@@ -168,9 +168,9 @@ describe('AuthRepository', () => {
         expect(result.right).toBe(mockResponse);
       }
       expect(mockAuthDataSource.resetPassword).toHaveBeenCalledWith({
-        email: testUsers.validUser.email,
         resetToken: 'valid-reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
     });
 
@@ -179,9 +179,9 @@ describe('AuthRepository', () => {
       mockAuthDataSource.resetPassword.mockRejectedValue(error);
 
       const result = await authRepository.resetPassword({
-        email: testUsers.validUser.email,
-        resetToken: 'invalid-token',
+        resetToken: 'valid-reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
 
       expect(E.isLeft(result)).toBe(true);

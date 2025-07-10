@@ -15,8 +15,8 @@ const useResetPassword = ({ resetToken }: { resetToken: string }) => {
   const resetPasswordForm = useForm<AuthResetSchema>({
     resolver: zodResolver(authResetSchema),
     defaultValues: {
-      email: '',
       newPassword: '',
+      confirmPassword: '',
       resetToken,
     },
   });

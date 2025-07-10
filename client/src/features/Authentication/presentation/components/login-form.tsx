@@ -1,16 +1,17 @@
 import { useTheme } from 'next-themes';
 
+import CustomInput from '@/core/common/presentation/components/custom-input.tsx';
 import { Button } from '@/core/common/presentation/components/ui/button';
 import {
   Card,
   CardContent,
 } from '@/core/common/presentation/components/ui/card';
-import { Input } from '@/core/common/presentation/components/ui/input';
-import { Label } from '@/core/common/presentation/components/ui/label';
 import { AuthImageDark, AuthImageLight } from '@/core/constants/images';
+import useLogin from '@/features/Authentication/presentation/state/hooks/use-login.tsx';
 
 export function LoginForm() {
   const { theme } = useTheme();
+  const { loginForm, isLoggingIn, loginHandler } = useLogin();
   return (
     <Card className="overflow-hidden p-0 w-[90vw] md:w-[80vw] lg:w-[50rem]">
       <CardContent className="grid p-0 md:grid-cols-2">
@@ -22,29 +23,37 @@ export function LoginForm() {
                 Login to your InsightHub account
               </p>
             </div>
-            <div className="grid gap-3">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
-            </div>
-            <div className="grid gap-3">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <a
-                  href="/forgot-password"
-                  className="ml-auto text-sm underline-offset-2 hover:underline"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Login
+            <CustomInput
+              id="email"
+              type="email"
+              label="Email"
+              placeholder="Enter your email"
+              formController={loginForm}
+            />
+            <CustomInput
+              id="password"
+              type="password"
+              label="Password"
+              placeholder="Enter your password"
+              formController={loginForm}
+            />
+            <a
+              href="/forgot-password"
+              className="mx-auto text-sm underline-offset-2 hover:underline"
+            >
+              Forgot your password?
+            </a>
+            <Button
+              onClick={loginForm.handleSubmit((data) => loginHandler(data))}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  loginForm.handleSubmit((data) => loginHandler(data))();
+                }
+              }}
+              disabled={isLoggingIn}
+              className="w-full"
+            >
+              {isLoggingIn ? 'Logging in...' : 'Login'}
             </Button>
             <div className="text-center text-sm">
               Don&apos;t have an account?{' '}

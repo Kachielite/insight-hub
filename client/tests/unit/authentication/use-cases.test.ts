@@ -146,17 +146,17 @@ describe('Authentication Use Cases', () => {
 
       const resetPasswordUseCase = container.resolve(ResetPasswordUseCase);
       const params = new ResetPasswordUseCaseParams({
-        email: testUsers.validUser.email,
         resetToken: 'reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
       const result = await resetPasswordUseCase.execute(params);
 
       expect(E.isRight(result)).toBe(true);
       expect(mockAuthRepository.resetPassword).toHaveBeenCalledWith({
-        email: testUsers.validUser.email,
         resetToken: 'reset-token',
         newPassword: 'newpassword123',
+        confirmPassword: 'newpassword123',
       });
     });
   });

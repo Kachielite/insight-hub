@@ -5,6 +5,7 @@ export default {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/core/constants/env$': '<rootDir>/src/core/constants/__mocks__/env',
   },
   transform: {
     '^.+\\.tsx?$': [
@@ -32,8 +33,10 @@ export default {
     '!src/**/*.d.ts',
     '!src/main.tsx',
     '!src/vite-env.d.ts',
+    '!src/core/constants/env.ts',
+    '!src/core/network/axios-client.ts',
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
-  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  modulePathIgnorePatterns: ['<rootDir>/src/core/constants/__mocks__/'],
 };

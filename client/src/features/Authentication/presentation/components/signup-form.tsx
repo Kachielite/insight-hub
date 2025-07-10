@@ -42,7 +42,7 @@ function SignupForm() {
               <Input id="password" type="password" required />
             </div>
             <Button type="submit" className="w-full">
-              Sign Up
+              Create account
             </Button>
             <div className="text-center text-sm">
               Already have an account?{' '}

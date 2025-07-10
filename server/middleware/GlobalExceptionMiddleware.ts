@@ -1,10 +1,4 @@
-import {
-  ErrorRequestHandler,
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-} from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { injectable } from 'tsyringe';
 
 import { Constants } from '@config/constants';
@@ -19,15 +13,19 @@ class GlobalExceptionMiddleware {
     res: Response,
     next: NextFunction
   ) => {
-    const error = new Error('Resource Not Found');
-    (error as any).code = 404;
+    const error = new HttpError(
+      404,
+      'Resource not found',
+      'Resource Not Found'
+    );
     next(error);
   };
 
-  public allExceptionHandler: ErrorRequestHandler = (
+  public allExceptionHandler = (
     error: HttpError,
     req: Request,
-    res: Response
+    res: Response,
+    _next: NextFunction
   ) => {
     const environment = Constants.NODE_ENV;
     const statusCode = error.code ?? 500;
@@ -51,8 +49,6 @@ class GlobalExceptionMiddleware {
       stack
     );
 
-    // Ensure we're sending JSON
-    res.setHeader('Content-Type', 'application/json');
     res.status(statusCode).json(errorResponse);
   };
 }

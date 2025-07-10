@@ -28,12 +28,19 @@ export type AuthRequestResetPasswordSchema = z.infer<
 
 export type AuthRegisterSchema = z.infer<typeof authRegisterSchema>;
 
-export const authResetSchema = z.object({
-  email: z.string().email().min(1, { message: 'Email is required' }),
-  newPassword: z
-    .string()
-    .min(8, { message: 'Password must be at least 8 characters' }),
-  resetToken: z.string().min(1, { message: 'Reset token is required' }),
-});
+export const authResetSchema = z
+  .object({
+    newPassword: z
+      .string()
+      .min(8, { message: 'Password must be at least 8 characters' }),
+    confirmPassword: z
+      .string()
+      .min(8, { message: 'Password must be at least 8 characters' }),
+    resetToken: z.string().min(1, { message: 'Reset token is required' }),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    path: ['confirmPassword'],
+    message: 'Passwords do not match',
+  });
 
 export type AuthResetSchema = z.infer<typeof authResetSchema>;

@@ -30,10 +30,7 @@ class AuthDataSourceImpl implements AuthDataSource {
       const response = await this.authEndpoints.login(data);
       return AuthModel.fromJson(response);
     } catch (error) {
-      console.error('AuthDatasourceImpl login:', error);
-      throw new ServerException(
-        typeof error === 'string' ? error : 'An unknown error occurred'
-      );
+      throw this.extractErrorMessage(error, 'AuthDatasourceImpl login');
     }
   }
 
@@ -42,10 +39,7 @@ class AuthDataSourceImpl implements AuthDataSource {
       const response = await this.authEndpoints.register(data);
       return AuthModel.fromJson(response);
     } catch (error) {
-      console.error('AuthDatasourceImpl register:', error);
-      throw new ServerException(
-        typeof error === 'string' ? error : 'An unknown error occurred'
-      );
+      throw this.extractErrorMessage(error, 'AuthDatasourceImpl register');
     }
   }
 
@@ -53,9 +47,9 @@ class AuthDataSourceImpl implements AuthDataSource {
     try {
       return this.authEndpoints.requestResetPassword(data);
     } catch (error) {
-      console.error('AuthDatasourceImpl requestResetPassword:', error);
-      throw new ServerException(
-        typeof error === 'string' ? error : 'An unknown error occurred'
+      throw this.extractErrorMessage(
+        error,
+        'AuthDatasourceImpl requestResetPassword'
       );
     }
   }
@@ -64,11 +58,18 @@ class AuthDataSourceImpl implements AuthDataSource {
     try {
       return this.authEndpoints.resetPassword(data);
     } catch (error) {
-      console.error('AuthDatasourceImpl resetPassword:', error);
-      throw new ServerException(
-        typeof error === 'string' ? error : 'An unknown error occurred'
-      );
+      throw this.extractErrorMessage(error, 'AuthDatasourceImpl resetPassword');
     }
+  }
+
+  private extractErrorMessage(
+    error: unknown,
+    handlerName: string
+  ): ServerException {
+    const errorMessage =
+      error instanceof Error ? error.message : 'An unknown error occurred';
+    console.error(`${handlerName}: ${errorMessage}`);
+    return new ServerException(errorMessage);
   }
 }
 

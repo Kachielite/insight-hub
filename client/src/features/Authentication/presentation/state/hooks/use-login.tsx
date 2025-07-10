@@ -21,9 +21,9 @@ const useLogin = () => {
     },
   });
 
-  const { isLoading: isLoggingIn } = useMutation(
+  const { mutate: loginHandler, isLoading: isLoggingIn } = useMutation(
     ['login'],
-    () => loginEffect(loginForm.getValues()),
+    (data: AuthLoginSchema) => loginEffect(data),
     {
       onSuccess: () => {
         toast.success('Login successful');
@@ -41,6 +41,7 @@ const useLogin = () => {
   return {
     loginForm,
     isLoggingIn,
+    loginHandler,
   };
 };
 
