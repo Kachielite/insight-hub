@@ -69,11 +69,11 @@ export function ResetPasswordForm() {
             </Button>
           </div>
         </form>
-        <div className="bg-muted relative hidden md:block">
+        <div className="relative hidden md:block">
           <img
             src={theme === 'light' ? AuthImageLight : AuthImageDark}
             alt="Authentication"
-            className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       </CardContent>

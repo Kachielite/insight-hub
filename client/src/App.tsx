@@ -8,7 +8,7 @@ function App() {
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      storageKey="vite-ui-theme"
+      storageKey="insight-ui-theme"
     >
       <RouterProvider router={router} />
     </ThemeProvider>
