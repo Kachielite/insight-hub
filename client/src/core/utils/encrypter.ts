@@ -7,14 +7,14 @@ class Encrypter {
     return CryptoJS.AES.encrypt(token, TOKEN_SECRET).toString();
   }
 
-  static decodeUserToken(cipher: string): string | null {
+  static async decodeUserToken(cipher: string): Promise<string | null> {
     const bytes = CryptoJS.AES.decrypt(cipher, TOKEN_SECRET);
     return bytes.toString(CryptoJS.enc.Utf8);
   }
 
-  static getUserToken(): string | null {
+  static async getUserToken(): Promise<string | null> {
     const cipherText = localStorage.getItem('A');
-    return cipherText ? Encrypter.decodeUserToken(cipherText) : null;
+    return cipherText ? await Encrypter.decodeUserToken(cipherText) : null;
   }
 
   static setUserToken(token: string) {

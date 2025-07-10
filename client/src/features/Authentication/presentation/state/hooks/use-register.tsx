@@ -25,7 +25,7 @@ const useRegister = () => {
   const { isLoading: isRegistering, mutateAsync: registerHandler } =
     useMutation(
       ['register'],
-      async () => registerEffect(registerForm.getValues()),
+      async (data: AuthRegisterSchema) => registerEffect(data),
       {
         onSuccess: () => {
           toast.success('Registration successful');
