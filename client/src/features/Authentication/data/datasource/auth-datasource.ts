@@ -62,14 +62,16 @@ class AuthDataSourceImpl implements AuthDataSource {
     }
   }
 
-  private extractErrorMessage(
-    error: unknown,
-    handlerName: string
-  ): ServerException {
+  private extractErrorMessage(error: unknown, handlerName: string): never {
+    if (error instanceof ServerException) {
+      console.error(`${handlerName}: ${error.message}`);
+      throw error; // Re-throw the original ServerException
+    }
+
     const errorMessage =
       error instanceof Error ? error.message : 'An unknown error occurred';
     console.error(`${handlerName}: ${errorMessage}`);
-    return new ServerException(errorMessage);
+    throw new ServerException(errorMessage);
   }
 }
 

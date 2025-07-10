@@ -1,16 +1,31 @@
 import { useTheme } from 'next-themes';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
+import CustomInput from '@/core/common/presentation/components/custom-input.tsx';
 import { Button } from '@/core/common/presentation/components/ui/button';
 import {
   Card,
   CardContent,
 } from '@/core/common/presentation/components/ui/card';
-import { Input } from '@/core/common/presentation/components/ui/input';
-import { Label } from '@/core/common/presentation/components/ui/label';
 import { AuthImageDark, AuthImageLight } from '@/core/constants/images';
+import useResetPassword from '@/features/Authentication/presentation/state/hooks/use-reset-password.tsx';
 
 export function ResetPasswordForm() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const resetToken = searchParams.get('token');
+
+  if (!resetToken) {
+    toast.error('Invalid or expired reset token');
+    navigate('/forgot-password', { replace: true });
+    return null;
+  }
+
   const { theme } = useTheme();
+  const { resetPasswordForm, isRequestingPasswordReset, resetPasswordHandler } =
+    useResetPassword(resetToken);
+
   return (
     <Card className="overflow-hidden p-0 w-[90vw] md:w-[80vw] lg:w-[50rem]">
       <CardContent className="grid p-0 md:grid-cols-2">
@@ -22,20 +37,35 @@ export function ResetPasswordForm() {
                 Provide your new password
               </p>
             </div>
-            <div className="grid gap-3">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
-            <div className="grid gap-3">
-              <div className="flex items-center">
-                <Label htmlFor="password">Confirm Password</Label>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
-            <Button type="submit" className="w-full">
-              Reset password
+            <CustomInput
+              id="newPassword"
+              type="password"
+              label="New Password"
+              placeholder="Enter your new password"
+              formController={resetPasswordForm}
+            />
+            <CustomInput
+              id="confirmPassword"
+              type="password"
+              label="Confirm Password"
+              placeholder="Renter your new password"
+              formController={resetPasswordForm}
+            />
+            <Button
+              disabled={isRequestingPasswordReset}
+              onClick={resetPasswordForm.handleSubmit((data) =>
+                resetPasswordHandler(data)
+              )}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  resetPasswordForm.handleSubmit((data) =>
+                    resetPasswordHandler(data)
+                  )();
+                }
+              }}
+              className="w-full"
+            >
+              {isRequestingPasswordReset ? 'Resetting...' : 'Reset Password'}
             </Button>
           </div>
         </form>

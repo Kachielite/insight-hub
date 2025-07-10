@@ -37,7 +37,7 @@ export const registerEffect = async (data: AuthRegisterSchema) => {
 
   return fold<Failure, Auth, Auth>(
     (failure) => {
-      console.error('loginEffect:', failure);
+      console.error('registerEffect:', failure);
       throw new Error(failure.message);
     },
     (auth) => {
@@ -54,7 +54,7 @@ export const requestResetPasswordEffect = async (
 
   return fold<Failure, string, string>(
     (failure) => {
-      console.error('loginEffect:', failure);
+      console.error('requestResetPasswordEffect:', failure);
       throw new Error(failure.message);
     },
     (auth) => auth
@@ -66,7 +66,7 @@ export const resetPasswordEffect = async (data: AuthResetSchema) => {
 
   return fold<Failure, string, string>(
     (failure) => {
-      console.error('loginEffect:', failure);
+      console.error('requestResetPasswordEffect:', failure);
       throw new Error(failure.message);
     },
     (auth) => auth

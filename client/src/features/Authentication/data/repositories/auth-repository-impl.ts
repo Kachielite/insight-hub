@@ -69,11 +69,16 @@ class AuthRepositoryImpl implements AuthRepository {
       const response = await this.authDataSource.resetPassword(data);
       return right(response);
     } catch (error) {
-      console.error('AuthRepositoryImpl resetPassword:', error);
+      // TODO: investigate why error is not instanceof ServerException
+      console.error('AuthRepositoryImpl resetPassword:');
+      if (error instanceof ServerException) {
+        console.error('ServerException:', error.message);
+        return left(new Failure(error.message));
+      }
+
       const errorMessage =
-        error instanceof ServerException
-          ? error.message
-          : 'An unknown error occurred';
+        error instanceof Error ? error.message : 'An unknown error occurred';
+      console.error('Error:', errorMessage);
       return left(new Failure(errorMessage));
     }
   }
