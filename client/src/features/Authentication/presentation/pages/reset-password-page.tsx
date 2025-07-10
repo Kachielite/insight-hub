@@ -1,5 +1,7 @@
+import { ResetPasswordForm } from '@/features/Authentication/presentation/components/reset-password-form.tsx';
+
 function ResetPasswordPage() {
-  return <div>ResetPasswordPage</div>;
+  return <ResetPasswordForm />;
 }
 
 export default ResetPasswordPage;

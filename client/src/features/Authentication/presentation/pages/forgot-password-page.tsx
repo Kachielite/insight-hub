@@ -1,5 +1,7 @@
+import { RequestPasswordResetForm } from '@/features/Authentication/presentation/components/request-password-reset-form.tsx';
+
 function ForgotPasswordPage() {
-  return <div>ForgotPasswordPage</div>;
+  return <RequestPasswordResetForm />;
 }
 
 export default ForgotPasswordPage;
