@@ -28,6 +28,7 @@ function SignupForm() {
               label="Name"
               placeholder="Enter your name"
               formController={registerForm}
+              dataTestId="name-input"
             />
             <CustomInput
               id="email"
@@ -35,6 +36,7 @@ function SignupForm() {
               label="Email"
               placeholder="Enter your email"
               formController={registerForm}
+              dataTestId="email-input"
             />
             <CustomInput
               id="password"
@@ -42,8 +44,10 @@ function SignupForm() {
               label="Password"
               placeholder="Enter your password"
               formController={registerForm}
+              dataTestId="password-input"
             />
             <Button
+              data-testid="register-button"
               disabled={isRegistering}
               onClick={registerForm.handleSubmit((e) => registerHandler(e))}
               onKeyDown={(e) => {

@@ -2,11 +2,26 @@ import '@testing-library/jest-dom';
 import 'reflect-metadata';
 
 // Polyfill for TextEncoder and TextDecoder
-import { TextEncoder, TextDecoder } from 'util';
+import { TextDecoder, TextEncoder } from 'util';
 
 // Cast to any to resolve type conflicts between Node.js and browser types
 global.TextEncoder = TextEncoder as any;
 global.TextDecoder = TextDecoder as any;
+
+// Mock window.matchMedia for next-themes and other components that use it
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
 
 // Mock the env constants module to avoid import.meta issues
 jest.mock('@/core/constants/env.ts', () => ({

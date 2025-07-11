@@ -9,6 +9,7 @@ interface CustomInputProps<T extends FieldValues> {
   placeholder?: string;
   type?: 'text' | 'email' | 'password';
   label?: string;
+  dataTestId?: string;
 }
 
 function CustomInput<T extends FieldValues>({
@@ -17,6 +18,7 @@ function CustomInput<T extends FieldValues>({
   placeholder = 'Enter text',
   type = 'text',
   label,
+  dataTestId,
 }: Readonly<CustomInputProps<T>>) {
   const {
     register,
@@ -36,6 +38,7 @@ function CustomInput<T extends FieldValues>({
         required
         aria-invalid={!!errorMessage}
         aria-errormessage={errorMessage}
+        data-testid={dataTestId}
       />
       {errorMessage && <p className="text-xs text-red-500">{errorMessage}</p>}
     </div>

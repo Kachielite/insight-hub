@@ -29,6 +29,7 @@ export function LoginForm() {
               label="Email"
               placeholder="Enter your email"
               formController={loginForm}
+              dataTestId="email-input"
             />
             <CustomInput
               id="password"
@@ -36,6 +37,7 @@ export function LoginForm() {
               label="Password"
               placeholder="Enter your password"
               formController={loginForm}
+              dataTestId="password-input"
             />
             <a
               href="/forgot-password"
@@ -44,6 +46,7 @@ export function LoginForm() {
               Forgot your password?
             </a>
             <Button
+              data-testid="login-button"
               onClick={loginForm.handleSubmit((data) => loginHandler(data))}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
