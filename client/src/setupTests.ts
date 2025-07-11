@@ -1,6 +1,13 @@
 import '@testing-library/jest-dom';
 import 'reflect-metadata';
 
+// Polyfill for TextEncoder and TextDecoder
+import { TextEncoder, TextDecoder } from 'util';
+
+// Cast to any to resolve type conflicts between Node.js and browser types
+global.TextEncoder = TextEncoder as any;
+global.TextDecoder = TextDecoder as any;
+
 // Mock the env constants module to avoid import.meta issues
 jest.mock('@/core/constants/env.ts', () => ({
   BACKEND_URL: 'http://localhost:3000',
