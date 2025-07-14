@@ -25,6 +25,7 @@ export default [
       '**/node_modules/**',
       '**/dist/**',
       '**/build/**',
+      'server/jest.config.js', // Migrated from .eslintignore
     ],
     files: ['**/*.{js,ts,tsx,jsx}'],
     languageOptions: {
