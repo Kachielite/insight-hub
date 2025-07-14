@@ -72,7 +72,7 @@ jobs:
           cache-dependency-path: client/package-lock.json
 
       - name: Install client dependencies
-        run: npm install --omit=optional --no-audit
+        run: npm install --omit=optional --no-audit --legacy-peer-deps
 
       - name: Run client tests with coverage
         run: npm run test:coverage

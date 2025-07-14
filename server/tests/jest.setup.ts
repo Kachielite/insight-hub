@@ -1,2 +1,2 @@
-import 'reflect-metadata';
 import './test.config';
+import 'reflect-metadata';

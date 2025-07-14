@@ -1,3 +1,4 @@
+// Set environment variables BEFORE importing any modules
 // Import this file in your test setup
 import { Constants } from '@configuration/constants';
 
