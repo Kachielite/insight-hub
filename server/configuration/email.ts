@@ -1,5 +1,6 @@
 import * as nodemailer from 'nodemailer';
 import { injectable } from 'tsyringe';
+
 import { Constants } from '@config/constants';
 
 @injectable()

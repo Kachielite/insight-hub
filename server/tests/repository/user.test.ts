@@ -1,9 +1,10 @@
 import { container } from 'tsyringe';
+
+import mockPrisma from '@config/db';
+import { Role } from '@prisma';
 import UserRepository from '@repository/implementation/UserRepository';
 import { IUserRepository } from '@repository/IUserRepositroy';
-import { Role } from '@prisma';
 // Import the mocked module and cast it properly
-import mockPrisma from '@config/db';
 
 // Mock the Prisma client with properly typed Jest mocks
 jest.mock('@config/db', () => ({

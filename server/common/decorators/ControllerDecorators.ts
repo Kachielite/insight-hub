@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
+
 import RequestValidationMiddleware from '../../middleware/RequestValidationMiddleware';
 
 // Types for decorator metadata

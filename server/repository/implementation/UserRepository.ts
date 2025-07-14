@@ -1,6 +1,7 @@
-import { Role } from '@prisma';
-import prisma from '@config/db';
 import { injectable } from 'tsyringe';
+
+import prisma from '@config/db';
+import { Role } from '@prisma';
 import { IUserRepository } from '@repository/IUserRepositroy';
 
 @injectable()

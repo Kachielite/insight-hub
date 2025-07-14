@@ -3,3 +3,4 @@
 
 npx lint-staged
 npm --prefix server test
+npm --prefix client run test:coverage

@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 import { container, inject, injectable } from 'tsyringe';
+
 import App from '@app/app';
 import { Constants } from '@config/constants';
+
 import { configureContainer } from './container';
 
 @injectable()

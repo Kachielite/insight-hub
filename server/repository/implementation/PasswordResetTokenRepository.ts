@@ -1,6 +1,7 @@
+import { injectable } from 'tsyringe';
+
 import prisma from '@config/db';
 import { IPasswordResetTokenRepository } from '@repository/IPasswordResetTokenRepository';
-import { injectable } from 'tsyringe';
 
 @injectable()
 class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
@@ -23,6 +24,12 @@ class PasswordResetTokenRepository implements IPasswordResetTokenRepository {
   async deleteByTokenID(id: string) {
     return prisma.passwordResetToken.delete({
       where: { id },
+    });
+  }
+
+  async findByUserId(userId: number) {
+    return prisma.passwordResetToken.findUnique({
+      where: { userId },
     });
   }
 }

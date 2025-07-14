@@ -1,5 +1,5 @@
-import { UserResponseDTO, UserUpdateDTO } from '@dto/UserDTO';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import { UserResponseDTO, UserUpdateDTO } from '@dto/UserDTO';
 
 export interface IUserService {
   findUserById(id: number): Promise<GeneralResponseDTO<UserResponseDTO>>;

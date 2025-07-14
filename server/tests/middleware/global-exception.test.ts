@@ -1,4 +1,5 @@
 import { NextFunction, Response } from 'express';
+
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 
 describe('GlobalExceptionMiddleware', () => {
@@ -16,10 +17,6 @@ describe('GlobalExceptionMiddleware', () => {
     const middleware = new GlobalExceptionMiddleware();
     middleware.allExceptionHandler(err, req, res, next);
 
-    expect(res.setHeader).toHaveBeenCalledWith(
-      'Content-Type',
-      'application/json'
-    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       statusCode: 500,

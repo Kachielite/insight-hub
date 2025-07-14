@@ -1,5 +1,6 @@
-import AuthenticationMiddleware from '../../middleware/AuthenticationMiddleware';
 import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
+
+import AuthenticationMiddleware from '../../middleware/AuthenticationMiddleware';
 
 const mockJwtService = {
   verifyToken: jest.fn(),

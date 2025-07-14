@@ -1,5 +1,10 @@
-import JwtService from '@service/implementation/JwtService';
+// Set up environment variables BEFORE any imports
 import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
+
+process.env.JWT_SECRET = 'test-secret-key-for-jwt-tests';
+process.env.JWT_ACCESS_TOKEN_EXPIRY = '15m';
+process.env.JWT_REFRESH_TOKEN_EXPIRY = '7d';
 
 describe('JwtService', () => {
   let jwtService: JwtService;

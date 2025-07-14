@@ -1,10 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import { inject, injectable } from 'tsyringe';
+
 import { NotAuthenticatedException, NotAuthorizedException } from '@/exception';
-import logger from '../utils/logger';
-import JwtService from '@service/implementation/JwtService';
-import UserRepository from '@repository/implementation/UserRepository';
+
 import { CustomJwtPayload } from '@common/types/express';
+import UserRepository from '@repository/implementation/UserRepository';
+import JwtService from '@service/implementation/JwtService';
+
+import logger from '../utils/logger';
 
 @injectable()
 class AuthenticationMiddleware {

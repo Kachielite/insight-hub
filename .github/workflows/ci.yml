@@ -51,9 +51,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Client Frontend Job (placeholder for future)
+  # Client Frontend Job
   client:
-    name: Client - Build and Test
+    name: Client - Build, Test, and Analyze
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -61,33 +61,41 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed for SonarCloud
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Check if client has package.json
-        id: check-client
-        run: |
-          if [ -f "package.json" ]; then
-            echo "has_package=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_package=false" >> $GITHUB_OUTPUT
-          fi
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
 
       - name: Install client dependencies
-        if: steps.check-client.outputs.has_package == 'true'
-        run: npm ci --ignore-optional --no-audit --no-fund
+        run: npm install --omit=optional --no-audit --legacy-peer-deps
 
-      - name: Run client tests
-        if: steps.check-client.outputs.has_package == 'true'
-        run: npm test
+      - name: Run client tests with coverage
+        run: npm run test:coverage
 
-      - name: Build client
-        if: steps.check-client.outputs.has_package == 'true'
-        run: npm run build
-
-      - name: Skip client (no significant code yet)
-        if: steps.check-client.outputs.has_package == 'false'
-        run: echo "Client has no package.json - skipping client build and tests"
+      - name: SonarCloud Scan for Client
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: client
+          args: >
+            -Dsonar.projectKey=Kachielite_insight-hub
+            -Dsonar.organization=kachielite
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.scm.disabled=true
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.sources=src
+            -Dsonar.inclusions=domain/**/*,data/**/*
+            -Dsonar.exclusions=/src/core/**,/src/App.tsx,presentation/**/*,**/assets/**/*,**/public/**/*,**/*.test.*,**/*.spec.*,node_modules/**/*,coverage/**/*,dist/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
+            -Dsonar.coverage.exclusions=/src/core/**,/src/App.tsx,presentation/**/*,**/*.test.*,**/*.spec.*,**/tests/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
+            -Dsonar.tests=tests
+            -Dsonar.test.inclusions=**/*.test.*,**/*.spec.*
+            -Dsonar.coverage.line.threshold=80
+            -Dsonar.coverage.branch.threshold=70
+            -Dsonar.verbose=true
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

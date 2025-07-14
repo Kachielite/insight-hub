@@ -1,4 +1,3 @@
-import request from 'supertest';
 import express, {
   Application,
   NextFunction,
@@ -6,13 +5,15 @@ import express, {
   Response,
   Router,
 } from 'express';
-import AuthenticationController from '@controller/AuthenticationController';
+import request from 'supertest';
 import { container } from 'tsyringe';
-import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+
+import AuthenticationController from '@controller/AuthenticationController';
 import { AuthTokenDTO, PasswordResetDTO } from '@dto/AuthenticationDTO';
+import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import HttpError from '@exception/http-error';
 import { IAuthenticationService } from '@service/IAuthenticationService';
 import AuthenticationService from '@service/implementation/AuthenticationService';
-import HttpError from '@exception/http-error';
 
 // Create a proper mock class that satisfies the AuthenticationService interface
 class MockAuthenticationService implements IAuthenticationService {
@@ -291,8 +292,8 @@ describe('AuthenticationController', () => {
 
   describe('POST /auth/reset-password', () => {
     const requestBody: PasswordResetDTO = {
-      email: 'john.doe@mail.com',
       newPassword: 'newpassword123',
+      resetToken: 'valid-reset-token',
     };
 
     const resetPasswordPath = '/auth/reset-password';
@@ -338,10 +339,10 @@ describe('AuthenticationController', () => {
       );
     });
 
-    it('should return 404 when email does not exist', async () => {
+    it('should return 404 when user not found', async () => {
       const error = {
         code: 404,
-        message: `User with email ${requestBody.email} does not exist`,
+        message: 'User does not exist',
         name: 'Resource Not Found',
       };
       mockAuthenticationService.resetPassword.mockRejectedValueOnce(error);

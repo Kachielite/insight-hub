@@ -3,6 +3,7 @@ import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import importPlugin from 'eslint-plugin-import';
 
 const jestGlobals = {
   describe: 'readonly',
@@ -24,6 +25,7 @@ export default [
       '**/node_modules/**',
       '**/dist/**',
       '**/build/**',
+      'server/jest.config.js', // Migrated from .eslintignore
     ],
     files: ['**/*.{js,ts,tsx,jsx}'],
     languageOptions: {
@@ -31,7 +33,12 @@ export default [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        project: ['./tsconfig.json', './server/tsconfig.json'],
+        project: [
+          './tsconfig.json',
+          './server/tsconfig.json',
+          './client/tsconfig.app.json',
+          './client/tsconfig.test.json',
+        ],
       },
       globals: {
         console: 'readonly',
@@ -47,11 +54,35 @@ export default [
         clearTimeout: 'readonly',
         setInterval: 'readonly',
         clearInterval: 'readonly',
+        // Browser globals
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        history: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        fetch: 'readonly',
       },
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
       prettier: prettierPlugin,
+      import: importPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: [
+            './tsconfig.json',
+            './server/tsconfig.json',
+            './client/tsconfig.app.json',
+            './client/tsconfig.test.json',
+            './client/tsconfig.json',
+          ],
+        },
+      },
     },
     rules: {
       ...tsPlugin.configs.recommended.rules,
@@ -68,15 +99,63 @@ export default [
       'no-console': 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
+      // Import sorting rules
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', // Node.js built-in modules
+            'external', // npm packages
+            'internal', // Internal modules (configured with paths)
+            'parent', // Parent directories (../)
+            'sibling', // Sibling files (./)
+            'index', // Index files
+            'type', // Type imports
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'],
+        },
+      ],
+      'import/first': 'error',
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
     },
   },
   {
-    files: ['**/*.test.{js,ts,tsx}', '**/*.spec.{js,ts,tsx}'],
+    files: [
+      '**/*.test.{js,ts,tsx}',
+      '**/*.spec.{js,ts,tsx}',
+      '**/tests/**/*',
+      '**/setupTests.ts',
+    ],
     languageOptions: {
-      globals: jestGlobals,
+      globals: {
+        ...jestGlobals,
+        // Browser globals for test environment
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        location: 'readonly',
+        history: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+        fetch: 'readonly',
+      },
     },
     rules: {
       'no-console': 'off',
+      '@typescript-eslint/no-explicit-any': 'off', // Allow any in tests
     },
   },
   {
@@ -86,6 +165,7 @@ export default [
       'build/',
       'coverage/',
       '*.config.js',
+      '*.config.ts',
       'client/dist/',
       'client/build/',
       'server/dist/',
@@ -93,6 +173,9 @@ export default [
       'server/generated/',
       '**/node_modules/',
       'server/jest.config.js',
+      'client/vite.config.ts',
+      'client/jest.config.js',
+      '**/jest.config.js',
     ],
   },
 ];

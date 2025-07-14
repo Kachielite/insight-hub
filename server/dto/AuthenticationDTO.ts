@@ -31,11 +31,11 @@ export class RegistrationDTO {
 }
 
 export class PasswordResetDTO {
-  email: string;
   newPassword: string;
+  resetToken: string;
 
-  constructor(email: string, newPassword: string) {
-    this.email = email;
+  constructor(email: string, newPassword: string, resetToken: string) {
     this.newPassword = newPassword;
+    this.resetToken = resetToken;
   }
 }

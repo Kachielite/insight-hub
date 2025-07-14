@@ -1,7 +1,6 @@
 import { Request } from 'express';
 import { inject, injectable } from 'tsyringe';
-import { IAuthenticationService } from '@service/IAuthenticationService';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+
 import {
   AuthenticationDTO,
   AuthTokenDTO,
@@ -9,18 +8,21 @@ import {
   RegistrationDTO,
 } from '@/dto/AuthenticationDTO';
 import GeneralResponseDTO from '@/dto/GeneralResponseDTO';
-import logger from '@utils/logger';
 import {
   BadRequestException,
   InternalServerException,
   NotAuthorizedException,
   ResourceNotFoundException,
 } from '@/exception';
-import EmailService from '@service/implementation/EmailService';
+
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
-import TokenGenerator from '@utils/TokenGenerator';
 import UserRepository from '@repository/implementation/UserRepository';
+import { IAuthenticationService } from '@service/IAuthenticationService';
+import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import logger from '@utils/logger';
+import TokenGenerator from '@utils/TokenGenerator';
 
 @injectable()
 class AuthenticationService implements IAuthenticationService {
@@ -153,6 +155,15 @@ class AuthenticationService implements IAuthenticationService {
         );
       }
 
+      // Check if token already exists
+      const existingToken =
+        await this.passwordResetTokenRepository.findByUserId(user.id);
+      if (existingToken) {
+        await this.passwordResetTokenRepository.deleteByTokenID(
+          existingToken.id
+        );
+      }
+
       // Generate reset password token
       const token = TokenGenerator.generateToken();
       const userId = user.id;
@@ -186,17 +197,32 @@ class AuthenticationService implements IAuthenticationService {
   }
 
   async resetPassword({
-    email,
     newPassword,
+    resetToken,
   }: PasswordResetDTO): Promise<GeneralResponseDTO<string>> {
     try {
-      logger.info(`Resetting password for user with email: ${email}`);
+      logger.info(`Resetting password request received`);
+
+      // Check if reset token is valid
+      const resetPasswordToken =
+        await this.passwordResetTokenRepository.findByToken(resetToken);
+      if (!resetPasswordToken) {
+        throw new BadRequestException('Invalid reset token');
+      }
+      if (resetPasswordToken.expiresAt < new Date()) {
+        await this.passwordResetTokenRepository.deleteByTokenID(
+          resetPasswordToken.id
+        );
+        throw new BadRequestException('Reset token has expired');
+      }
 
       // Check if user exists
-      const user = await this.userRepository.findUserByEmail(email);
+      const user = await this.userRepository.findUserById(
+        resetPasswordToken.userId
+      );
       if (!user) {
         throw new ResourceNotFoundException(
-          `User with email ${email} does not exist`
+          `User with id ${resetPasswordToken.userId} does not exist`
         );
       }
 
@@ -216,7 +242,10 @@ class AuthenticationService implements IAuthenticationService {
       );
     } catch (error) {
       logger.error(`Error resetting password: ${error}`);
-      if (error instanceof ResourceNotFoundException) {
+      if (
+        error instanceof ResourceNotFoundException ||
+        error instanceof BadRequestException
+      ) {
         throw error;
       }
       throw new InternalServerException(

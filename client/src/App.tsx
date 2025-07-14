@@ -1,10 +1,18 @@
-import { formatMessage, capitalize } from '@/utils/helpers';
+import { ThemeProvider } from 'next-themes';
+import { RouterProvider } from 'react-router-dom';
 
-export const App = () => {
-  const message = 'hello from client!';
-  const formattedMessage = formatMessage(message);
-  const capitalizedMessage = capitalize(formattedMessage);
+import { router } from './core/routes';
 
-  console.log(capitalizedMessage);
-  return capitalizedMessage;
-};
+function App() {
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      storageKey="insight-ui-theme"
+    >
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
+}
+
+export default App;

@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { IEmailService } from '@service/IEmailService';
-import EmailConfig from '@config/email';
+
 import { Constants } from '@config/constants';
+import EmailConfig from '@config/email';
+import { IEmailService } from '@service/IEmailService';
 import logger from '@utils/logger';
 
 @injectable()
@@ -42,8 +43,8 @@ class EmailService implements IEmailService {
                   Hello,<br><br>
                   Use the link below to reset your password. This link is valid for the next <strong>15 minutes</strong> and should not be shared with anyone.
                 </p>
-                <div style="font-size: 28px; font-weight: bold; color: #2b6cb0; text-align: center;">
-                  ${link}
+                <div style="font-size: 18px; font-weight: bold; color: #2b6cb0; text-align: center;">
+                  <a href="${link}" style="color: #2b6cb0; text-decoration: none;">Reset password link</a>
                 </div>
                 <p style="font-size: 16px; color: #555555;">
                   If you did not request this link, please ignore this email.

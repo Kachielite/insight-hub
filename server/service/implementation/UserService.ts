@@ -1,18 +1,19 @@
-import GeneralResponseDTO from '@dto/GeneralResponseDTO';
-import { UserResponseDTO, UserUpdateDTO } from '@/dto/UserDTO';
-import { IUserService } from '@service/IUserService';
+import { InternalServerError } from 'http-errors';
+import { inject, injectable } from 'tsyringe';
 
+import { UserResponseDTO, UserUpdateDTO } from '@/dto/UserDTO';
 import {
   BadRequestException,
   ConflictException,
   ResourceNotFoundException,
 } from '@/exception';
-import { InternalServerError } from 'http-errors';
-import logger from '@utils/logger';
-import { inject, injectable } from 'tsyringe';
-import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+
+import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import { Role } from '@prisma';
 import UserRepository from '@repository/implementation/UserRepository';
+import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import { IUserService } from '@service/IUserService';
+import logger from '@utils/logger';
 
 @injectable()
 class UserService implements IUserService {

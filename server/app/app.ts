@@ -1,11 +1,12 @@
-import express, { Application } from 'express';
 import cors from 'cors';
+import express, { Application } from 'express';
 import helmet from 'helmet';
-import { injectable } from 'tsyringe';
-import logger from '@utils/logger';
-import { AppServices } from '@common/types/AppServices';
 import swaggerUi from 'swagger-ui-express';
+import { injectable } from 'tsyringe';
+
+import { AppServices } from '@common/types/AppServices';
 import SwaggerConfig from '@configuration/swagger';
+import logger from '@utils/logger';
 
 @injectable()
 class App {

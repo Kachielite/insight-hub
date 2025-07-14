@@ -17,6 +17,9 @@
     "test:server": "npm run test --prefix server",
     "test:client": "npm run test --prefix client",
     "test:all": "npm run test:server && npm run test:client",
+    "test:coverage": "npm run test:coverage:server && npm run test:coverage:client",
+    "test:coverage:server": "npm run test --prefix server",
+    "test:coverage:client": "npm run test:coverage --prefix client",
     "install:server": "npm install --prefix server",
     "install:client": "npm install --prefix client",
     "install:all": "npm run install:server && npm run install:client",
@@ -39,16 +42,13 @@
     "concurrently": "^8.0.1",
     "eslint": "^9.30.0",
     "eslint-config-prettier": "^10.1.5",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "typescript": "^5.5.3"
   },
-  "private": true,
-  "dependencies": {
-    "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2",
-    "yamljs": "^0.3.0"
-  }
+  "private": true
 }

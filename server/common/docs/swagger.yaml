@@ -91,6 +91,9 @@ components:
           type: string
           format: password
           example: newpassword123
+        token:
+          type: string
+          example: token
     AuthenticationSuccessResponseDTO:
       type: object
       properties:

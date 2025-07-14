@@ -1,4 +1,5 @@
 import express, { Application, Router } from 'express';
+
 import App from '@app/app';
 import { AppServices } from '@common/types/AppServices';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
