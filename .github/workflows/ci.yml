@@ -7,13 +7,10 @@ on:
     branches: [main]
 
 jobs:
-  # Server Backend Job
-  server:
-    name: Server - Build, Test, and Analyze
+  # Build and test both server and client, then run a single SonarCloud analysis
+  build-and-analyze:
+    name: Build, Test, and Analyze Monorepo
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: server
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,77 +22,31 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: server/package-lock.json
+          cache-dependency-path: |
+            server/package-lock.json
+            client/package-lock.json
 
+      # Server build and test
       - name: Install server dependencies
+        working-directory: server
         run: npm install --omit=optional --no-audit
 
       - name: Run server tests with coverage
+        working-directory: server
         run: npm run test -- --coverage
 
-      - name: SonarCloud Scan for Server
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: server
-          args: >
-            -Dsonar.projectKey=kachielite_insight-hub-server
-            -Dsonar.organization=kachielite
-            -Dsonar.qualitygate.wait=true
-            -Dsonar.scm.disabled=true
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.coverage.exclusions=tests/**,**/*.spec.ts,**/*.test.ts,coverage/**,node_modules/**,dist/**,logs/**,generated/**,prisma/**,dto/**,common/**,configuration/**,**/*.js,**/*.json,**/*.yaml,**/*.yml,**/*.md,**/*.txt,**/*.log
-            -Dsonar.exclusions=tests/**,**/*.spec.ts,**/*.test.ts,coverage/**,node_modules/**,dist/**,logs/**,generated/**,prisma/**,dto/**,common/**,configuration/**,**/*.js,**/*.json,**/*.yaml,**/*.yml,**/*.md,**/*.txt,**/*.log
-            -Dsonar.sources=.
-            -Dsonar.verbose=true
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_SERVER }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # Client Frontend Job
-  client:
-    name: Client - Build, Test, and Analyze
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: client
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Needed for SonarCloud
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: client/package-lock.json
-
+      # Client build and test
       - name: Install client dependencies
+        working-directory: client
         run: npm install --omit=optional --no-audit --legacy-peer-deps
 
       - name: Run client tests with coverage
+        working-directory: client
         run: npm run test:coverage
 
-      - name: SonarCloud Scan for Client
+      # Single SonarCloud analysis for the entire monorepo
+      - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: client
-          args: >
-            -Dsonar.projectKey=kachielite_insight-hub-client
-            -Dsonar.organization=kachielite
-            -Dsonar.qualitygate.wait=true
-            -Dsonar.scm.disabled=true
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.sources=src
-            -Dsonar.inclusions=domain/**/*,data/**/*
-            -Dsonar.exclusions=**/presentation/**/*,**/assets/**/*,**/public/**/*,**/*.test.*,**/*.spec.*,**/node_modules/**/*,**/coverage/**/*,**/dist/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts,src/core/**/*,src/App.tsx
-            -Dsonar.coverage.exclusions=**/presentation/**/*,**/*.test.*,**/*.spec.*,**/tests/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts,src/core/**/*,src/App.tsx
-            -Dsonar.tests=tests
-            -Dsonar.test.inclusions=**/*.test.*,**/*.spec.*
-            -Dsonar.coverage.line.threshold=80
-            -Dsonar.coverage.branch.threshold=70
-            -Dsonar.verbose=true
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLIENT }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
