@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  # Build and test both server and client, then run a single SonarCloud analysis
-  build-and-analyze:
-    name: Build, Test, and Analyze Monorepo
+  # Server Backend Job
+  server-analysis:
+    name: Server - Build, Test, and Analyze
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,11 +22,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: |
-            server/package-lock.json
-            client/package-lock.json
+          cache-dependency-path: server/package-lock.json
 
-      # Server build and test
       - name: Install server dependencies
         working-directory: server
         run: npm install --omit=optional --no-audit
@@ -35,7 +32,31 @@ jobs:
         working-directory: server
         run: npm run test -- --coverage
 
-      # Client build and test
+      - name: SonarCloud Scan for Server
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: server
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_SERVER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Client Frontend Job
+  client-analysis:
+    name: Client - Build, Test, and Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Needed for SonarCloud
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
       - name: Install client dependencies
         working-directory: client
         run: npm install --omit=optional --no-audit --legacy-peer-deps
@@ -44,9 +65,10 @@ jobs:
         working-directory: client
         run: npm run test:coverage
 
-      # Single SonarCloud analysis for the entire monorepo
-      - name: SonarCloud Scan
+      - name: SonarCloud Scan for Client
         uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: client
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLIENT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
