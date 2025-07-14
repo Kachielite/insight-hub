@@ -82,7 +82,7 @@ jobs:
         with:
           projectBaseDir: client
           args: >
-            -Dsonar.projectKey=Kachielite_insight-hub-client
+            -Dsonar.projectKey=Kachielite_insight-hub
             -Dsonar.organization=kachielite
             -Dsonar.qualitygate.wait=true
             -Dsonar.scm.disabled=true

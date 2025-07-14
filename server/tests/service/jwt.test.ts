@@ -1,4 +1,4 @@
-// Set up environment variables before any imports
+// Set up environment variables BEFORE any imports
 import UserRepository from '@repository/implementation/UserRepository';
 import JwtService from '@service/implementation/JwtService';
 
