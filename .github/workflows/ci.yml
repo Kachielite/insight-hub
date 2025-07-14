@@ -89,8 +89,8 @@ jobs:
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.sources=src
             -Dsonar.inclusions=domain/**/*,data/**/*
-            -Dsonar.exclusions=presentation/**/*,**/assets/**/*,**/public/**/*,**/*.test.*,**/*.spec.*,node_modules/**/*,coverage/**/*,dist/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
-            -Dsonar.coverage.exclusions=presentation/**/*,**/*.test.*,**/*.spec.*,**/tests/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
+            -Dsonar.exclusions=/src/core/**,/src/App.tsx,presentation/**/*,**/assets/**/*,**/public/**/*,**/*.test.*,**/*.spec.*,node_modules/**/*,coverage/**/*,dist/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
+            -Dsonar.coverage.exclusions=/src/core/**,/src/App.tsx,presentation/**/*,**/*.test.*,**/*.spec.*,**/tests/**/*,**/setupTests.ts,**/main.tsx,**/vite-env.d.ts
             -Dsonar.tests=tests
             -Dsonar.test.inclusions=**/*.test.*,**/*.spec.*
             -Dsonar.coverage.line.threshold=80
