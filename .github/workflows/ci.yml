@@ -38,7 +38,7 @@ jobs:
         with:
           projectBaseDir: server
           args: >
-            -Dsonar.projectKey=Kachielite_insight-hub
+            -Dsonar.projectKey=kachielite_insight-hub-server
             -Dsonar.organization=kachielite
             -Dsonar.qualitygate.wait=true
             -Dsonar.scm.disabled=true
@@ -48,7 +48,7 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.verbose=true
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_SERVER }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Client Frontend Job
@@ -82,7 +82,7 @@ jobs:
         with:
           projectBaseDir: client
           args: >
-            -Dsonar.projectKey=Kachielite_insight-hub
+            -Dsonar.projectKey=kachielite_insight-hub-client
             -Dsonar.organization=kachielite
             -Dsonar.qualitygate.wait=true
             -Dsonar.scm.disabled=true
@@ -97,5 +97,5 @@ jobs:
             -Dsonar.coverage.branch.threshold=70
             -Dsonar.verbose=true
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLIENT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
