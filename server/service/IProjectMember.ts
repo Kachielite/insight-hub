@@ -3,16 +3,18 @@ import { Role } from '@prisma';
 
 export interface IProjectMember {
   addProjectMember(
+    userId: number,
     projectId: number,
     memberEmail: string,
     role?: Role
-  ): Promise<GeneralResponseDTO<string>>;
-  updateProjectMember(
-    projectId: number,
-    role: Role
-  ): Promise<GeneralResponseDTO<string>>;
+  ): Promise<GeneralResponseDTO<null>>;
+  acceptInvitation(
+    token: string,
+    userId: number
+  ): Promise<GeneralResponseDTO<null>>;
   removeProjectMember(
+    userId: number,
     projectId: number,
     memberEmail: string
-  ): Promise<GeneralResponseDTO<string>>;
+  ): Promise<GeneralResponseDTO<null>>;
 }

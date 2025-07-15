@@ -10,5 +10,13 @@ export interface ITokenRepository {
     email?: string
   ): Promise<Token>;
   findTokenByToken(token: string): Promise<Token | null>;
+  findTokenByUserIdAndProjectId(
+    userId: number,
+    projectId: number
+  ): Promise<Token | null>;
+  findTokenByEmailAndProjectId(
+    email: string,
+    projectId: number
+  ): Promise<Token | null>;
   deleteToken(tokenId: number): Promise<void>;
 }

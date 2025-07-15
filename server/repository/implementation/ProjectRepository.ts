@@ -1,7 +1,10 @@
+import { injectable } from 'tsyringe';
+
 import prisma from '@config/db';
 import { Project } from '@prisma';
 import { IProjectRepository } from '@repository/IProjectRepository';
 
+@injectable()
 class ProjectRepository implements IProjectRepository {
   public async createProject(
     projectName: string,

@@ -1,4 +1,4 @@
-import { Role } from '@prisma';
+import { InviteStatus, ProjectMember, Role } from '@prisma';
 
 export interface IProjectMemberRepository {
   addProjectMember(
@@ -6,6 +6,11 @@ export interface IProjectMemberRepository {
     memberEmail: string,
     role?: Role
   ): Promise<void>;
-  updateProjectMember(projectId: number, role: Role): Promise<void>;
+  findProjectMembers(projectId: number): Promise<ProjectMember[]>;
+  findProjectMemberById(
+    projectId: number,
+    userId: number
+  ): Promise<ProjectMember | null>;
+  updateProjectMember(projectId: number, status: InviteStatus): Promise<void>;
   removeProjectMember(projectId: number, memberEmail: string): Promise<void>;
 }

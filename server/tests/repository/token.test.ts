@@ -285,6 +285,178 @@ describe('TokenRepository', () => {
     });
   });
 
+  describe('findTokenByUserIdAndProjectId', () => {
+    const mockToken = {
+      id: 1,
+      value: 'user-project-token-123',
+      type: TokenType.INVITE,
+      projectId: 1,
+      userId: 2,
+      email: 'test@example.com',
+      expiresAt: new Date('2025-07-16T18:00:00.000Z'),
+      createdAt: new Date('2025-07-15T18:00:00.000Z'),
+      updatedAt: new Date('2025-07-15T18:00:00.000Z'),
+    };
+
+    it('should find token by userId and projectId successfully', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(mockToken);
+
+      const result = await tokenRepository.findTokenByUserIdAndProjectId(2, 1);
+
+      expect(result).toEqual(mockToken);
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          userId: 2,
+          projectId: 1,
+        },
+      });
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledTimes(1);
+    });
+
+    it('should return null when no token found for userId and projectId', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(null);
+
+      const result = await tokenRepository.findTokenByUserIdAndProjectId(
+        999,
+        999
+      );
+
+      expect(result).toBeNull();
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          userId: 999,
+          projectId: 999,
+        },
+      });
+    });
+
+    it('should handle database errors during search', async () => {
+      const dbError = new Error('Database connection error');
+      mockPrismaClient.token.findFirst.mockRejectedValue(dbError);
+
+      await expect(
+        tokenRepository.findTokenByUserIdAndProjectId(2, 1)
+      ).rejects.toThrow('Database connection error');
+
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          userId: 2,
+          projectId: 1,
+        },
+      });
+    });
+
+    it('should handle zero values for userId and projectId', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(null);
+
+      const result = await tokenRepository.findTokenByUserIdAndProjectId(0, 0);
+
+      expect(result).toBeNull();
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          userId: 0,
+          projectId: 0,
+        },
+      });
+    });
+  });
+
+  describe('findTokenByEmailAndProjectId', () => {
+    const mockToken = {
+      id: 2,
+      value: 'email-project-token-456',
+      type: TokenType.INVITE,
+      projectId: 1,
+      userId: null,
+      email: 'invite@example.com',
+      expiresAt: new Date('2025-07-16T18:00:00.000Z'),
+      createdAt: new Date('2025-07-15T18:00:00.000Z'),
+      updatedAt: new Date('2025-07-15T18:00:00.000Z'),
+    };
+
+    it('should find token by email and projectId successfully', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(mockToken);
+
+      const result = await tokenRepository.findTokenByEmailAndProjectId(
+        'invite@example.com',
+        1
+      );
+
+      expect(result).toEqual(mockToken);
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          email: 'invite@example.com',
+          projectId: 1,
+        },
+      });
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledTimes(1);
+    });
+
+    it('should return null when no token found for email and projectId', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(null);
+
+      const result = await tokenRepository.findTokenByEmailAndProjectId(
+        'nonexistent@example.com',
+        999
+      );
+
+      expect(result).toBeNull();
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          email: 'nonexistent@example.com',
+          projectId: 999,
+        },
+      });
+    });
+
+    it('should handle database errors during search', async () => {
+      const dbError = new Error('Database query failed');
+      mockPrismaClient.token.findFirst.mockRejectedValue(dbError);
+
+      await expect(
+        tokenRepository.findTokenByEmailAndProjectId('test@example.com', 1)
+      ).rejects.toThrow('Database query failed');
+
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          email: 'test@example.com',
+          projectId: 1,
+        },
+      });
+    });
+
+    it('should handle empty email string', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(null);
+
+      const result = await tokenRepository.findTokenByEmailAndProjectId('', 1);
+
+      expect(result).toBeNull();
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          email: '',
+          projectId: 1,
+        },
+      });
+    });
+
+    it('should handle invalid email format', async () => {
+      mockPrismaClient.token.findFirst.mockResolvedValue(null);
+
+      const result = await tokenRepository.findTokenByEmailAndProjectId(
+        'invalid-email',
+        1
+      );
+
+      expect(result).toBeNull();
+      expect(mockPrismaClient.token.findFirst).toHaveBeenCalledWith({
+        where: {
+          email: 'invalid-email',
+          projectId: 1,
+        },
+      });
+    });
+  });
+
   describe('deleteToken', () => {
     it('should delete token successfully', async () => {
       mockPrismaClient.token.delete.mockResolvedValue({

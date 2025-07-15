@@ -1,8 +1,35 @@
+import { injectable } from 'tsyringe';
+
 import prisma from '@config/db';
 import { Token, TokenType } from '@prisma';
 import { ITokenRepository } from '@repository/ITokenRepository';
 
+@injectable()
 class TokenRepository implements ITokenRepository {
+  async findTokenByUserIdAndProjectId(
+    userId: number,
+    projectId: number
+  ): Promise<Token | null> {
+    return prisma.token.findFirst({
+      where: {
+        userId: userId,
+        projectId: projectId,
+      },
+    });
+  }
+
+  async findTokenByEmailAndProjectId(
+    email: string,
+    projectId: number
+  ): Promise<Token | null> {
+    return prisma.token.findFirst({
+      where: {
+        email: email,
+        projectId: projectId,
+      },
+    });
+  }
+
   async createToken(
     token: string,
     type: TokenType,

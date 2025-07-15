@@ -1,7 +1,10 @@
+import { injectable } from 'tsyringe';
+
 import prisma from '@config/db';
-import { Role } from '@prisma';
+import { InviteStatus, ProjectMember, Role } from '@prisma';
 import { IProjectMemberRepository } from '@repository/IProjectMemberRepository';
 
+@injectable()
 class ProjectMemberRepository implements IProjectMemberRepository {
   public async addProjectMember(
     projectId: number,
@@ -21,6 +24,7 @@ class ProjectMemberRepository implements IProjectMemberRepository {
           },
         },
         role: role ?? Role.MEMBER,
+        status: InviteStatus.PENDING,
       },
     });
   }
@@ -41,14 +45,34 @@ class ProjectMemberRepository implements IProjectMemberRepository {
 
   public async updateProjectMember(
     projectId: number,
-    role: Role
+    status: InviteStatus
   ): Promise<void> {
     await prisma.projectMember.updateMany({
       where: {
         projectId,
       },
       data: {
-        role,
+        status,
+      },
+    });
+  }
+
+  public async findProjectMemberById(
+    projectId: number,
+    userId: number
+  ): Promise<ProjectMember | null> {
+    return prisma.projectMember.findFirst({
+      where: {
+        projectId,
+        userId,
+      },
+    });
+  }
+
+  public async findProjectMembers(projectId: number): Promise<ProjectMember[]> {
+    return prisma.projectMember.findMany({
+      where: {
+        projectId,
       },
     });
   }
