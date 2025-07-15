@@ -219,8 +219,8 @@ class ProjectService implements IProjectService {
           const user = await this.userRepository.findUserById(member.userId);
           return new ProjectMemberDTO(
             project.id,
-            user?.email || '',
-            user?.name || '',
+            user?.email ?? '',
+            user?.name ?? '',
             member.role
           );
         })
