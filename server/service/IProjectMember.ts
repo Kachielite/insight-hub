@@ -17,4 +17,5 @@ export interface IProjectMember {
     projectId: number,
     memberEmail: string
   ): Promise<GeneralResponseDTO<null>>;
+  verifyInvitationToken(token: string): Promise<GeneralResponseDTO<null>>;
 }

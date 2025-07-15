@@ -16,4 +16,13 @@ export class AuthenticationValidationSchema {
     newPassword: Joi.string().min(6).required(),
     resetToken: Joi.string().required(),
   });
+
+  public static projectSchema = Joi.object({
+    projectName: Joi.string().min(2).required(),
+  });
+
+  public static inviteSchema = Joi.object({
+    memberEmail: Joi.string().email().required(),
+    projectId: Joi.number().integer().positive().required(),
+  });
 }

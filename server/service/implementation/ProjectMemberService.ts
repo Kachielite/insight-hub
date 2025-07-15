@@ -29,6 +29,41 @@ class ProjectMemberService implements IProjectMember {
     @inject(EmailService) private readonly emailService: EmailService
   ) {}
 
+  public async verifyInvitationToken(
+    token: string
+  ): Promise<GeneralResponseDTO<null>> {
+    try {
+      logger.info(`Verifying invitation token ${token}`);
+
+      // Check if token exists and is valid
+      const tokenDetails = await this.tokenRepository.findTokenByToken(token);
+
+      if (
+        !tokenDetails ||
+        tokenDetails.type !== TokenType.INVITE ||
+        tokenDetails.expiresAt < new Date()
+      ) {
+        logger.error(`Token ${token} is invalid or has expired`);
+        throw new BadRequestException(
+          'Invalid or expired token. Please ask the owner to invite you again'
+        );
+      }
+
+      return new GeneralResponseDTO(200, `Token is valid`);
+    } catch (error) {
+      logger.error(`Error verifying invitation token ${token}: ${error}`);
+      if (
+        error instanceof ResourceNotFoundException ||
+        error instanceof BadRequestException
+      ) {
+        throw error;
+      }
+      return new InternalServerException(
+        `There was an error verifying the invitation token. Please try again later`
+      );
+    }
+  }
+
   public async addProjectMember(
     userId: number,
     projectId: number,

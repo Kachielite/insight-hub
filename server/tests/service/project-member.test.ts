@@ -1,6 +1,10 @@
 import { container } from 'tsyringe';
 
-import { BadRequestException, ResourceNotFoundException } from '@/exception';
+import {
+  BadRequestException,
+  InternalServerException,
+  ResourceNotFoundException,
+} from '@/exception';
 
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import { InviteStatus, Role, TokenType } from '@prisma';
@@ -488,6 +492,79 @@ describe('ProjectMemberService', () => {
       await expect(
         projectMemberService.removeProjectMember(1, 1, 'member@example.com')
       ).rejects.toThrow(ResourceNotFoundException);
+    });
+  });
+
+  describe('verifyInvitationToken', () => {
+    it('should return 200 if token is valid and not expired', async () => {
+      const token = 'valid-token';
+      const tokenDetails = {
+        id: 1,
+        projectId: 1,
+        userId: 2,
+        createdAt: new Date(),
+        email: 'test@example.com',
+        value: token,
+        type: TokenType.INVITE,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day in future
+      };
+      mockTokenRepository.findTokenByToken.mockResolvedValue(tokenDetails);
+
+      const response = await projectMemberService.verifyInvitationToken(token);
+      expect(response.code).toBe(200);
+      expect(response.message).toBe('Token is valid');
+    });
+
+    it('should throw BadRequestException if token is not found', async () => {
+      mockTokenRepository.findTokenByToken.mockResolvedValue(null);
+      await expect(
+        projectMemberService.verifyInvitationToken('bad-token')
+      ).rejects.toThrow(BadRequestException);
+    });
+
+    it('should throw BadRequestException if token is expired', async () => {
+      const token = 'expired-token';
+      const tokenDetails = {
+        id: 1,
+        projectId: 1,
+        userId: 2,
+        createdAt: new Date(),
+        email: 'test@example.com',
+        value: token,
+        type: TokenType.INVITE,
+        expiresAt: new Date(Date.now() - 1000), // expired
+      };
+      mockTokenRepository.findTokenByToken.mockResolvedValue(tokenDetails);
+      await expect(
+        projectMemberService.verifyInvitationToken(token)
+      ).rejects.toThrow(BadRequestException);
+    });
+
+    it('should throw BadRequestException if token type is not INVITE', async () => {
+      const token = 'wrong-type-token';
+      const tokenDetails = {
+        id: 1,
+        projectId: 1,
+        userId: 2,
+        createdAt: new Date(),
+        email: 'test@example.com',
+        value: token,
+        type: 'RESET', // not INVITE
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      };
+      mockTokenRepository.findTokenByToken.mockResolvedValue(tokenDetails);
+      await expect(
+        projectMemberService.verifyInvitationToken(token)
+      ).rejects.toThrow(BadRequestException);
+    });
+
+    it('should return InternalServerException for unexpected errors', async () => {
+      mockTokenRepository.findTokenByToken.mockRejectedValue(
+        new Error('db error')
+      );
+      const result =
+        await projectMemberService.verifyInvitationToken('any-token');
+      expect(result).toBeInstanceOf(InternalServerException);
     });
   });
 });
