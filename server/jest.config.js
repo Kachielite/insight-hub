@@ -5,6 +5,20 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
   testMatch: ['**/tests/**/?(*.)+(spec|test).ts'],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  // Suppress console output during tests
+  silent: true,
+  // Only show failed tests and summary
+  verbose: false,
+  // Reduce output for passed tests
+  reporters: [
+    [
+      'default',
+      {
+        summaryThreshold: 0,
+        silent: false,
+      },
+    ],
+  ],
   roots: [
     '<rootDir>/tests',
     '<rootDir>/app',
