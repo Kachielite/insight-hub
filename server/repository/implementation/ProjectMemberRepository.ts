@@ -57,6 +57,22 @@ class ProjectMemberRepository implements IProjectMemberRepository {
     });
   }
 
+  public async updateProjectMemberStatus(
+    userId: number,
+    projectId: number,
+    status: InviteStatus
+  ): Promise<void> {
+    await prisma.projectMember.updateMany({
+      where: {
+        userId,
+        projectId,
+      },
+      data: {
+        status,
+      },
+    });
+  }
+
   public async findProjectMemberById(
     projectId: number,
     userId: number

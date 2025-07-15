@@ -144,17 +144,34 @@ class ProjectMemberService implements IProjectMember {
         );
       }
 
-      const { project } = await this.findProjectAndProjectOwnerDetails(
-        tokenDetails.projectId as number,
-        userId
+      // Validate that the user accepting the invitation is the same user the token was issued for
+      if (tokenDetails.userId !== userId) {
+        logger.error(
+          `User ${userId} is trying to accept a token issued for user ${tokenDetails.userId}`
+        );
+        throw new BadRequestException(
+          'You can only accept invitations that were sent to you'
+        );
+      }
+
+      // Get project details (no need to check admin permissions here)
+      const project = await this.projectRepository.findProjectById(
+        tokenDetails.projectId as number
       );
 
-      const newMemberId = tokenDetails.userId as number;
+      if (!project) {
+        logger.error(
+          `Project with id: ${tokenDetails.projectId} does not exist`
+        );
+        throw new ResourceNotFoundException(
+          `The project you are trying to access does not exist`
+        );
+      }
 
       // Check if user is already a member of the project
       const projectMember =
         await this.projectMemberRepository.findProjectMemberById(
-          newMemberId,
+          userId,
           project.id
         );
 
@@ -168,14 +185,6 @@ class ProjectMemberService implements IProjectMember {
       }
 
       // Check invite status
-      if (projectMember.status === InviteStatus.PENDING) {
-        logger.error(
-          `User ${userId} has not accepted the invitation to project ${tokenDetails.projectId}`
-        );
-        throw new BadRequestException(
-          `You are yet to accept the invitation to this project with name ${project.name}. Please check your email for the invitation`
-        );
-      }
       if (projectMember.status === InviteStatus.ACCEPTED) {
         logger.error(
           `User ${userId} has already accepted the invitation to project ${tokenDetails.projectId}`
@@ -185,12 +194,14 @@ class ProjectMemberService implements IProjectMember {
         );
       }
 
-      // update invite status
-      await this.projectMemberRepository.updateProjectMember(
+      // Update the specific user's invite status (not all project members)
+      await this.projectMemberRepository.updateProjectMemberStatus(
+        userId,
         tokenDetails.projectId as number,
         InviteStatus.ACCEPTED
       );
-      // delete token
+
+      // Delete the token
       await this.tokenRepository.deleteToken(tokenDetails.id);
 
       return new GeneralResponseDTO(200, `Invitation accepted`);
