@@ -96,3 +96,22 @@ model PasswordResetToken {
 
   @@map("password_reset_tokens")
 }
+
+model Token {
+  id        Int       @id @default(autoincrement())
+  value     String    @unique
+  type      TokenType
+  email     String? // For invites to unregistered users
+  userId    Int?      @map("user_id") // For logged-in users
+  projectId Int?      @map("project_id")
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+
+  @@map("tokens")
+}
+
+enum TokenType {
+  INVITE
+  PASSWORD_RESET
+  OTHER
+}
