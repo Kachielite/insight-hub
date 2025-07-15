@@ -6,13 +6,20 @@ export interface IProjectService {
     projectName: string,
     userId: number
   ): Promise<GeneralResponseDTO<ProjectDTO>>;
-  findProjectById(projectId: number): Promise<GeneralResponseDTO<ProjectDTO>>;
+  findProjectById(
+    userId: number,
+    projectId: number
+  ): Promise<GeneralResponseDTO<ProjectDTO>>;
   findProjectsByUserId(
     userId: number
   ): Promise<GeneralResponseDTO<ProjectDTO[]>>;
   updateProject(
+    userId: number,
     projectId: number,
     projectName: string
   ): Promise<GeneralResponseDTO<ProjectDTO>>;
-  deleteProject(projectId: number): Promise<GeneralResponseDTO<string>>;
+  deleteProject(
+    userId: number,
+    projectId: number
+  ): Promise<GeneralResponseDTO<null>>;
 }
