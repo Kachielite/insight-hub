@@ -82,7 +82,11 @@ describe('ProjectService', () => {
       expect(result.code).toBe(200);
       expect(result.message).toBe(`Project ${projectName} created`);
       expect(result.data).toEqual(
-        new ProjectDTO(mockProject.id, mockProject.name)
+        new ProjectDTO(
+          mockProject.id,
+          mockProject.name,
+          mockProject.createdAt.toLocaleDateString()
+        )
       );
       expect(mockUserRepository.findUserById).toHaveBeenCalledWith(userId);
       expect(mockProjectRepository.createProject).toHaveBeenCalledWith(
@@ -238,14 +242,19 @@ describe('ProjectService', () => {
       expect(result.code).toBe(200);
       expect(result.message).toBe(`Project ${projectId} found`);
       expect(result.data).toEqual(
-        new ProjectDTO(mockProject.id, mockProject.name, [
-          new ProjectMemberDTO(
-            mockProject.id,
-            mockUser.email,
-            mockUser.name,
-            mockProjectMember.role
-          ),
-        ])
+        new ProjectDTO(
+          mockProject.id,
+          mockProject.name,
+          mockProject.createdAt.toLocaleDateString(),
+          [
+            new ProjectMemberDTO(
+              mockProject.id,
+              mockUser.email,
+              mockUser.name,
+              mockProjectMember.role
+            ),
+          ]
+        )
       );
     });
 

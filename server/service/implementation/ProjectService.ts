@@ -226,10 +226,19 @@ class ProjectService implements IProjectService {
         })
       );
 
-      return new ProjectDTO(project.id, project.name, memberDTOs);
+      return new ProjectDTO(
+        project.id,
+        project.name,
+        project.createdAt.toLocaleDateString(),
+        memberDTOs
+      );
     }
 
-    return new ProjectDTO(project.id, project.name);
+    return new ProjectDTO(
+      project.id,
+      project.name,
+      project.createdAt.toLocaleDateString()
+    );
   }
 
   private async checkProjectExists(projectId: number): Promise<Project> {
