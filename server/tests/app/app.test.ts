@@ -63,6 +63,9 @@ describe('App', () => {
       authController: {
         router: jest.fn() as unknown as Router,
       },
+      projectController: {
+        router: jest.fn() as unknown as Router,
+      },
     } as unknown as AppServices;
 
     // Mock express methods
@@ -128,6 +131,15 @@ describe('App', () => {
       expect(mockApp.use).toHaveBeenCalledWith(
         '/api/auth',
         mockServices.authController.router
+      );
+    });
+
+    it('should configure project routes', () => {
+      app = new App(mockApp, mockServices);
+
+      expect(mockApp.use).toHaveBeenCalledWith(
+        '/api/projects',
+        mockServices.projectController.router
       );
     });
 

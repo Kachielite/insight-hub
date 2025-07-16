@@ -2,5 +2,23 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-npm --prefix server test
-npm --prefix client run test:coverage
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only)
+
+# Check if there are changes in client directory
+if echo "$STAGED_FILES" | grep -q "^client/"; then
+  echo "🔍 Client changes detected, running client tests..."
+  npm --prefix client run test:coverage
+fi
+
+# Check if there are changes in server directory
+if echo "$STAGED_FILES" | grep -q "^server/"; then
+  echo "🔍 Server changes detected, running server tests..."
+  npm --prefix server test
+fi
+
+# If no changes in either client or server directories
+if ! echo "$STAGED_FILES" | grep -q "^client/" && ! echo "$STAGED_FILES" | grep -q "^server/"; then
+  echo "ℹ️  No changes detected in client or server directories, skipping tests."
+fi

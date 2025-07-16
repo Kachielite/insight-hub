@@ -105,3 +105,81 @@ components:
           example: Authentication successful
         data:
           $ref: '#/components/schemas/AuthTokenDTO'
+    ProjectDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 12345
+        name:
+          type: string
+          example: Project Name
+        createdAt:
+          type: string
+          format: date-time
+          example: '2023-10-01T12:00:00Z'
+    ProjectMemberDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 12345
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john@mail.com
+        role:
+          type: string
+          example: MEMBER
+    ProjectResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Project fetched successfully
+        data:
+          $ref: '#/components/schemas/ProjectDTO'
+    ProjectListResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Projects fetched successfully
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDTO'
+    ProjectMemberResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Project members fetched successfully
+        data:
+          items:
+            $ref: '#/components/schemas/ProjectMemberDTO'
+    ProjectMemberListResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Project members fetched successfully
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectMemberDTO'

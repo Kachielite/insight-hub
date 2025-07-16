@@ -66,4 +66,56 @@ describe('EmailService', () => {
       ).rejects.toThrow('Failed to send password reset email');
     });
   });
+
+  describe('sendEmailProjectInvite', () => {
+    it('should send a project invitation email with correct parameters', async () => {
+      const email = 'invitee@example.com';
+      const inviterName = 'John Doe';
+      const projectName = 'Test Project';
+      const inviteLink = 'https://localhost:3000/invite/abc123';
+
+      await emailService.sendEmailProjectInvite(
+        email,
+        inviterName,
+        projectName,
+        inviteLink
+      );
+
+      // Verify that getTransporter was called
+      expect(mockEmailConfig.getTransporter).toHaveBeenCalled();
+
+      // Verify that sendMail was called with correct parameters
+      expect(mockTransporter.sendMail).toHaveBeenCalledWith({
+        from: 'test-sender@example.com',
+        to: email,
+        subject: 'Project Invite',
+        html: expect.any(String),
+      });
+
+      // Verify the HTML content contains the expected information
+      const htmlContent = mockTransporter.sendMail.mock.calls[0][0].html;
+      expect(htmlContent).toContain(inviterName);
+      expect(htmlContent).toContain(projectName);
+      expect(htmlContent).toContain(inviteLink);
+    });
+
+    it('should throw an error when project invite email sending fails', async () => {
+      const email = 'invitee@example.com';
+      const inviterName = 'John Doe';
+      const projectName = 'Test Project';
+      const inviteLink = 'https://localhost:3000/invite/abc123';
+
+      // Mock sendMail to reject
+      mockTransporter.sendMail.mockRejectedValueOnce(new Error('SMTP Error'));
+
+      await expect(
+        emailService.sendEmailProjectInvite(
+          email,
+          inviterName,
+          projectName,
+          inviteLink
+        )
+      ).rejects.toThrow('Failed to send invite email');
+    });
+  });
 });

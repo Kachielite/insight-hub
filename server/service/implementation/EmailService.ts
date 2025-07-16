@@ -10,6 +10,25 @@ class EmailService implements IEmailService {
   private readonly senderEmail = Constants.NODE_MAIL_USER as string;
   constructor(@inject(EmailConfig) private readonly emailConfig: EmailConfig) {}
 
+  async sendEmailProjectInvite(
+    email: string,
+    inviterName: string,
+    projectName: string,
+    inviteLink: string
+  ): Promise<void> {
+    const body = this.projectInviteEmailBody(
+      inviterName,
+      projectName,
+      inviteLink
+    );
+    try {
+      await this.sendMail(email, 'Project Invite', body);
+    } catch (error) {
+      logger.error('Error sending invite email:', error);
+      throw new Error('Failed to send invite email');
+    }
+  }
+
   async sendPasswordResetEmail(
     email: string,
     resetLink: string
@@ -54,6 +73,28 @@ class EmailService implements IEmailService {
                 </p>
               </div>
         `;
+  }
+
+  private projectInviteEmailBody(
+    inviterName: string,
+    projectName: string,
+    inviteLink: string
+  ): string {
+    return `
+      <div style="font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 32px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+        <h2 style="color: #333333;">Project Invitation</h2>
+        <p style="font-size: 16px; color: #555555;">
+          Hello,<br><br>
+          ${inviterName} has invited you to join the project <strong>${projectName}</strong>. To accept the invitation, please click the link below:
+        </p>
+        <div style="font-size: 18px; font-weight: bold; color: #2b6cb0; text-align: center;">
+          <a href="${inviteLink}" style="color: #2b6cb0; text-decoration: none;">Accept invitation</a>
+        </div>
+        <p style="font-size: 14px; color: #999999; text-align: center; margin-top: 32px;">
+          &copy; ${new Date().getFullYear()} InsightHub App. All rights reserved.
+        </p>
+      </div>
+    `;
   }
 }
 

@@ -118,7 +118,10 @@
     "dev": "nodemon -r tsconfig-paths/register ./app/server.ts",
     "build": "tsc",
     "test": "jest --config jest.config.js",
-    "test:coverage": "jest --config jest.config.js --coverage"
+    "test:coverage": "jest --config jest.config.js --coverage",
+    "test:quiet": "jest --config jest.config.js --silent --verbose=false",
+    "test:watch": "jest --config jest.config.js --watch --silent --verbose=false",
+    "test:failed": "jest --config jest.config.js --onlyFailures --verbose"
   },
   "keywords": [],
   "author": "",

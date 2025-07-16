@@ -1,5 +1,6 @@
 import AuthenticationController from '@controller/AuthenticationController';
 import HealthCheckController from '@controller/HealthCheckController';
+import ProjectController from '@controller/ProjectController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 
@@ -8,4 +9,5 @@ export interface AppServices {
   globalExceptionMiddleware: GlobalExceptionMiddleware;
   healthCheckController: HealthCheckController;
   authController: AuthenticationController;
+  projectController: ProjectController;
 }
