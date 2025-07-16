@@ -6,14 +6,20 @@ import { configureContainer } from '@app/container';
 import Server from '@app/server';
 import AuthenticationController from '@controller/AuthenticationController';
 import HealthCheckController from '@controller/HealthCheckController';
+import ProjectController from '@controller/ProjectController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import ProjectMemberRepository from '@repository/implementation/ProjectMemberRepository';
+import ProjectRepository from '@repository/implementation/ProjectRepository';
+import TokenRepository from '@repository/implementation/TokenRepository';
 import UserRepository from '@repository/implementation/UserRepository';
 import AuthenticationService from '@service/implementation/AuthenticationService';
 import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import ProjectMemberService from '@service/implementation/ProjectMemberService';
+import ProjectService from '@service/implementation/ProjectService';
 import UserService from '@service/implementation/UserService';
 
 // Mock all dependencies
@@ -22,6 +28,7 @@ jest.mock('@app/app');
 jest.mock('@app/server');
 jest.mock('@controller/AuthenticationController');
 jest.mock('@controller/HealthCheckController');
+jest.mock('@controller/ProjectController');
 jest.mock('@middleware/AuthenticationMiddleware');
 jest.mock('@middleware/GlobalExceptionMiddleware');
 jest.mock('@repository/implementation/UserRepository');
@@ -90,6 +97,21 @@ describe('Container Configuration', () => {
       const tokenRepo1 = container.resolve(PasswordResetTokenRepository);
       const tokenRepo2 = container.resolve(PasswordResetTokenRepository);
       expect(tokenRepo1).toBe(tokenRepo2); // Should be the same instance
+
+      // Test ProjectRepository singleton registration
+      const projectRepo1 = container.resolve(ProjectRepository);
+      const projectRepo2 = container.resolve(ProjectRepository);
+      expect(projectRepo1).toBe(projectRepo2); // Should be the same instance
+
+      // Test ProjectMemberRepository singleton registration
+      const projectMemberRepo1 = container.resolve(ProjectMemberRepository);
+      const projectMemberRepo2 = container.resolve(ProjectMemberRepository);
+      expect(projectMemberRepo1).toBe(projectMemberRepo2); // Should be the same instance
+
+      // Test TokenRepository singleton registration
+      const tokenV2Repo1 = container.resolve(TokenRepository);
+      const tokenV2Repo2 = container.resolve(TokenRepository);
+      expect(tokenV2Repo1).toBe(tokenV2Repo2); // Should be the same instance
     });
 
     it('should register all services with correct tokens', () => {
@@ -106,6 +128,12 @@ describe('Container Configuration', () => {
       ).not.toThrow();
       expect(() =>
         container.resolve<PasswordEncoderService>('PasswordEncoderService')
+      ).not.toThrow();
+      expect(() =>
+        container.resolve<ProjectService>('ProjectService')
+      ).not.toThrow();
+      expect(() =>
+        container.resolve<ProjectMemberService>('ProjectMemberService')
       ).not.toThrow();
     });
 
@@ -135,6 +163,11 @@ describe('Container Configuration', () => {
       const authController1 = container.resolve(AuthenticationController);
       const authController2 = container.resolve(AuthenticationController);
       expect(authController1).toBe(authController2);
+
+      // Test ProjectController singleton registration
+      const projectController1 = container.resolve(ProjectController);
+      const projectController2 = container.resolve(ProjectController);
+      expect(projectController1).toBe(projectController2);
     });
 
     it('should register App with factory that creates proper AppServices', () => {
@@ -164,6 +197,7 @@ describe('Container Configuration', () => {
       // This tests that dependencies with their own dependencies can be resolved
       expect(() => container.resolve(AuthenticationController)).not.toThrow();
       expect(() => container.resolve(HealthCheckController)).not.toThrow();
+      expect(() => container.resolve(ProjectController)).not.toThrow();
       expect(() => container.resolve(App)).not.toThrow();
       expect(() => container.resolve(Server)).not.toThrow();
     });
@@ -186,12 +220,19 @@ describe('Container Configuration', () => {
       const passwordService = container.resolve<PasswordEncoderService>(
         'PasswordEncoderService'
       );
+      const projectService =
+        container.resolve<ProjectService>('ProjectService');
+      const projectMemberService = container.resolve<ProjectMemberService>(
+        'ProjectMemberService'
+      );
 
       expect(jwtService).toBeDefined();
       expect(authService).toBeDefined();
       expect(userService).toBeDefined();
       expect(emailService).toBeDefined();
       expect(passwordService).toBeDefined();
+      expect(projectService).toBeDefined();
+      expect(projectMemberService).toBeDefined();
     });
   });
 
@@ -216,6 +257,7 @@ describe('Container Configuration', () => {
       expect(services).toHaveProperty('globalExceptionMiddleware');
       expect(services).toHaveProperty('healthCheckController');
       expect(services).toHaveProperty('authController');
+      expect(services).toHaveProperty('projectController');
     });
   });
 
@@ -265,6 +307,7 @@ describe('Container Configuration', () => {
       // Test that complex objects with multiple dependencies can be created
       expect(() => {
         container.resolve(AuthenticationController);
+        container.resolve(ProjectController);
         container.resolve(HealthCheckController);
         container.resolve(App);
         container.resolve(Server);

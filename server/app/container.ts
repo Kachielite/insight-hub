@@ -9,14 +9,20 @@ import Server from '@app/server';
 import { AppServices } from '@common/types/AppServices';
 import AuthenticationController from '@controller/AuthenticationController';
 import HealthCheckController from '@controller/HealthCheckController';
+import ProjectController from '@controller/ProjectController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
+import ProjectMemberRepository from '@repository/implementation/ProjectMemberRepository';
+import ProjectRepository from '@repository/implementation/ProjectRepository';
+import TokenRepository from '@repository/implementation/TokenRepository';
 import UserRepository from '@repository/implementation/UserRepository';
 import AuthenticationService from '@service/implementation/AuthenticationService';
 import EmailService from '@service/implementation/EmailService';
 import JwtService from '@service/implementation/JwtService';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
+import ProjectMemberService from '@service/implementation/ProjectMemberService';
+import ProjectService from '@service/implementation/ProjectService';
 import UserService from '@service/implementation/UserService';
 
 export function configureContainer() {
@@ -30,6 +36,9 @@ export function configureContainer() {
   container.registerSingleton<PasswordResetTokenRepository>(
     PasswordResetTokenRepository
   );
+  container.registerSingleton<ProjectRepository>(ProjectRepository);
+  container.registerSingleton<ProjectMemberRepository>(ProjectMemberRepository);
+  container.registerSingleton<TokenRepository>(TokenRepository);
 
   // Register services with their implementations
   container.register<JwtService>('JwtService', { useClass: JwtService });
@@ -40,6 +49,12 @@ export function configureContainer() {
   container.register<EmailService>('EmailService', { useClass: EmailService });
   container.register<PasswordEncoderService>('PasswordEncoderService', {
     useClass: PasswordEncoderService,
+  });
+  container.register<ProjectService>('ProjectService', {
+    useClass: ProjectService,
+  });
+  container.register<ProjectMemberService>('ProjectMemberService', {
+    useClass: ProjectMemberService,
   });
 
   // Register middleware
@@ -55,6 +70,7 @@ export function configureContainer() {
   container.registerSingleton<AuthenticationController>(
     AuthenticationController
   );
+  container.registerSingleton<ProjectController>(ProjectController);
 
   // Register Express app factory with proper dependency injection
   container.register<App>(App, {
@@ -64,6 +80,7 @@ export function configureContainer() {
         globalExceptionMiddleware: container.resolve(GlobalExceptionMiddleware),
         healthCheckController: container.resolve(HealthCheckController),
         authController: container.resolve(AuthenticationController),
+        projectController: container.resolve(ProjectController),
       };
       return new App(express(), services);
     },
