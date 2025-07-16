@@ -241,6 +241,7 @@ describe('UserRepository', () => {
       expect(result).toEqual(mockFoundUser);
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
         where: { id: userId },
+        include: { Project: true },
       });
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledTimes(1);
     });
@@ -253,6 +254,7 @@ describe('UserRepository', () => {
       expect(result).toBeNull();
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
         where: { id: 999 },
+        include: { Project: true },
       });
     });
 
@@ -265,6 +267,7 @@ describe('UserRepository', () => {
       );
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
         where: { id: userId },
+        include: { Project: true },
       });
     });
 
@@ -276,6 +279,7 @@ describe('UserRepository', () => {
       expect(result).toBeNull();
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
         where: { id: -1 },
+        include: { Project: true },
       });
     });
 
@@ -288,6 +292,26 @@ describe('UserRepository', () => {
       expect(result).toBeNull();
       expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
         where: { id: largeId },
+        include: { Project: true },
+      });
+    });
+
+    it('should find a user by ID and include projects', async () => {
+      const mockUserWithProjects = {
+        ...mockFoundUser,
+        Project: [
+          { id: 101, name: 'Project A' },
+          { id: 102, name: 'Project B' },
+        ],
+      };
+      mockPrismaClient.user.findUnique.mockResolvedValue(mockUserWithProjects);
+
+      const result = await userRepository.findUserById(userId);
+
+      expect(result).toEqual(mockUserWithProjects);
+      expect(mockPrismaClient.user.findUnique).toHaveBeenCalledWith({
+        where: { id: userId },
+        include: { Project: true },
       });
     });
   });

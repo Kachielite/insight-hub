@@ -4,6 +4,7 @@ import { UserResponseDTO, UserUpdateDTO } from '@dto/UserDTO';
 export interface IUserService {
   findUserById(id: number): Promise<GeneralResponseDTO<UserResponseDTO>>;
   updateUser(
+    userId: number,
     userData: UserUpdateDTO
   ): Promise<GeneralResponseDTO<UserResponseDTO>>;
   deleteUser(id: number): Promise<GeneralResponseDTO<string>>;

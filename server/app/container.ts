@@ -10,6 +10,7 @@ import { AppServices } from '@common/types/AppServices';
 import AuthenticationController from '@controller/AuthenticationController';
 import HealthCheckController from '@controller/HealthCheckController';
 import ProjectController from '@controller/ProjectController';
+import UserController from '@controller/UserController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
@@ -71,6 +72,7 @@ export function configureContainer() {
     AuthenticationController
   );
   container.registerSingleton<ProjectController>(ProjectController);
+  container.registerSingleton<UserController>(UserController);
 
   // Register Express app factory with proper dependency injection
   container.register<App>(App, {
@@ -81,6 +83,7 @@ export function configureContainer() {
         healthCheckController: container.resolve(HealthCheckController),
         authController: container.resolve(AuthenticationController),
         projectController: container.resolve(ProjectController),
+        userController: container.resolve(UserController),
       };
       return new App(express(), services);
     },

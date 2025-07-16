@@ -2,6 +2,7 @@ import express, { Application, Router } from 'express';
 
 import App from '@app/app';
 import { AppServices } from '@common/types/AppServices';
+import UserController from '@controller/UserController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import logger from '@utils/logger';
 
@@ -66,6 +67,9 @@ describe('App', () => {
       projectController: {
         router: jest.fn() as unknown as Router,
       },
+      userController: {
+        router: jest.fn() as unknown as Router,
+      } as unknown as UserController,
     } as unknown as AppServices;
 
     // Mock express methods
@@ -149,6 +153,14 @@ describe('App', () => {
       expect(mockApp.use).toHaveBeenCalledWith(
         '/api/health-check',
         mockServices.healthCheckController.router
+      );
+    });
+
+    it('should configure user routes', () => {
+      app = new App(mockApp, mockServices);
+      expect(mockApp.use).toHaveBeenCalledWith(
+        '/api/users',
+        mockServices.userController.router
       );
     });
 

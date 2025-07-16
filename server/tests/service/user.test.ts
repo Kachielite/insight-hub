@@ -65,7 +65,8 @@ describe('UserService', () => {
           mockUser.name,
           mockUser.email,
           mockUser.role,
-          mockUser.createdAt
+          mockUser.createdAt,
+          [] // explicitly expect empty array for projects
         )
       );
       expect(mockUserRepository.findUserById).toHaveBeenCalledWith(userId);
@@ -98,6 +99,28 @@ describe('UserService', () => {
         'Error finding user by ID'
       );
     });
+
+    it('should find user by ID and include projects in response', async () => {
+      const mockUserWithProjects = {
+        ...mockUser,
+        Project: [
+          { id: 10, name: 'Project X', createdAt: new Date('2024-01-02') },
+          { id: 11, name: 'Project Y', createdAt: new Date('2024-01-03') },
+        ],
+      };
+      mockUserRepository.findUserById.mockResolvedValue(mockUserWithProjects);
+
+      const result = await userService.findUserById(userId);
+
+      expect(result.code).toBe(200);
+      expect(result.message).toBe('User found successfully');
+      expect(result.data?.projects).toHaveLength(2);
+      expect(result.data?.projects?.[0].id).toBe(10);
+      expect(result.data?.projects?.[0].name).toBe('Project X');
+      expect(result.data?.projects?.[1].id).toBe(11);
+      expect(result.data?.projects?.[1].name).toBe('Project Y');
+      expect(mockUserRepository.findUserById).toHaveBeenCalledWith(userId);
+    });
   });
 
   describe('updateUser', () => {
@@ -119,7 +142,6 @@ describe('UserService', () => {
 
     it('should update user successfully without password change', async () => {
       const updateData = new UserUpdateDTO(
-        1,
         undefined,
         undefined,
         'Jane Doe',
@@ -129,7 +151,7 @@ describe('UserService', () => {
       mockUserRepository.findUserById.mockResolvedValue(mockExistingUser);
       mockUserRepository.updateUser.mockResolvedValue(mockUpdatedUser);
 
-      const result = await userService.updateUser(updateData);
+      const result = await userService.updateUser(1, updateData);
 
       expect(result.code).toBe(200);
       expect(result.message).toBe('User updated successfully');
@@ -153,7 +175,6 @@ describe('UserService', () => {
 
     it('should update user with password change successfully', async () => {
       const updateData = new UserUpdateDTO(
-        1,
         'current-password',
         'new-password',
         'Jane Doe'
@@ -169,7 +190,7 @@ describe('UserService', () => {
         password: 'hashed-new-password',
       });
 
-      const result = await userService.updateUser(updateData);
+      const result = await userService.updateUser(1, updateData);
 
       expect(result.code).toBe(200);
       expect(result.message).toBe('User updated successfully');
@@ -184,45 +205,39 @@ describe('UserService', () => {
     });
 
     it('should throw ResourceNotFoundException when user does not exist', async () => {
-      const updateData = new UserUpdateDTO(
-        999,
-        undefined,
-        undefined,
-        'Jane Doe'
-      );
+      const updateData = new UserUpdateDTO(undefined, undefined, 'Jane Doe');
 
       mockUserRepository.findUserById.mockResolvedValue(null);
 
-      await expect(userService.updateUser(updateData)).rejects.toThrow(
+      await expect(userService.updateUser(999, updateData)).rejects.toThrow(
         'User with ID 999 not found'
       );
     });
 
     it('should throw BadRequestException when user is not active', async () => {
-      const updateData = new UserUpdateDTO(1, undefined, undefined, 'Jane Doe');
+      const updateData = new UserUpdateDTO(undefined, undefined, 'Jane Doe');
       const inactiveUser = { ...mockExistingUser, isActive: false };
 
       mockUserRepository.findUserById.mockResolvedValue(inactiveUser);
 
-      await expect(userService.updateUser(updateData)).rejects.toThrow(
+      await expect(userService.updateUser(1, updateData)).rejects.toThrow(
         'User with ID 1 is not active'
       );
     });
 
     it('should throw ConflictException when current password is incorrect', async () => {
-      const updateData = new UserUpdateDTO(1, 'wrong-password', 'new-password');
+      const updateData = new UserUpdateDTO('wrong-password', 'new-password');
 
       mockUserRepository.findUserById.mockResolvedValue(mockExistingUser);
       mockPasswordEncoderService.comparePasswords.mockResolvedValue(false);
 
-      await expect(userService.updateUser(updateData)).rejects.toThrow(
+      await expect(userService.updateUser(1, updateData)).rejects.toThrow(
         'Current password is incorrect'
       );
     });
 
     it('should throw BadRequestException for invalid role', async () => {
       const updateData = new UserUpdateDTO(
-        1,
         undefined,
         undefined,
         'Jane Doe',
@@ -231,14 +246,13 @@ describe('UserService', () => {
 
       mockUserRepository.findUserById.mockResolvedValue(mockExistingUser);
 
-      await expect(userService.updateUser(updateData)).rejects.toThrow(
+      await expect(userService.updateUser(1, updateData)).rejects.toThrow(
         'Invalid role: INVALID_ROLE'
       );
     });
 
     it('should trim whitespace from name', async () => {
       const updateData = new UserUpdateDTO(
-        1,
         undefined,
         undefined,
         '  Jane Doe  '
@@ -247,7 +261,7 @@ describe('UserService', () => {
       mockUserRepository.findUserById.mockResolvedValue(mockExistingUser);
       mockUserRepository.updateUser.mockResolvedValue(mockUpdatedUser);
 
-      await userService.updateUser(updateData);
+      await userService.updateUser(1, updateData);
 
       expect(mockUserRepository.updateUser).toHaveBeenCalledWith(1, {
         password: mockExistingUser.password,
@@ -258,13 +272,13 @@ describe('UserService', () => {
     });
 
     it('should throw InternalServerError for unexpected errors', async () => {
-      const updateData = new UserUpdateDTO(1, undefined, undefined, 'Jane Doe');
+      const updateData = new UserUpdateDTO(undefined, undefined, 'Jane Doe');
 
       mockUserRepository.findUserById.mockRejectedValue(
         new Error('Database error')
       );
 
-      await expect(userService.updateUser(updateData)).rejects.toThrow(
+      await expect(userService.updateUser(1, updateData)).rejects.toThrow(
         'Error updating user'
       );
     });
