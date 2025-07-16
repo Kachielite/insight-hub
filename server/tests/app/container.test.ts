@@ -7,6 +7,7 @@ import Server from '@app/server';
 import AuthenticationController from '@controller/AuthenticationController';
 import HealthCheckController from '@controller/HealthCheckController';
 import ProjectController from '@controller/ProjectController';
+import UserController from '@controller/UserController';
 import AuthenticationMiddleware from '@middleware/AuthenticationMiddleware';
 import GlobalExceptionMiddleware from '@middleware/GlobalExceptionMiddleware';
 import PasswordResetTokenRepository from '@repository/implementation/PasswordResetTokenRepository';
@@ -29,6 +30,7 @@ jest.mock('@app/server');
 jest.mock('@controller/AuthenticationController');
 jest.mock('@controller/HealthCheckController');
 jest.mock('@controller/ProjectController');
+jest.mock('@controller/UserController');
 jest.mock('@middleware/AuthenticationMiddleware');
 jest.mock('@middleware/GlobalExceptionMiddleware');
 jest.mock('@repository/implementation/UserRepository');
@@ -168,6 +170,11 @@ describe('Container Configuration', () => {
       const projectController1 = container.resolve(ProjectController);
       const projectController2 = container.resolve(ProjectController);
       expect(projectController1).toBe(projectController2);
+
+      // Test UserController singleton registration
+      const userController1 = container.resolve(UserController);
+      const userController2 = container.resolve(UserController);
+      expect(userController1).toBe(userController2);
     });
 
     it('should register App with factory that creates proper AppServices', () => {
@@ -258,6 +265,7 @@ describe('Container Configuration', () => {
       expect(services).toHaveProperty('healthCheckController');
       expect(services).toHaveProperty('authController');
       expect(services).toHaveProperty('projectController');
+      expect(services).toHaveProperty('userController');
     });
   });
 

@@ -32,6 +32,7 @@ class App {
   initiateRoutes() {
     this.app.use('/api/auth', this.services.authController.router);
     this.app.use('/api/projects', this.services.projectController.router);
+    this.app.use('/api/users', this.services.userController.router);
     this.app.use(
       '/api/health-check',
       this.services.healthCheckController.router
