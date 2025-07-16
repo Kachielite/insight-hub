@@ -44,7 +44,7 @@ class ProjectController extends BaseController {
    *           schema:
    *             $ref: '#/components/schemas/ProjectDTO'
    *     responses:
-   *       200:
+   *       201:
    *         description: Project created successfully
    *         content:
    *           application/json:
@@ -78,6 +78,7 @@ class ProjectController extends BaseController {
    */
   @Post('/', {
     validate: ProjectValidationSchema.projectSchema,
+    statusCode: 201,
   })
   public async createProject(
     req: Request
@@ -88,6 +89,45 @@ class ProjectController extends BaseController {
 
     // Call the project service to create a new project
     return await this.projectService.createProject(projectName, userId);
+  }
+
+  /**
+   * @swagger
+   * /projects/user:
+   *   get:
+   *     summary: Get all projects for the authenticated user
+   *     tags:
+   *       - Projects
+   *     security:
+   *       - bearerAuth: []
+   *     responses:
+   *       200:
+   *         description: List of projects for the user
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ProjectListResponseDTO'
+   *       401:
+   *         description: Unauthorized
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   *       500:
+   *         description: Internal server error
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ErrorResponseDTO'
+   */
+  @Get('/user')
+  public async findProjectsByUserId(
+    req: Request
+  ): Promise<GeneralResponseDTO<ProjectDTO[]>> {
+    // Extract userId from request
+    const userId = getUserIdFromRequest(req);
+    // Call the project service to find all projects by user ID
+    return await this.projectService.findProjectsByUserId(userId);
   }
 
   /**
@@ -148,45 +188,6 @@ class ProjectController extends BaseController {
 
     // Call the project service to find the project by ID
     return await this.projectService.findProjectById(userId, projectId);
-  }
-
-  /**
-   * @swagger
-   * /projects/user:
-   *   get:
-   *     summary: Get all projects for the authenticated user
-   *     tags:
-   *       - Projects
-   *     security:
-   *       - bearerAuth: []
-   *     responses:
-   *       200:
-   *         description: List of projects for the user
-   *         content:
-   *           application/json:
-   *             schema:
-   *               $ref: '#/components/schemas/ProjectListResponseDTO'
-   *       401:
-   *         description: Unauthorized
-   *         content:
-   *           application/json:
-   *             schema:
-   *               $ref: '#/components/schemas/ErrorResponseDTO'
-   *       500:
-   *         description: Internal server error
-   *         content:
-   *           application/json:
-   *             schema:
-   *               $ref: '#/components/schemas/ErrorResponseDTO'
-   */
-  @Get('/user')
-  public async findProjectsByUserId(
-    req: Request
-  ): Promise<GeneralResponseDTO<ProjectDTO[]>> {
-    // Extract userId from request
-    const userId = getUserIdFromRequest(req);
-    // Call the project service to find all projects by user ID
-    return await this.projectService.findProjectsByUserId(userId);
   }
 
   /**
