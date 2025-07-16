@@ -42,7 +42,13 @@ class ProjectController extends BaseController {
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/components/schemas/ProjectDTO'
+   *             type: object
+   *             properties:
+   *               projectName:
+   *                 type: string
+   *                 description: Name of the project
+   *             required:
+   *               - projectName
    *     responses:
    *       201:
    *         description: Project created successfully
@@ -62,19 +68,12 @@ class ProjectController extends BaseController {
    *           application/json:
    *             schema:
    *               $ref: '#/components/schemas/ErrorResponseDTO'
-   *       404:
-   *         description: Not found
-   *         content:
-   *           application/json:
-   *             schema:
-   *               $ref: '#/components/schemas/ErrorResponseDTO'
    *       500:
    *         description: Internal server error
    *         content:
    *           application/json:
    *             schema:
    *               $ref: '#/components/schemas/ErrorResponseDTO'
-   *
    */
   @Post('/', {
     validate: ProjectValidationSchema.projectSchema,
@@ -290,7 +289,7 @@ class ProjectController extends BaseController {
    *         content:
    *           application/json:
    *             schema:
-   *               $ref: '#/components/schemas/GeneralResponseDTO'
+   *               $ref: '#/components/schemas/GenericResponseDTO'
    *       400:
    *         description: Bad request
    *         content:
@@ -360,7 +359,7 @@ class ProjectController extends BaseController {
    *         content:
    *           application/json:
    *             schema:
-   *               $ref: '#/components/schemas/GeneralResponseDTO'
+   *               $ref: '#/components/schemas/GenericResponseDTO'
    *       400:
    *         description: Bad request
    *         content:
@@ -424,7 +423,7 @@ class ProjectController extends BaseController {
    *         content:
    *           application/json:
    *             schema:
-   *               $ref: '#/components/schemas/GeneralResponseDTO'
+   *               $ref: '#/components/schemas/GenericResponseDTO'
    *       400:
    *         description: Bad request
    *         content:

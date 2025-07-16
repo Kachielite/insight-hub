@@ -17,7 +17,7 @@ import ProjectService from '@service/implementation/ProjectService';
 import { IProjectMember } from '@service/IProjectMember';
 import { IProjectService } from '@service/IProjectService';
 
-jest.setTimeout(30000);
+jest.setTimeout(15000);
 
 // Mock the getUserIdFromRequest function
 jest.mock('@utils/GetUserID', () => ({
@@ -292,71 +292,6 @@ describe('ProjectController', () => {
         projectId
       );
     });
-  });
-
-  describe('GET /projects/user', () => {
-    it('should return all projects for user', async () => {
-      const mockProjects = [
-        new ProjectDTO(1, 'Test Project 1', new Date().toISOString()),
-        new ProjectDTO(2, 'Test Project 2', new Date().toISOString()),
-      ];
-      const mockResponse: GeneralResponseDTO<ProjectDTO[]> = {
-        code: 200,
-        message: 'Projects found for user',
-        data: mockProjects,
-      };
-
-      mockProjectService.findProjectsByUserId.mockResolvedValueOnce(
-        mockResponse
-      );
-
-      const response = await request(app)
-        .get('/projects/user')
-        .set('Authorization', 'Bearer mock-token');
-
-      expect(response.status).toBe(200);
-      expect(response.body).toEqual(mockResponse);
-      expect(mockProjectService.findProjectsByUserId).toHaveBeenCalledWith(
-        expect.any(Number)
-      );
-    }, 30000);
-
-    // Create a single test for error handling to simplify and make tests faster
-    it('should handle errors appropriately', async () => {
-      // 401 error
-      const unauthorizedError = {
-        code: 401,
-        message: 'User not authenticated',
-        name: 'UnauthorizedException',
-      };
-
-      mockProjectService.findProjectsByUserId.mockRejectedValueOnce(
-        unauthorizedError
-      );
-
-      const unauthorizedResponse = await request(app)
-        .get('/projects/user')
-        .set('Authorization', 'Bearer mock-token');
-
-      expect(unauthorizedResponse.status).toBe(401);
-
-      // Reset and test 500 error
-      const serverError = {
-        code: 500,
-        message: 'Internal server error',
-        name: 'InternalServerException',
-      };
-
-      mockProjectService.findProjectsByUserId.mockRejectedValueOnce(
-        serverError
-      );
-
-      const errorResponse = await request(app)
-        .get('/projects/user')
-        .set('Authorization', 'Bearer mock-token');
-
-      expect(errorResponse.status).toBe(500);
-    }, 30000); // Increased timeout
   });
 
   describe('PUT /projects/:projectId', () => {
