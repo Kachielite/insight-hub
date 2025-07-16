@@ -134,6 +134,15 @@ components:
         role:
           type: string
           example: MEMBER
+    ProjectMemberTokenVerificationDTO:
+      type: object
+      properties:
+        isVerified:
+          type: boolean
+          example: true
+        isUser:
+          type: boolean
+          example: true
     ProjectResponseDTO:
       type: object
       properties:
@@ -183,3 +192,67 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectMemberDTO'
+    InviteTokenVerificationResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: Invite token verification successful
+        data:
+          $ref: '#/components/schemas/ProjectMemberTokenVerificationDTO'
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 12345
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john@mail.com
+        role:
+          type: string
+          example: MEMBER
+        createdAt:
+          type: string
+          format: date-time
+          example: '2023-10-01T12:00:00Z'
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDTO'
+    UserResponseDTO:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        message:
+          type: string
+          example: User fetched successfully
+        data:
+          $ref: '#/components/schemas/UserDTO'
+    UserUpdateDTO:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        currentPassword:
+          type: string
+          example: current-password
+        newPassword:
+          type: string
+          example: new-password
+        name:
+          type: string
+          example: John Doe
+        role:
+          type: string
+          example: MEMBER
