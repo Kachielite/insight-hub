@@ -2,20 +2,17 @@ import ProjectDTO from '@dto/ProjectDTO';
 import { Role } from '@prisma';
 
 export class UserUpdateDTO {
-  public id: number;
   public currentPassword?: string;
   public newPassword?: string;
   public name?: string;
   public role?: Role;
 
   constructor(
-    id: number,
     currentPassword?: string,
     newPassword?: string,
     name?: string,
     role?: Role
   ) {
-    this.id = id;
     this.currentPassword = currentPassword;
     this.newPassword = newPassword;
     this.name = name;

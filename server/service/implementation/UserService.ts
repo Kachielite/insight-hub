@@ -73,24 +73,21 @@ class UserService implements IUserService {
   }
 
   async updateUser(
+    userId: number,
     userData: UserUpdateDTO
   ): Promise<GeneralResponseDTO<UserResponseDTO>> {
     try {
-      logger.info(`Updating user with ID: ${userData.id}`);
+      logger.info(`Updating user with ID: ${userId}`);
 
       // Check if user exists
-      const existingUser = await this.userRepository.findUserById(userData.id);
+      const existingUser = await this.userRepository.findUserById(userId);
 
       if (!existingUser) {
-        throw new ResourceNotFoundException(
-          `User with ID ${userData.id} not found`
-        );
+        throw new ResourceNotFoundException(`User with ID ${userId} not found`);
       }
 
       if (!existingUser.isActive) {
-        throw new BadRequestException(
-          `User with ID ${userData.id} is not active`
-        );
+        throw new BadRequestException(`User with ID ${userId} is not active`);
       }
 
       // Update user
