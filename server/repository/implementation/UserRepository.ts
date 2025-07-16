@@ -33,6 +33,9 @@ class UserRepository implements IUserRepository {
   public async findUserById(id: number) {
     return prisma.user.findUnique({
       where: { id },
+      include: {
+        Project: true,
+      },
     });
   }
 

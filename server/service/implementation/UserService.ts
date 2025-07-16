@@ -9,6 +9,7 @@ import {
 } from '@/exception';
 
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import ProjectDTO from '@dto/ProjectDTO';
 import { Role } from '@prisma';
 import UserRepository from '@repository/implementation/UserRepository';
 import PasswordEncoderService from '@service/implementation/PasswordEncoderService';
@@ -42,7 +43,15 @@ class UserService implements IUserService {
         user.name,
         user.email,
         user.role,
-        user.createdAt
+        user.createdAt,
+        user.Project?.map(
+          (project) =>
+            new ProjectDTO(
+              project.id,
+              project.name,
+              project.createdAt.toLocaleDateString()
+            )
+        ) ?? []
       );
 
       return new GeneralResponseDTO<UserResponseDTO>(

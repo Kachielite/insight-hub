@@ -65,7 +65,8 @@ describe('UserService', () => {
           mockUser.name,
           mockUser.email,
           mockUser.role,
-          mockUser.createdAt
+          mockUser.createdAt,
+          [] // explicitly expect empty array for projects
         )
       );
       expect(mockUserRepository.findUserById).toHaveBeenCalledWith(userId);
@@ -97,6 +98,28 @@ describe('UserService', () => {
       await expect(userService.findUserById(userId)).rejects.toThrow(
         'Error finding user by ID'
       );
+    });
+
+    it('should find user by ID and include projects in response', async () => {
+      const mockUserWithProjects = {
+        ...mockUser,
+        Project: [
+          { id: 10, name: 'Project X', createdAt: new Date('2024-01-02') },
+          { id: 11, name: 'Project Y', createdAt: new Date('2024-01-03') },
+        ],
+      };
+      mockUserRepository.findUserById.mockResolvedValue(mockUserWithProjects);
+
+      const result = await userService.findUserById(userId);
+
+      expect(result.code).toBe(200);
+      expect(result.message).toBe('User found successfully');
+      expect(result.data?.projects).toHaveLength(2);
+      expect(result.data?.projects?.[0].id).toBe(10);
+      expect(result.data?.projects?.[0].name).toBe('Project X');
+      expect(result.data?.projects?.[1].id).toBe(11);
+      expect(result.data?.projects?.[1].name).toBe('Project Y');
+      expect(mockUserRepository.findUserById).toHaveBeenCalledWith(userId);
     });
   });
 
