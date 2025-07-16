@@ -644,4 +644,51 @@ describe('ProjectController', () => {
       );
     });
   });
+
+  describe('GET /projects/members/verify-invite', () => {
+    const token = 'valid-invite-token';
+
+    it('should verify invitation token and return verification DTO', async () => {
+      const mockVerificationDTO = { isVerified: true, isUser: true };
+      const mockResponse: GeneralResponseDTO<any> = {
+        code: 200,
+        message: 'Token is valid',
+        data: mockVerificationDTO,
+      };
+      mockProjectMemberService.verifyInvitationToken.mockResolvedValueOnce(
+        mockResponse
+      );
+
+      const response = await request(app)
+        .get(`/projects/members/verify-invite?token=${token}`)
+        .set('Authorization', 'Bearer mock-token');
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(mockResponse);
+      expect(
+        mockProjectMemberService.verifyInvitationToken
+      ).toHaveBeenCalledWith(token);
+    });
+
+    it('should return 400 when token is invalid', async () => {
+      const error = {
+        code: 400,
+        message: 'Invalid invitation token',
+        name: 'Bad Request',
+      };
+      mockProjectMemberService.verifyInvitationToken.mockRejectedValueOnce(
+        error
+      );
+
+      const response = await request(app)
+        .get(`/projects/members/verify-invite?token=${token}`)
+        .set('Authorization', 'Bearer mock-token');
+
+      expect(response.status).toBe(400);
+      expect(response.body).toEqual(error);
+      expect(
+        mockProjectMemberService.verifyInvitationToken
+      ).toHaveBeenCalledWith(token);
+    });
+  });
 });

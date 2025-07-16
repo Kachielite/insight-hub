@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { BadRequestException, InternalServerException } from '@/exception';
 
 import ProjectDTO from '@dto/ProjectDTO';
-import ProjectMemberDTO from '@dto/ProjectMemberDTO';
+import { ProjectMemberDTO } from '@dto/ProjectMemberDTO';
 import { Role } from '@prisma';
 import ProjectMemberRepository from '@repository/implementation/ProjectMemberRepository';
 import ProjectRepository from '@repository/implementation/ProjectRepository';

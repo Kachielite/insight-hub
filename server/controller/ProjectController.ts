@@ -11,6 +11,7 @@ import {
 } from '@common/decorators/ControllerDecorators';
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import ProjectDTO from '@dto/ProjectDTO';
+import { ProjectMemberTokenVerificationDTO } from '@dto/ProjectMemberDTO';
 import { ProjectValidationSchema } from '@dto/RequestValidationSchema';
 import ProjectMemberService from '@service/implementation/ProjectMemberService';
 import ProjectService from '@service/implementation/ProjectService';
@@ -566,7 +567,7 @@ class ProjectController extends BaseController {
   @Get('/members/verify-invite')
   public async verifyInvitationToken(
     req: Request
-  ): Promise<GeneralResponseDTO<null>> {
+  ): Promise<GeneralResponseDTO<ProjectMemberTokenVerificationDTO>> {
     // Extract token from query parameters
     const token = req.query.token as string;
     // Call the project member service to verify the invitation token

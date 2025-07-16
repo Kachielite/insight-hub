@@ -1,6 +1,6 @@
 import { Role } from '@prisma';
 
-class ProjectMemberDTO {
+export class ProjectMemberDTO {
   public projectId: number;
   public email: string;
   public name: string;
@@ -14,4 +14,12 @@ class ProjectMemberDTO {
   }
 }
 
-export default ProjectMemberDTO;
+export class ProjectMemberTokenVerificationDTO {
+  public isVerified: boolean;
+  public isUser: boolean;
+
+  constructor(isVerified: boolean, isUser: boolean) {
+    this.isVerified = isVerified;
+    this.isUser = isUser;
+  }
+}

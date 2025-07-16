@@ -1,4 +1,4 @@
-import ProjectMemberDTO from '@dto/ProjectMemberDTO';
+import { ProjectMemberDTO } from '@dto/ProjectMemberDTO';
 
 class ProjectDTO {
   public id: number;

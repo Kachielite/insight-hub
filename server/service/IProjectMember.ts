@@ -1,4 +1,5 @@
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import { ProjectMemberTokenVerificationDTO } from '@dto/ProjectMemberDTO';
 import { Role } from '@prisma';
 
 export interface IProjectMember {
@@ -17,5 +18,7 @@ export interface IProjectMember {
     projectId: number,
     memberEmail: string
   ): Promise<GeneralResponseDTO<null>>;
-  verifyInvitationToken(token: string): Promise<GeneralResponseDTO<null>>;
+  verifyInvitationToken(
+    token: string
+  ): Promise<GeneralResponseDTO<ProjectMemberTokenVerificationDTO>>;
 }

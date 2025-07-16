@@ -566,5 +566,45 @@ describe('ProjectMemberService', () => {
         await projectMemberService.verifyInvitationToken('any-token');
       expect(result).toBeInstanceOf(InternalServerException);
     });
+
+    it('should return 200 and correct verificationDTO for userId token', async () => {
+      const token = 'valid-token';
+      const tokenDetails = {
+        id: 1,
+        projectId: 1,
+        userId: 2, // userId present
+        createdAt: new Date(),
+        email: 'test@example.com',
+        value: token,
+        type: TokenType.INVITE,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      };
+      mockTokenRepository.findTokenByToken.mockResolvedValue(tokenDetails);
+
+      const response = await projectMemberService.verifyInvitationToken(token);
+      expect(response.code).toBe(200);
+      expect(response.message).toBe('Token is valid');
+      expect(response.data).toEqual({ isVerified: true, isUser: true });
+    });
+
+    it('should return 200 and correct verificationDTO for email token', async () => {
+      const token = 'valid-token';
+      const tokenDetails = {
+        id: 1,
+        projectId: 1,
+        userId: undefined, // userId not present
+        createdAt: new Date(),
+        email: 'test@example.com',
+        value: token,
+        type: TokenType.INVITE,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      };
+      mockTokenRepository.findTokenByToken.mockResolvedValue(tokenDetails);
+
+      const response = await projectMemberService.verifyInvitationToken(token);
+      expect(response.code).toBe(200);
+      expect(response.message).toBe('Token is valid');
+      expect(response.data).toEqual({ isVerified: true, isUser: false });
+    });
   });
 });

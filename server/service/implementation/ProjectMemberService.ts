@@ -7,6 +7,7 @@ import {
 } from '@/exception';
 
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
+import { ProjectMemberTokenVerificationDTO } from '@dto/ProjectMemberDTO';
 import { InviteStatus, Project, Role, TokenType, User } from '@prisma';
 import ProjectMemberRepository from '@repository/implementation/ProjectMemberRepository';
 import ProjectRepository from '@repository/implementation/ProjectRepository';
@@ -31,7 +32,7 @@ class ProjectMemberService implements IProjectMember {
 
   public async verifyInvitationToken(
     token: string
-  ): Promise<GeneralResponseDTO<null>> {
+  ): Promise<GeneralResponseDTO<ProjectMemberTokenVerificationDTO>> {
     try {
       logger.info(`Verifying invitation token ${token}`);
 
@@ -49,7 +50,17 @@ class ProjectMemberService implements IProjectMember {
         );
       }
 
-      return new GeneralResponseDTO(200, `Token is valid`);
+      // Check if the token is for a user or an email
+      const isUser = !!tokenDetails.userId;
+      const isEmail = !isUser;
+      const isVerified = isUser || isEmail;
+
+      const verificationDTO = new ProjectMemberTokenVerificationDTO(
+        isVerified,
+        isUser
+      );
+
+      return new GeneralResponseDTO(200, `Token is valid`, verificationDTO);
     } catch (error) {
       logger.error(`Error verifying invitation token ${token}: ${error}`);
       if (

@@ -4,7 +4,7 @@ import { BadRequestException, InternalServerException } from '@/exception';
 
 import GeneralResponseDTO from '@dto/GeneralResponseDTO';
 import ProjectDTO from '@dto/ProjectDTO';
-import ProjectMemberDTO from '@dto/ProjectMemberDTO';
+import { ProjectMemberDTO } from '@dto/ProjectMemberDTO';
 import { Project, Role, User } from '@prisma';
 import ProjectMemberRepository from '@repository/implementation/ProjectMemberRepository';
 import ProjectRepository from '@repository/implementation/ProjectRepository';
