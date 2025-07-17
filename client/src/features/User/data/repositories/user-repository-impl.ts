@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { Failure } from '@/core/error/failure.ts';
 import extractErrorRepository from '@/core/utils/extract-error-repository.ts';
-import { UserDataSourceImpl } from '@/features/User/data/datasource/user-datasource.ts';
+import { UserDataSource } from '@/features/User/data/datasource/user-datasource.ts';
 
 import User from '../../domain/entity/user';
 import { UserRepository } from '../../domain/repositories/user-repository';
@@ -11,8 +11,8 @@ import { UserRepository } from '../../domain/repositories/user-repository';
 @injectable()
 class UserRepositoryImpl implements UserRepository {
   constructor(
-    @inject(UserDataSourceImpl)
-    private readonly userDataSource: UserDataSourceImpl
+    @inject('UserDataSource')
+    private readonly userDataSource: UserDataSource
   ) {}
 
   async getUser(): Promise<Either<Failure, User>> {

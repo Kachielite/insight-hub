@@ -5,9 +5,11 @@ import { Toaster } from 'sonner';
 import App from './App';
 import './index.css';
 import { configureAuthContainer } from './init-dependencies/auth-di.ts';
+import { configureUserContainer } from './init-dependencies/user-di.ts';
 
 // Configure dependency injection containers
 configureAuthContainer();
+configureUserContainer();
 
 // React Query
 const queryClient = new QueryClient({
