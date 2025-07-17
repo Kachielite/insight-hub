@@ -7,7 +7,7 @@ class User {
     public name: string,
     public email: string,
     public role: Role,
-    public createdAt: Date,
+    public createdAt: string,
     public projects?: Project[]
   ) {}
 }
