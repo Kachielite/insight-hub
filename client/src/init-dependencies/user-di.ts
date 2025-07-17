@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { container } from 'tsyringe';
 
 import UserEndpoints from '@/features/User/data/datasource/network/user.ts';
@@ -10,6 +11,9 @@ import { UserRepository } from '@/features/User/domain/repositories/user-reposit
 import { GetUserUseCase } from '@/features/User/domain/use-case/get-user.ts';
 
 export function configureUserContainer() {
+  // Register axios client
+  container.registerInstance('axiosClient', axios.create());
+
   // Register network layer
   container.registerSingleton<UserEndpoints>(UserEndpoints);
 
