@@ -1,4 +1,4 @@
-import Role from '@/features/Project/domain/entity/enum/role.ts';
+import Role from '@/core/common/domain/entity/enum/role.ts';
 import ProjectMember from '@/features/Project/domain/entity/project-member.ts';
 
 class ProjectMemberModel extends ProjectMember {

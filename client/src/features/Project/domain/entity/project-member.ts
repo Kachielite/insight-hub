@@ -1,4 +1,4 @@
-import Role from './enum/role.ts';
+import Role from '@/core/common/domain/entity/enum/role.ts';
 
 class ProjectMember {
   constructor(
