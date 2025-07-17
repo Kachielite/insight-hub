@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { injectable } from 'tsyringe';
 
 import Encrypter from '../utils/encrypter.ts';
 
 import type { AxiosInstance } from 'axios';
 
+@injectable()
 class AxiosClient {
   //TODO: add refresh token logic
   private readonly instance: AxiosInstance;
