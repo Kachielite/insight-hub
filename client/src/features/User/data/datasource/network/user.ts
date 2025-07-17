@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { BACKEND_URL } from '@/core/constants/env.ts';
 import AxiosClient from '@/core/network/axios-client.ts';
-import extractErrorMessage from '@/core/utils/extract-error-message.ts';
+import extractErrorEndpoints from '@/core/utils/extract-error-endpoints.ts';
 import UserModel from '@/features/User/data/model/user-model.ts';
 
 @injectable()
@@ -19,7 +19,7 @@ class UserEndpoints {
       return response.data;
     } catch (error) {
       console.error('UserEndpoints.getUser: ', error);
-      const errorMessage = extractErrorMessage(error);
+      const errorMessage = extractErrorEndpoints(error);
       throw new Error(errorMessage);
     }
   }

@@ -72,6 +72,7 @@ class AuthEndpoints {
     }
   }
 
+  // TODO: refactor this method to the utility function: extractErrorEndpoints
   private extractErrorMessage(error: unknown): string {
     return error instanceof AxiosError
       ? error.response?.data?.message

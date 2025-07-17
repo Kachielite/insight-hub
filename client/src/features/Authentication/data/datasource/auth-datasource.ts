@@ -62,6 +62,7 @@ class AuthDataSourceImpl implements AuthDataSource {
     }
   }
 
+  // TODO: refactor this method to the utility function: extractErrorDatasource
   private extractErrorMessage(error: unknown, handlerName: string): never {
     if (error instanceof ServerException) {
       console.error(`${handlerName}: ${error.message}`);
