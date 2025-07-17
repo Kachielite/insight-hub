@@ -10,9 +10,11 @@ export interface UserDataSource {
 
 @injectable()
 export class UserDataSourceImpl implements UserDataSource {
-  constructor(
-    @inject(UserEndpoints) private readonly userEndpoints: UserEndpoints
-  ) {}
+  private readonly userEndpoints: UserEndpoints;
+
+  constructor(@inject(UserEndpoints) userEndpoints: UserEndpoints) {
+    this.userEndpoints = userEndpoints;
+  }
 
   async getUser(): Promise<UserModel> {
     try {
