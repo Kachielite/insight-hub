@@ -5,14 +5,14 @@ import { container } from 'tsyringe';
 import {
   LoginUseCase,
   LoginUseCaseParams,
-} from '@/features/Authentication/domain/use-case/login';
+} from '@/features/Authentication/domain/use-case/login.ts';
 import {
   RegisterUseCase,
   RegisterUseCaseParams,
-} from '@/features/Authentication/domain/use-case/register';
-import { configureAuthContainer } from '@/init-dependencies/auth-di';
+} from '@/features/Authentication/domain/use-case/register.ts';
+import { configureAuthContainer } from '@/init-dependencies/auth-di.ts';
 
-import { testUsers } from '../fixtures/auth-fixtures';
+import { testUsers } from '../../fixtures/auth-fixtures.ts';
 
 // Mock axios for integration tests
 jest.mock('axios');

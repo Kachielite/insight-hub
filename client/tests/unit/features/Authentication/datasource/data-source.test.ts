@@ -1,7 +1,10 @@
 import AuthDataSourceImpl from '@/features/Authentication/data/datasource/auth-datasource.ts';
 import AuthEndpoints from '@/features/Authentication/data/datasource/network/auth.ts';
 
-import { mockApiResponses, testUsers } from '../../fixtures/auth-fixtures';
+import {
+  mockApiResponses,
+  testUsers,
+} from '../../../../fixtures/auth-fixtures.ts';
 
 // Mock the network layer
 const mockAuthEndpoints = {

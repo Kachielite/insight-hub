@@ -19,7 +19,10 @@ import {
   ResetPasswordUseCaseParams,
 } from '@/features/Authentication/domain/use-case/reset-password.ts';
 
-import { mockApiResponses, testUsers } from '../../fixtures/auth-fixtures';
+import {
+  mockApiResponses,
+  testUsers,
+} from '../../../../fixtures/auth-fixtures.ts';
 
 // Mock the repository
 const mockAuthRepository: jest.Mocked<AuthRepository> = {
