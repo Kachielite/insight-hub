@@ -11,8 +11,12 @@ import { UserRepository } from '@/features/User/domain/repositories/user-reposit
 import { GetUserUseCase } from '@/features/User/domain/use-case/get-user.ts';
 
 export function configureUserContainer() {
-  // Register axios client
-  container.registerInstance('axiosClient', axios.create());
+  // Register axios client using axios directly
+  const axiosClient = axios.create({
+    baseURL: 'http://localhost:3000',
+    withCredentials: true,
+  });
+  container.registerInstance('axiosClient', axiosClient);
 
   // Register network layer
   container.registerSingleton<UserEndpoints>(UserEndpoints);
