@@ -4,7 +4,10 @@ import { ServerException } from '@/core/error/server.ts';
 import AuthDataSourceImpl from '@/features/Authentication/data/datasource/auth-datasource.ts';
 import AuthRepositoryImpl from '@/features/Authentication/data/repositories/auth-repository-impl.ts';
 
-import { mockApiResponses, testUsers } from '../../fixtures/auth-fixtures';
+import {
+  mockApiResponses,
+  testUsers,
+} from '../../../../fixtures/auth-fixtures.ts';
 
 // Mock the data source
 const mockAuthDataSource = {

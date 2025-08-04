@@ -20,14 +20,16 @@ const getResetPasswordUseCase = () => getAuthUseCases().resetPasswordUseCase;
 export const loginEffect = async (data: AuthLoginSchema) => {
   const response = await getLoginUseCase().execute({ data });
 
-  return fold<Failure, Auth, Auth>(
+  return fold<Failure, Auth, void>(
     (failure) => {
       console.error('loginEffect:', failure);
       throw new Error(failure.message);
     },
     (auth) => {
-      Encrypter.setUserToken(auth.accessToken);
-      return auth;
+      if (!auth) {
+        throw new Error('Login failed: No auth data returned');
+      }
+      Encrypter.encryptUserToken(auth.accessToken);
     }
   )(response);
 };
@@ -35,14 +37,16 @@ export const loginEffect = async (data: AuthLoginSchema) => {
 export const registerEffect = async (data: AuthRegisterSchema) => {
   const response = await getRegisterUseCase().execute({ data });
 
-  return fold<Failure, Auth, Auth>(
+  return fold<Failure, Auth, void>(
     (failure) => {
       console.error('registerEffect:', failure);
       throw new Error(failure.message);
     },
     (auth) => {
-      Encrypter.setUserToken(auth.accessToken);
-      return auth;
+      if (!auth) {
+        throw new Error('Registration failed: No auth data returned');
+      }
+      Encrypter.encryptUserToken(auth.accessToken);
     }
   )(response);
 };

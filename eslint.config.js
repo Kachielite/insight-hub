@@ -26,6 +26,7 @@ export default [
       '**/dist/**',
       '**/build/**',
       'server/jest.config.js', // Migrated from .eslintignore
+      'client/test-decryption.js', // Explicitly ignoring this JavaScript test file
     ],
     files: ['**/*.{js,ts,tsx,jsx}'],
     languageOptions: {
@@ -176,6 +177,7 @@ export default [
       'client/vite.config.ts',
       'client/jest.config.js',
       '**/jest.config.js',
+      'client/test-decryption.js', // Explicitly ignoring this JavaScript test file
     ],
   },
 ];

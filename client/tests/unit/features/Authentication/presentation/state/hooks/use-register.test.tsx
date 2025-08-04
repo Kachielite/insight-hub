@@ -99,11 +99,7 @@ describe('useRegister Hook', () => {
 
     it('should handle successful registration', async () => {
       // Arrange
-      const mockAuth = {
-        accessToken: 'token',
-        refreshToken: 'refresh-token',
-      };
-      mockRegisterEffect.mockResolvedValue(mockAuth);
+      mockRegisterEffect.mockResolvedValue(); // registerEffect resolves to void
 
       const { result } = renderHook(() => useRegister(), { wrapper });
 
@@ -269,10 +265,7 @@ describe('useRegister Hook', () => {
   describe('React Query integration', () => {
     it('should use mutateAsync instead of mutate', async () => {
       // Arrange
-      mockRegisterEffect.mockResolvedValue({
-        accessToken: 'token',
-        refreshToken: 'refresh',
-      });
+      mockRegisterEffect.mockResolvedValue(); // registerEffect resolves to void
 
       const { result } = renderHook(() => useRegister(), { wrapper });
 
@@ -294,10 +287,7 @@ describe('useRegister Hook', () => {
 
     it('should reset loading state after mutation completes', async () => {
       // Arrange
-      mockRegisterEffect.mockResolvedValue({
-        accessToken: 'token',
-        refreshToken: 'refresh',
-      });
+      mockRegisterEffect.mockResolvedValue(); // registerEffect resolves to void
 
       const { result } = renderHook(() => useRegister(), { wrapper });
 

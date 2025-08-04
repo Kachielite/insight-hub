@@ -25,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
       const response = await this.authDataSource.login(data);
       return right(response);
     } catch (error) {
+      // TODO: refactor to use extractErrorRepository, do same in other methods
       console.error('AuthRepositoryImpl login:', error);
       const errorMessage =
         error instanceof ServerException

@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { injectable } from 'tsyringe';
 
 import Encrypter from '../utils/encrypter.ts';
 
 import type { AxiosInstance } from 'axios';
 
+@injectable()
 class AxiosClient {
   //TODO: add refresh token logic
   private readonly instance: AxiosInstance;
@@ -13,17 +15,20 @@ class AxiosClient {
       baseURL: import.meta.env.VITE_BACKEND_URL,
       withCredentials: true,
     });
+    this.setupRequestInterceptor();
     this.handleUnauthorized();
   }
 
-  setToken(token?: string) {
-    this.instance.interceptors.request.use((config) => {
+  setupRequestInterceptor() {
+    this.instance.interceptors.request.use(async (config) => {
+      const token = await Encrypter.getUserToken();
       if (token) {
         const setup = { ...config };
-        setup.headers.Authorization = `Bearer ${Encrypter.decodeUserToken(token)}`;
+        setup.headers.Authorization = `Bearer ${token}`;
 
         return setup;
       }
+
       return config;
     });
   }
