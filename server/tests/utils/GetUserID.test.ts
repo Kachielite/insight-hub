@@ -5,7 +5,7 @@ import { getUserIdFromRequest } from '@/utils/GetUserID';
 
 describe('getUserIdFromRequest', () => {
   it('should return user id as a number if user is present in request', () => {
-    const req = { user: { id: '42' } } as unknown as Request;
+    const req = { user: { userId: '42' } } as unknown as Request;
     expect(getUserIdFromRequest(req)).toBe(42);
   });
 

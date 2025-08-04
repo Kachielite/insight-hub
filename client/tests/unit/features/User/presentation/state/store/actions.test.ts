@@ -32,27 +32,25 @@ describe('User Actions', () => {
   });
 
   describe('createUserActions', () => {
-    it('should create actions with initial user state as null', () => {
-      expect(actions).toHaveProperty('user', null);
+    it('should create actions with setUser function', () => {
       expect(actions).toHaveProperty('setUser');
       expect(typeof actions.setUser).toBe('function');
     });
 
     it('should return correct action structure', () => {
       expect(actions).toMatchObject({
-        user: null,
         setUser: expect.any(Function),
       });
     });
 
-    it('setUser should update user state', () => {
-      const result = actions.setUser(mockUser);
-      expect(result).toEqual({ user: mockUser });
+    it('setUser should call set with user', () => {
+      actions.setUser(mockUser);
+      expect(mockSet).toHaveBeenCalledWith({ user: mockUser });
     });
 
-    it('setUser should handle null', () => {
-      const result = actions.setUser(null);
-      expect(result).toEqual({ user: null });
+    it('setUser should call set with null', () => {
+      actions.setUser(null);
+      expect(mockSet).toHaveBeenCalledWith({ user: null });
     });
   });
 });

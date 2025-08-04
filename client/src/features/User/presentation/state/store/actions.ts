@@ -7,7 +7,6 @@ export const createUserActions: StateCreator<
   [],
   [],
   Pick<UserSlice, 'setUser'>
-> = () => ({
-  user: null,
-  setUser: (user) => ({ user }),
+> = (set) => ({
+  setUser: (user) => set({ user }),
 });

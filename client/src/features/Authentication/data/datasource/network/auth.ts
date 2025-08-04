@@ -20,7 +20,9 @@ class AuthEndpoints {
         email: data.email,
         password: data.password,
       });
-      return response.data;
+      // Handle both response structures: response.data and response.data.data
+      const authData = response.data.data || response.data;
+      return authData;
     } catch (error) {
       console.error('AuthEndpoints.login: ', error);
       const errorMessage = this.extractErrorMessage(error);
@@ -35,7 +37,9 @@ class AuthEndpoints {
         password: data.password,
         name: data.name,
       });
-      return response.data;
+      // Handle both response structures: response.data and response.data.data
+      const authData = response.data.data || response.data;
+      return authData;
     } catch (error) {
       console.error('AuthEndpoints.register: ', error);
       const errorMessage = this.extractErrorMessage(error as AxiosError);

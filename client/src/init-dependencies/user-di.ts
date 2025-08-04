@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { container } from 'tsyringe';
 
+import AxiosClient from '@/core/network/axios-client.ts';
 import UserEndpoints from '@/features/User/data/datasource/network/user.ts';
 import {
   UserDataSource,
@@ -12,10 +12,7 @@ import { GetUserUseCase } from '@/features/User/domain/use-case/get-user.ts';
 
 export function configureUserContainer() {
   // Register axios client using axios directly
-  const axiosClient = axios.create({
-    baseURL: 'http://localhost:3000',
-    withCredentials: true,
-  });
+  const axiosClient = new AxiosClient().getInstance();
   container.registerInstance('axiosClient', axiosClient);
 
   // Register network layer

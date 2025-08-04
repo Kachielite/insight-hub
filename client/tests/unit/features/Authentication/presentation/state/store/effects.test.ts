@@ -89,16 +89,15 @@ describe('Authentication Effects', () => {
       mockLoginUseCase.execute.mockResolvedValue(E.right(mockAuth));
 
       // Act
-      const result = await loginEffect(loginData);
+      await loginEffect(loginData);
 
       // Assert
       expect(mockLoginUseCase.execute).toHaveBeenCalledWith({
         data: loginData,
       });
-      expect(mockEncrypter.setUserToken).toHaveBeenCalledWith(
+      expect(mockEncrypter.encryptUserToken).toHaveBeenCalledWith(
         mockAuth.accessToken
       );
-      expect(result).toEqual(mockAuth);
     });
 
     it('should handle failed login', async () => {
@@ -110,7 +109,7 @@ describe('Authentication Effects', () => {
       expect(mockLoginUseCase.execute).toHaveBeenCalledWith({
         data: loginData,
       });
-      expect(mockEncrypter.setUserToken).not.toHaveBeenCalled();
+      expect(mockEncrypter.encryptUserToken).not.toHaveBeenCalled();
       expect(console.error).toHaveBeenCalledWith('loginEffect:', mockFailure);
     });
 
@@ -121,7 +120,7 @@ describe('Authentication Effects', () => {
 
       // Act & Assert
       await expect(loginEffect(loginData)).rejects.toThrow('Network error');
-      expect(mockEncrypter.setUserToken).not.toHaveBeenCalled();
+      expect(mockEncrypter.encryptUserToken).not.toHaveBeenCalled();
     });
   });
 
@@ -137,16 +136,15 @@ describe('Authentication Effects', () => {
       mockRegisterUseCase.execute.mockResolvedValue(E.right(mockAuth));
 
       // Act
-      const result = await registerEffect(registerData);
+      await registerEffect(registerData);
 
       // Assert
       expect(mockRegisterUseCase.execute).toHaveBeenCalledWith({
         data: registerData,
       });
-      expect(mockEncrypter.setUserToken).toHaveBeenCalledWith(
+      expect(mockEncrypter.encryptUserToken).toHaveBeenCalledWith(
         mockAuth.accessToken
       );
-      expect(result).toEqual(mockAuth);
     });
 
     it('should handle failed registration', async () => {
@@ -160,7 +158,7 @@ describe('Authentication Effects', () => {
       expect(mockRegisterUseCase.execute).toHaveBeenCalledWith({
         data: registerData,
       });
-      expect(mockEncrypter.setUserToken).not.toHaveBeenCalled();
+      expect(mockEncrypter.encryptUserToken).not.toHaveBeenCalled();
       expect(console.error).toHaveBeenCalledWith(
         'registerEffect:',
         mockFailure
@@ -176,7 +174,7 @@ describe('Authentication Effects', () => {
       await expect(registerEffect(registerData)).rejects.toThrow(
         'Database error'
       );
-      expect(mockEncrypter.setUserToken).not.toHaveBeenCalled();
+      expect(mockEncrypter.encryptUserToken).not.toHaveBeenCalled();
     });
   });
 

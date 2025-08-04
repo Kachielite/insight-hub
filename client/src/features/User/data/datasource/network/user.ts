@@ -17,7 +17,7 @@ class UserEndpoints {
   public async getUser(): Promise<UserModel> {
     try {
       const response = await this.axiosClient.get(`${this.userPath}/me`);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       console.error('UserEndpoints.getUser: ', error);
       const errorMessage = extractErrorEndpoints(error);

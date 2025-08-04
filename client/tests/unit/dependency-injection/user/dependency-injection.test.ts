@@ -5,6 +5,15 @@ import type { UserRepository } from '@/features/User/domain/repositories/user-re
 import { GetUserUseCase } from '@/features/User/domain/use-case/get-user.ts';
 import { configureUserContainer } from '@/init-dependencies/user-di.ts';
 
+jest.mock('@/core/network/axios-client.ts', () => {
+  return {
+    __esModule: true,
+    default: jest.fn().mockImplementation(() => ({
+      getInstance: jest.fn(() => ({})),
+    })),
+  };
+});
+
 describe('User Dependency Injection', () => {
   beforeEach(() => {
     // Clear container before each test

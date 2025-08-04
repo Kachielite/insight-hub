@@ -21,8 +21,8 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe('Authentication Integration Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    container.clearInstances();
-    configureAuthContainer();
+    jest.resetModules();
+    configureAuthContainer(); // Only configure DI, do not register any repository/data source mocks
   });
 
   describe('End-to-End Authentication Flow', () => {

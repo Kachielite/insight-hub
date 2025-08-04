@@ -25,7 +25,7 @@ const useLogin = () => {
     ['login'],
     (data: AuthLoginSchema) => loginEffect(data),
     {
-      onSuccess: () => {
+      onSuccess: async () => {
         toast.success('Login successful');
         navigate('/');
       },

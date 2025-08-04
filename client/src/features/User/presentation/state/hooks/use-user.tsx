@@ -1,14 +1,22 @@
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import { toast } from 'sonner';
 
 import { useAppStore } from '@/core/common/presentation/state/store';
+import Encrypter from '@/core/utils/encrypter.ts';
 import { fetchUserEffect } from '@/features/User/presentation/state/store/effects.ts';
 
 const useUser = () => {
   const { setUser } = useAppStore();
 
-  const { isLoading, mutateAsync: fetchCurrentUser } = useMutation(
-    async () => fetchUserEffect(),
+  const { isLoading: isLoadingUserData } = useQuery(
+    'fetchCurrentUser',
+    async () => {
+      const token = await Encrypter.getUserToken();
+      if (!token) {
+        throw new Error('You are not authenticated. Please log in.');
+      }
+      return fetchUserEffect();
+    },
     {
       onSuccess: (data) => {
         setUser(data);
@@ -23,8 +31,7 @@ const useUser = () => {
   );
 
   return {
-    isLoading,
-    fetchCurrentUser,
+    isLoadingUserData,
   };
 };
 

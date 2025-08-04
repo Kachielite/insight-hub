@@ -20,30 +20,16 @@ class AxiosClient {
   }
 
   setupRequestInterceptor() {
-    this.instance.interceptors.request.use((config) => {
-      // Try to get token from localStorage or sessionStorage
-      const token =
-        window.localStorage.getItem('token') ??
-        window.sessionStorage.getItem('token');
-      console.log('[AxiosClient] Raw token from storage:', token);
+    this.instance.interceptors.request.use(async (config) => {
+      const token = await Encrypter.getUserToken();
       if (token) {
-        const decodedToken = Encrypter.decodeUserToken(token);
-        console.log('[AxiosClient] Decoded token:', decodedToken);
-        config.headers.Authorization = `Bearer ${decodedToken}`;
-        console.log(
-          '[AxiosClient] Authorization header:',
-          config.headers.Authorization
-        );
-        console.log('[AxiosClient] Full request config:', config);
-        return config;
-      } else {
-        console.warn('[AxiosClient] No token found, redirecting to login.');
-        window.localStorage.clear();
-        window.sessionStorage.clear();
-        window.location.replace('/login');
-        // Prevent request from being sent
-        return Promise.reject(new Error('No token found'));
+        const setup = { ...config };
+        setup.headers.Authorization = `Bearer ${token}`;
+
+        return setup;
       }
+
+      return config;
     });
   }
 

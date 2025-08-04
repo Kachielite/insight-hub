@@ -96,11 +96,7 @@ describe('useLogin Hook', () => {
 
     it('should handle successful login', async () => {
       // Arrange
-      const mockAuth = {
-        accessToken: 'token',
-        refreshToken: 'refresh-token',
-      };
-      mockLoginEffect.mockResolvedValue(mockAuth);
+      mockLoginEffect.mockResolvedValue(); // loginEffect resolves to void
 
       const { result } = renderHook(() => useLogin(), { wrapper });
 
@@ -265,10 +261,7 @@ describe('useLogin Hook', () => {
 
     it('should reset loading state after mutation completes', async () => {
       // Arrange
-      mockLoginEffect.mockResolvedValue({
-        accessToken: 'token',
-        refreshToken: 'refresh',
-      });
+      mockLoginEffect.mockResolvedValue(); // loginEffect resolves to void
 
       const { result } = renderHook(() => useLogin(), { wrapper });
 
